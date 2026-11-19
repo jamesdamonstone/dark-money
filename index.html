@@ -226,6 +226,36 @@
   .calc-result span{font-size:14.5px;color:var(--muted);font-weight:600}
   .calc-result b{font-family:"Cinzel",serif;font-size:32px;color:var(--accent);line-height:1}
 
+  /* Join */
+  #join{
+    background:
+      radial-gradient(760px 320px at 88% -40px, rgba(200,169,110,.08), transparent 65%),
+      var(--bg-2);
+  }
+  .join-form{display:grid;gap:20px}
+  .join-field>label,.join-field legend{
+    display:block;font-size:13.5px;font-weight:700;color:var(--muted);
+    margin-bottom:9px;letter-spacing:.02em;padding:0;
+  }
+  .join-field fieldset{border:none;margin:0;padding:0;min-width:0}
+  input[type="text"],input[type="email"],select{
+    width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:9px;
+    color:var(--text);font:inherit;font-size:16px;padding:11px 14px;min-height:48px;
+  }
+  input[type="text"]:focus,input[type="email"]:focus,select:focus{border-color:var(--accent-dim);outline:none}
+  .radio-group{display:grid;gap:10px}
+  .radio-option{
+    display:flex;align-items:center;gap:11px;min-height:48px;
+    background:var(--bg-2);border:1px solid var(--line);border-radius:9px;
+    padding:11px 14px;font-size:15.5px;color:var(--text);cursor:pointer;
+  }
+  .radio-option input{accent-color:var(--accent);width:18px;height:18px;margin:0;flex:0 0 18px}
+  .agree-row{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);line-height:1.6}
+  .agree-row input{width:20px;height:20px;accent-color:var(--accent);flex:0 0 20px;margin:3px 0 0;cursor:pointer}
+  .join-error{margin:0;color:#f0a48f;font-size:14.5px;font-weight:600;line-height:1.55}
+  .join-submit{width:100%}
+  .join-note{margin:18px 0 0;font-size:13.5px;color:var(--faint);line-height:1.65}
+
   /* Local teaser */
   .teaser{
     border:1px solid var(--accent-dim);border-radius:var(--radius);
@@ -316,9 +346,9 @@
         <p class="hero-sub">Dark Money members shop through tracked links at stores they already use. The store pays a commission on the sale — and instead of keeping all of it, <strong>Dark Money shares that commission back with the member as cashback.</strong></p>
         <p class="hero-sub">No new stores to learn. No points that expire into nothing. Just a share of money that was already changing hands, routed back to the person who spent it.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#how">See how it works</a>
+          <a class="btn btn-gold" href="#join">Join Dark Money</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
           <a class="btn btn-ghost" href="#agents">For AI agents</a>
-          <span class="soon-note"><span class="soon-dot" aria-hidden="true"></span> Membership opening soon</span>
         </div>
       </div>
       <div class="hero-stats" role="list">
@@ -444,6 +474,62 @@
         </ul>
       </div>
       <p style="margin:22px 0 0;color:var(--muted);font-size:15.5px">Run a local business and want in early? <a href="mailto:jamesdamonstone@gmail.com?subject=Dark%20Money%20—%20local%20club">Email us</a> and you'll be first to hear when the club opens.</p>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section class="block" id="join">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="sec-tag">Join</p>
+          <h2>Join Dark Money — membership is free.</h2>
+          <p class="lede">Joining costs nothing. When you join, you get a <strong>personal member ID</strong> and <strong>tracked links for the live stores</strong>, so purchases you make through them are credited to your balance.</p>
+          <p class="lede">You receive <strong>70% of the commission</strong> on your purchases, and Dark Money retains 30% for running the service. Cashback pays out once your confirmed balance reaches <strong>$20</strong>.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Join Dark Money</h3>
+          <p class="panel-sub">Fill this in and we'll set up your membership.</p>
+          <form id="join-form" class="join-form" novalidate>
+            <div class="join-field">
+              <label for="join-name">Full name</label>
+              <input type="text" id="join-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="join-field">
+              <label for="join-email">Email address</label>
+              <input type="email" id="join-email" name="email" autocomplete="email" required />
+            </div>
+            <div class="join-field">
+              <fieldset>
+                <legend>How will you shop?</legend>
+                <div class="radio-group">
+                  <label class="radio-option"><input type="radio" name="shop-style" value="Myself" checked /> Myself</label>
+                  <label class="radio-option"><input type="radio" name="shop-style" value="With my AI agent" /> With my AI agent</label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="join-field">
+              <label for="join-payout">Payout preference</label>
+              <select id="join-payout" name="payout">
+                <option>PayPal</option>
+                <option>Venmo</option>
+                <option>Cash App</option>
+                <option>Decide later</option>
+              </select>
+            </div>
+            <div class="join-field">
+              <div class="agree-row">
+                <input type="checkbox" id="join-agree" required aria-label="I agree to the Terms of Service and Privacy Policy" />
+                <span>I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a></span>
+              </div>
+            </div>
+            <p class="join-error" id="join-error" role="alert" hidden></p>
+            <button type="submit" class="btn btn-gold join-submit">Join</button>
+          </form>
+          <p class="join-note">Joining is instant: press Join and you'll land on your personal links page with your member ID. Keep your member ID — it's the key to your links and your balance.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -608,6 +694,83 @@
     amount.addEventListener('input', update);
     rate.addEventListener('input', update);
     update();
+  })();
+
+  (function () {
+    var form = document.getElementById('join-form');
+    if (!form) return;
+    var nameInput = document.getElementById('join-name');
+    var emailInput = document.getElementById('join-email');
+    var payout = document.getElementById('join-payout');
+    var agree = document.getElementById('join-agree');
+    var error = document.getElementById('join-error');
+    var submitBtn = form.querySelector('.join-submit');
+    function showError(msg) {
+      error.textContent = msg;
+      error.hidden = false;
+    }
+    function resetSubmit() {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join';
+      }
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = nameInput.value.trim();
+      var email = emailInput.value.trim();
+      if (!name) {
+        showError('Please enter your full name.');
+        nameInput.focus();
+        return;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+      if (!agree.checked) {
+        showError('Agreeing to the Terms of Service and Privacy Policy is required to join.');
+        agree.focus();
+        return;
+      }
+      error.hidden = true;
+      var styleEl = form.querySelector('input[name="shop-style"]:checked');
+      var style = (styleEl && styleEl.value === 'With my AI agent') ? 'agent' : 'self';
+      var payoutMap = {
+        'PayPal': 'paypal',
+        'Venmo': 'venmo',
+        'Cash App': 'cashapp',
+        'Decide later': 'later'
+      };
+      var payoutValue = payoutMap[payout.value] || 'later';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Joining…';
+      }
+      fetch('https://dark-money-api.netlify.app/api/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          style: style,
+          payout: payoutValue,
+          terms: agree.checked ? true : false
+        })
+      }).then(function (res) {
+        return res.json().catch(function () { return null; }).then(function (data) {
+          if (res.ok && data && data.ok && data.app_url) {
+            window.location.href = data.app_url;
+            return;
+          }
+          throw new Error('Join failed');
+        });
+      }).catch(function () {
+        showError('Something went wrong joining — please check your details and try again.');
+        resetSubmit();
+      });
+    });
   })();
 </script>
 </body>

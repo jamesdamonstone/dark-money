@@ -406,15 +406,15 @@
           <div class="calc-row">
             <div class="calc-field">
               <label for="calc-amount">Purchase amount</label>
-              <input type="number" id="calc-amount" min="0" max="100000" step="1" value="120" inputmode="decimal" />
+              <input type="number" id="calc-amount" min="0" max="100000" step="1" value="100" inputmode="decimal" />
             </div>
             <div class="calc-field">
               <label for="calc-rate">Store commission rate <output id="calc-rate-out" for="calc-rate">6%</output></label>
               <input type="range" id="calc-rate" min="1" max="15" step="0.5" value="6" />
             </div>
             <div class="calc-result">
-              <span>Member's estimated share<br />(half the commission)</span>
-              <b id="calc-result">$3.60</b>
+              <span>Member's share<br />(70% of the commission)</span>
+              <b id="calc-result">$4.20</b>
             </div>
           </div>
           <p class="fineprint">Illustrative only. Commission rates are set by each store's affiliate program and change over time; the member share and payout follow the confirmed commission, per the Terms below.</p>
@@ -532,6 +532,7 @@
         <h3>How cashback works</h3>
         <ul>
           <li>Cashback is earned by completing a purchase at a participating store after arriving through a Dark Money tracked link, where the purchase is successfully attributed by the store's affiliate network.</li>
+          <li>Members receive 70% of the commission Dark Money is paid on their purchase, and Dark Money retains 30%.</li>
           <li><strong>Rates vary by store.</strong> Cashback percentages and amounts are set by each store's affiliate program, differ between stores and offers, and can change or end at any time. The rate that applies is the rate in effect for the confirmed commission on your purchase.</li>
           <li>Clicking other coupon, cashback, or referral links after a Dark Money link may cause the purchase to be attributed elsewhere, in which case no cashback is earned.</li>
         </ul>
@@ -601,7 +602,7 @@
       var r = parseFloat(rate.value);
       rateOut.textContent = (r % 1 === 0 ? r.toFixed(0) : r.toFixed(1)) + '%';
       var commission = a * (r / 100);
-      var share = commission / 2;
+      var share = commission * 0.7;
       result.textContent = fmt(share);
     }
     amount.addEventListener('input', update);

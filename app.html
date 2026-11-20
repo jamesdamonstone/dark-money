@@ -430,7 +430,7 @@
     card.className = 'store';
     card.innerHTML =
       '<h3>' + esc(p.name) + '</h3>' +
-      '<div class="net">CJ &middot; Approved program</div>' +
+      '<div class="net">' + (p.template.indexOf('awin1.com') !== -1 ? 'Awin' : 'CJ') + ' &middot; Approved program</div>' +
       '<div class="rates">' +
         '<div class="rate"><div class="k">Store pays</div><div class="v">' + esc(p.commission) + ' <span class="note">' + esc(p.commissionNote) + '</span></div></div>' +
         '<div class="rate you"><div class="k">You earn</div><div class="v">' + esc(p.you) + '</div></div>' +

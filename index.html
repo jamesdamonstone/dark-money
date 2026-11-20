@@ -429,18 +429,18 @@
   <script>
   (function(){
     var steps=[
-      {cls:"human",who:"Human",html:"I need a VPN before the trip. What’s my best move?",delay:600,style:"background:#1b2130;margin-left:auto"},
-      {cls:"agent",who:"Their agent",html:"Checking Dark Money first — if a store pays commission, you should be earning most of it.",delay:1400,style:"background:#20293d"},
-      {cls:"tool",who:"MCP tool call",html:"list_programs()\n→ 20 live programs\n→ NordVPN (CJ): commission 40% on new subscriptions — member earns 28%",delay:1500,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap"},
-      {cls:"tool",who:"MCP tool call",html:"get_cashback_link(store: “NordVPN”, member_id: “dm_…”)\n→ https://www.kqzyfj.com/click-101932824-12814518?sid=dm_…",delay:1600,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-all"},
-      {cls:"agent",who:"Their agent",html:"Buy through this link and you’ll earn cashback on the subscription. You complete checkout — I never purchase for you.",delay:1500,style:"background:#20293d"},
-      {cls:"human",who:"Human",html:"Done — checked out, $100 for the year.",delay:1600,style:"background:#1b2130;margin-left:auto"},
-      {cls:"system",who:"Dark Money",html:"Commission confirmed: $40.00\nFounding member — 100% of your first commission is yours.\nBalance: $40.00 — past the $20 payout threshold.",delay:1800,style:"background:#14231a;white-space:pre-wrap"},
-      {cls:"agent",who:"Their agent",html:"That’s the whole trick: the commission existed either way. Now it pays you instead of disappearing.",delay:1500,style:"background:#20293d"}
+      {cls:"human",who:"Human",html:"I need a VPN before the trip. What\u2019s my best move?",delay:600,style:"background:#1b2130;margin-left:auto"},
+      {cls:"agent",who:"Their agent",html:"Checking Dark Money first \u2014 if a store pays commission, you should be earning most of it.",delay:1400,style:"background:#20293d"},
+      {cls:"tool",who:"MCP tool call",html:"list_programs()\n\u2192 21 live programs\n\u2192 NordVPN (CJ): commission 40% on new subscriptions \u2014 member earns 28%",delay:1500,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap"},
+      {cls:"tool",who:"MCP tool call",html:"get_cashback_link(store: \u201CNordVPN\u201D, member_id: \u201Cdm_\u2026\u201D)\n\u2192 https://www.kqzyfj.com/click-101932824-12814518?sid=dm_\u2026",delay:1600,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-all"},
+      {cls:"agent",who:"Their agent",html:"Buy through this link and you\u2019ll earn cashback on the subscription. You complete checkout \u2014 I never purchase for you.",delay:1500,style:"background:#20293d"},
+      {cls:"human",who:"Human",html:"Done \u2014 checked out, $100 for the year.",delay:1600,style:"background:#1b2130;margin-left:auto"},
+      {cls:"system",who:"Dark Money",html:"Commission confirmed: $40.00\nFounding member \u2014 100% of your first commission is yours.\nBalance: $40.00 \u2014 past the $20 payout threshold.",delay:1800,style:"background:#14231a;white-space:pre-wrap"},
+      {cls:"agent",who:"Their agent",html:"That\u2019s the whole trick: the commission existed either way. Now it pays you instead of disappearing.",delay:1500,style:"background:#20293d"}
     ];
     var stage=document.getElementById("dm-demo-stage"),replay=document.getElementById("dm-demo-replay"),status=document.getElementById("dm-demo-status"),timers=[];
     function play(){
-      timers.forEach(clearTimeout);timers=[];stage.innerHTML="";replay.disabled=true;status.textContent="Playing…";
+      timers.forEach(clearTimeout);timers=[];stage.innerHTML="";replay.disabled=true;status.textContent="Playing\u2026";
       var t=300;
       steps.forEach(function(s){
         t+=s.delay;
@@ -458,6 +458,7 @@
     play();
   })();
   </script>
+
   <!-- FOR AGENTS -->
   <section class="block alt" id="agents">
     <div class="wrap">

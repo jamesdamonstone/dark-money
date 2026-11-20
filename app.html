@@ -329,7 +329,15 @@
       <div class="section-head">
         <div>
           <h2 class="section-title" id="storesTitle">Stores</h2>
-          <p>36 approved programs &middot; CJ + Awin networks</p>
+          <p id="storeCount">36 approved programs &middot; CJ + Awin networks</p>
+<p style="margin-top:10px"><label for="countrySel"><strong>Stores for:</strong></label>
+<select id="countrySel">
+  <option value="US" selected>United States</option>
+  <option value="GB">United Kingdom</option>
+  <option value="RO">Romania</option>
+  <option value="SK">Slovakia</option>
+  <option value="ALL">All countries</option>
+</select></p>
 <p><strong>Founding offer:</strong> the first 25 members earn 100% of the commission on their first confirmed purchase.</p>
         </div>
       </div>
@@ -388,42 +396,42 @@
 <script>
 (function(){
   var programs = [
-    { name: "NordVPN", commission: "40%", commissionNote: "on new subscriptions", you: "28%", template: "https://www.kqzyfj.com/click-101932824-12814518?sid={SID}" },
-    { name: "Phone.com", commission: "$75", commissionNote: "flat per signup", you: "$52.50", template: "https://www.kqzyfj.com/click-101932824-12664811?sid={SID}" },
-    { name: "Ovago", commission: "$8–$23", commissionNote: "flat per flight booking", you: "$5.60–$16.10", template: "https://www.tkqlhce.com/click-101932824-15796145?sid={SID}" },
-    { name: "Your Phone here", commission: "$15", commissionNote: "flat per sale · Awin", you: "$10.50", template: "https://www.awin1.com/cread.php?awinmid=129023&awinaffid=3161005&clickref={SID}" },
-    { name: "zChocolat.com", commission: "20%", commissionNote: "per sale", you: "14%", template: "https://www.tkqlhce.com/click-101932824-15734455?sid={SID}" },
-    { name: "Buena Cura US", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=106723&awinaffid=3161005&clickref={SID}" },
-    { name: "Shed Supplements", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=125186&awinaffid=3161005&clickref={SID}" },
-    { name: "Miles Jewellery", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=129311&awinaffid=3161005&clickref={SID}" },
-    { name: "Coziwow", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=121696&awinaffid=3161005&clickref={SID}" },
-    { name: "Winebasket", commission: "7%", commissionNote: "per sale", you: "4.9%", template: "https://www.anrdoezrs.net/click-101932824-10570212?sid={SID}" },
-    { name: "Maddie Grace Jewelry", commission: "5%", commissionNote: "per sale · Awin", you: "3.5%", template: "https://www.awin1.com/cread.php?awinmid=119021&awinaffid=3161005&clickref={SID}" },
-    { name: "LifeVibe", commission: "5%", commissionNote: "per sale · Awin", you: "3.5%", template: "https://www.awin1.com/cread.php?awinmid=124072&awinaffid=3161005&clickref={SID}" },
-    { name: "ShedRX", commission: "$120", commissionNote: "flat per sale · Awin", you: "$84", template: "https://www.awin1.com/cread.php?awinmid=80963&awinaffid=3161005&clickref={SID}" },
-    { name: "Signos", commission: "$120", commissionNote: "flat per sale · Awin", you: "$84", template: "https://www.awin1.com/cread.php?awinmid=96449&awinaffid=3161005&clickref={SID}" },
-    { name: "Curex", commission: "$45", commissionNote: "flat per sale · Awin", you: "$31.50", template: "https://www.awin1.com/cread.php?awinmid=121970&awinaffid=3161005&clickref={SID}" },
-    { name: "ClarityX", commission: "$45", commissionNote: "flat per sale · Awin", you: "$31.50", template: "https://www.awin1.com/cread.php?awinmid=128363&awinaffid=3161005&clickref={SID}" },
-    { name: "Neuro Gum", commission: "$18", commissionNote: "flat per sale · Awin", you: "$12.60", template: "https://www.awin1.com/cread.php?awinmid=131252&awinaffid=3161005&clickref={SID}" },
-    { name: "SNOW", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=75744&awinaffid=3161005&clickref={SID}" },
-    { name: "Measured", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=126727&awinaffid=3161005&clickref={SID}" },
-    { name: "Wallshoppe", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=126215&awinaffid=3161005&clickref={SID}" },
-    { name: "Skoot", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=127911&awinaffid=3161005&clickref={SID}" },
-    { name: "Edify", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=119513&awinaffid=3161005&clickref={SID}" },
-    { name: "Rexing", commission: "15%", commissionNote: "per sale", you: "10.5%", template: "https://www.kqzyfj.com/click-101932824-15735466?sid={SID}" },
-    { name: "ALZOO", commission: "15%", commissionNote: "per sale · Awin", you: "10.5%", template: "https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}" },
-    { name: "GroundLuxe", commission: "10%", commissionNote: "per sale", you: "7%", template: "https://www.dpbolvw.net/click-101932824-17180505?sid={SID}" },
-    { name: "Xplora", commission: "10%", commissionNote: "per sale", you: "7%", template: "https://www.kqzyfj.com/click-101932824-15736994?sid={SID}" },
-    { name: "Gate Operators Direct", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=114678&awinaffid=3161005&clickref={SID}" },
-    { name: "Dream Pairs / Bruno Marc", commission: "8%–10%", commissionNote: "per sale", you: "5.6%–7%", template: "https://www.jdoqocy.com/click-101932824-15369315?sid={SID}" },
-    { name: "Trinity Road Websites", commission: "8%", commissionNote: "per sale", you: "5.6%", template: "https://www.tkqlhce.com/click-101932824-10753028?sid={SID}" },
-    { name: "Shelving Inc.", commission: "7%", commissionNote: "per sale", you: "4.9%", template: "https://www.jdoqocy.com/click-101932824-15735511?sid={SID}" },
-    { name: "Pure Genius Protein", commission: "6%", commissionNote: "per sale", you: "4.2%", template: "https://www.jdoqocy.com/click-101932824-17323502?sid={SID}" },
-    { name: "XPLORA UK", commission: "5%", commissionNote: "per sale · UK store", you: "3.5%", template: "https://www.dpbolvw.net/click-101932824-15766774?sid={SID}" },
-    { name: "Nick's Handmade Boots", commission: "6%", commissionNote: "per sale", you: "4.2%", template: "https://www.tkqlhce.com/click-101932824-15001326?sid={SID}" },
-    { name: "Signs Banners and Magnets On The Cheap", commission: "3%", commissionNote: "per sale", you: "2.1%", template: "https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}" },
-    { name: "GreaterGood", commission: "2%", commissionNote: "per sale", you: "1.4%", template: "https://www.dpbolvw.net/click-101932824-15734341?sid={SID}" },
-    { name: "DHGate", commission: "2%\u201350%", commissionNote: "tiered", you: "1.4%\u201335%", template: "https://www.tkqlhce.com/click-101932824-15734304?sid={SID}" }
+    { name: "NordVPN", commission: "40%", commissionNote: "on new subscriptions", you: "28%", template: "https://www.kqzyfj.com/click-101932824-12814518?sid={SID}", regions: ["GLOBAL"] },
+    { name: "Phone.com", commission: "$75", commissionNote: "flat per signup", you: "$52.50", template: "https://www.kqzyfj.com/click-101932824-12664811?sid={SID}", regions: ["US"] },
+    { name: "Ovago", commission: "$8–$23", commissionNote: "flat per flight booking", you: "$5.60–$16.10", template: "https://www.tkqlhce.com/click-101932824-15796145?sid={SID}", regions: ["GLOBAL"] },
+    { name: "Your Phone here", commission: "$15", commissionNote: "flat per sale · Awin", you: "$10.50", template: "https://www.awin1.com/cread.php?awinmid=129023&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "zChocolat.com", commission: "20%", commissionNote: "per sale", you: "14%", template: "https://www.tkqlhce.com/click-101932824-15734455?sid={SID}", regions: ["US"] },
+    { name: "Buena Cura US", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=106723&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Shed Supplements", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=125186&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Miles Jewellery", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=129311&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Coziwow", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=121696&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Winebasket", commission: "7%", commissionNote: "per sale", you: "4.9%", template: "https://www.anrdoezrs.net/click-101932824-10570212?sid={SID}", regions: ["US"] },
+    { name: "Maddie Grace Jewelry", commission: "5%", commissionNote: "per sale · Awin", you: "3.5%", template: "https://www.awin1.com/cread.php?awinmid=119021&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "LifeVibe", commission: "5%", commissionNote: "per sale · Awin", you: "3.5%", template: "https://www.awin1.com/cread.php?awinmid=124072&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "ShedRX", commission: "$120", commissionNote: "flat per sale · Awin", you: "$84", template: "https://www.awin1.com/cread.php?awinmid=80963&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Signos", commission: "$120", commissionNote: "flat per sale · Awin", you: "$84", template: "https://www.awin1.com/cread.php?awinmid=96449&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Curex", commission: "$45", commissionNote: "flat per sale · Awin", you: "$31.50", template: "https://www.awin1.com/cread.php?awinmid=121970&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "ClarityX", commission: "$45", commissionNote: "flat per sale · Awin", you: "$31.50", template: "https://www.awin1.com/cread.php?awinmid=128363&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Neuro Gum", commission: "$18", commissionNote: "flat per sale · Awin", you: "$12.60", template: "https://www.awin1.com/cread.php?awinmid=131252&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "SNOW", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=75744&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Measured", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=126727&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Wallshoppe", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=126215&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Skoot", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=127911&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Edify", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=119513&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Rexing", commission: "15%", commissionNote: "per sale", you: "10.5%", template: "https://www.kqzyfj.com/click-101932824-15735466?sid={SID}", regions: ["US"] },
+    { name: "ALZOO", commission: "15%", commissionNote: "per sale · Awin", you: "10.5%", template: "https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "GroundLuxe", commission: "10%", commissionNote: "per sale", you: "7%", template: "https://www.dpbolvw.net/click-101932824-17180505?sid={SID}", regions: ["US"] },
+    { name: "Xplora", commission: "10%", commissionNote: "per sale", you: "7%", template: "https://www.kqzyfj.com/click-101932824-15736994?sid={SID}", regions: ["US"] },
+    { name: "Gate Operators Direct", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=114678&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "Dream Pairs / Bruno Marc", commission: "8%–10%", commissionNote: "per sale", you: "5.6%–7%", template: "https://www.jdoqocy.com/click-101932824-15369315?sid={SID}", regions: ["US"] },
+    { name: "Trinity Road Websites", commission: "8%", commissionNote: "per sale", you: "5.6%", template: "https://www.tkqlhce.com/click-101932824-10753028?sid={SID}", regions: ["US"] },
+    { name: "Shelving Inc.", commission: "7%", commissionNote: "per sale", you: "4.9%", template: "https://www.jdoqocy.com/click-101932824-15735511?sid={SID}", regions: ["US"] },
+    { name: "Pure Genius Protein", commission: "6%", commissionNote: "per sale", you: "4.2%", template: "https://www.jdoqocy.com/click-101932824-17323502?sid={SID}", regions: ["US"] },
+    { name: "XPLORA UK", commission: "5%", commissionNote: "per sale · UK store", you: "3.5%", template: "https://www.dpbolvw.net/click-101932824-15766774?sid={SID}", regions: ["GB"] },
+    { name: "Nick's Handmade Boots", commission: "6%", commissionNote: "per sale", you: "4.2%", template: "https://www.tkqlhce.com/click-101932824-15001326?sid={SID}", regions: ["US"] },
+    { name: "Signs Banners and Magnets On The Cheap", commission: "3%", commissionNote: "per sale", you: "2.1%", template: "https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}", regions: ["US"] },
+    { name: "GreaterGood", commission: "2%", commissionNote: "per sale", you: "1.4%", template: "https://www.dpbolvw.net/click-101932824-15734341?sid={SID}", regions: ["US"] },
+    { name: "DHGate", commission: "2%\u201350%", commissionNote: "tiered", you: "1.4%\u201335%", template: "https://www.tkqlhce.com/click-101932824-15734304?sid={SID}", regions: ["US"] }
   ];
 
   var memberInput = document.getElementById('memberId');
@@ -462,8 +470,28 @@
           '<span class="copied" id="copied-' + i + '">Copied</span>' +
         '</div>' +
       '</div>';
+    card.setAttribute('data-regions', (p.regions || ['US']).join(','));
     storesEl.appendChild(card);
   });
+
+  var countrySel = document.getElementById('countrySel');
+  var storeCount = document.getElementById('storeCount');
+  var countryNames = { US: 'the United States', GB: 'the United Kingdom', RO: 'Romania', SK: 'Slovakia' };
+  function applyCountry(){
+    var c = countrySel.value;
+    var shown = 0;
+    Array.prototype.forEach.call(storesEl.children, function(card){
+      var regs = (card.getAttribute('data-regions') || 'US').split(',');
+      var ok = c === 'ALL' || regs.indexOf(c) !== -1 || regs.indexOf('GLOBAL') !== -1;
+      card.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    storeCount.textContent = c === 'ALL'
+      ? programs.length + ' approved programs worldwide \u00B7 CJ + Awin networks'
+      : shown + ' programs for ' + countryNames[c] + ' \u00B7 ' + programs.length + ' worldwide';
+  }
+  countrySel.addEventListener('change', applyCountry);
+  applyCountry();
 
   function refreshPanel(i){
     var link = buildLink(programs[i].template);

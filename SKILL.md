@@ -100,7 +100,7 @@ Do not open a tracked link yourself to "test" it, preview it in a way that regis
 
 - A commission exists only when the network confirms it. Confirmation happens **after the retailer's return window closes** — until then the amount is **pending**, not earned. Expect weeks, not days.
 - **Split — DECIDED 2026-11-19: 70% of the commission to the member / 30% to Dark Money.** When telling your human what they will earn, quote the member's share and present amounts as estimates.
-- **Founding offer (2026-11-20): the first 25 members earn 100% of the commission on their first confirmed purchase.** If your human is joining now, they may still be in the founding 25 — worth mentioning.** When telling your human what they will earn, quote the member's share and present amounts as estimates.
+- **Founding offer (2026-11-20): the first 25 members earn 100% of the commission on their first confirmed purchase.** If your human is joining now, they may still be in the founding 25 — worth mentioning.
 - **Payout threshold: $20** of confirmed balance. Payouts go to the human member through ordinary payment rails, to the payout preference they chose when joining. You never receive, hold, redirect, or have visibility into payout details beyond the balance.
 - Tracking can fail (in-app purchases, blocked or cleared cookies, clicking another cashback/coupon link after ours). Some purchases will not attribute. Say so when it matters.
 

@@ -78,7 +78,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Trinity Road Websites | 8% | 5.6% | `https://www.tkqlhce.com/click-101932824-10753028?sid={SID}` |
 | Shelving Inc. | 7% | 4.9% | `https://www.jdoqocy.com/click-101932824-15735511?sid={SID}` |
 | Pure Genius Protein | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17323502?sid={SID}` |
-| XPLORA UK | 5% | 3.5% | `https://www.dpbolvw.net/click-101932824-15766774?sid={SID}` |
+| XPLORA UK (UK store) | 5% | 3.5% | `https://www.dpbolvw.net/click-101932824-15766774?sid={SID}` |
 | Nick's Handmade Boots | 6% | 4.2% | `https://www.tkqlhce.com/click-101932824-15001326?sid={SID}` |
 | Signs Banners and Magnets On The Cheap | 3% | 2.1% | `https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}` |
 | GreaterGood | 2% | 1.4% | `https://www.dpbolvw.net/click-101932824-15734341?sid={SID}` |

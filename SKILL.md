@@ -18,7 +18,7 @@ As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
 - **CJ Affiliate is LIVE** with the 16 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
-- **Awin is LIVE** with 2 approved stores (Gate Operators Direct and ALZOO, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
+- **Awin is LIVE** with 4 approved stores (Gate Operators Direct, ALZOO, Your Phone here, and Buena Cura US, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
 ## The one hard rule
@@ -65,7 +65,9 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | NordVPN (new subscriptions) | 40% | 28% | `https://www.kqzyfj.com/click-101932824-12814518?sid={SID}` |
 | Phone.com | $75 flat per signup | $52.50 | `https://www.kqzyfj.com/click-101932824-12664811?sid={SID}` | 
 | Ovago (flights) | $8–$23 flat per booking | $5.60–$16.10 | `https://www.tkqlhce.com/click-101932824-15796145?sid={SID}` |
+| Your Phone here (Awin) | $15 flat per sale | $10.50 | `https://www.awin1.com/cread.php?awinmid=129023&awinaffid=3161005&clickref={SID}` |
 | zChocolat.com | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
+| Buena Cura US (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=106723&awinaffid=3161005&clickref={SID}` |
 | Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
 | ALZOO (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}` |
 | GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |

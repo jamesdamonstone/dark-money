@@ -414,6 +414,52 @@
   </section>
 
   <!-- FOR AGENTS -->
+  <!-- DEMO -->
+  <section class="block" id="demo">
+    <div class="wrap">
+      <p class="eyebrow">Watch it work</p>
+      <h2>Thirty seconds, start to cashback.</h2>
+      <p class="lede">A human asks their agent for a VPN. The agent routes the purchase through Dark Money. The human checks out. The cashback lands. <em>Illustrative walkthrough.</em></p>
+      <div id="dm-demo-stage" style="background:#101623;border:1px solid #2a3247;border-radius:14px;padding:20px;min-height:380px;margin-top:18px"></div>
+      <div style="display:flex;gap:12px;align-items:center;margin-top:14px">
+        <button id="dm-demo-replay" type="button" disabled style="background:#c8a96e;color:#141414;border:0;border-radius:9px;padding:10px 18px;font-weight:700;cursor:pointer">Replay</button>
+        <span id="dm-demo-status" style="color:#9aa3b8;font-size:13.5px">Playing…</span>
+      </div>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var steps=[
+      {cls:"human",who:"Human",html:"I need a VPN before the trip. What’s my best move?",delay:600,style:"background:#1b2130;margin-left:auto"},
+      {cls:"agent",who:"Their agent",html:"Checking Dark Money first — if a store pays commission, you should be earning most of it.",delay:1400,style:"background:#20293d"},
+      {cls:"tool",who:"MCP tool call",html:"list_programs()\n→ 20 live programs\n→ NordVPN (CJ): commission 40% on new subscriptions — member earns 28%",delay:1500,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap"},
+      {cls:"tool",who:"MCP tool call",html:"get_cashback_link(store: “NordVPN”, member_id: “dm_…”)\n→ https://www.kqzyfj.com/click-101932824-12814518?sid=dm_…",delay:1600,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-all"},
+      {cls:"agent",who:"Their agent",html:"Buy through this link and you’ll earn cashback on the subscription. You complete checkout — I never purchase for you.",delay:1500,style:"background:#20293d"},
+      {cls:"human",who:"Human",html:"Done — checked out, $100 for the year.",delay:1600,style:"background:#1b2130;margin-left:auto"},
+      {cls:"system",who:"Dark Money",html:"Commission confirmed: $40.00\nFounding member — 100% of your first commission is yours.\nBalance: $40.00 — past the $20 payout threshold.",delay:1800,style:"background:#14231a;white-space:pre-wrap"},
+      {cls:"agent",who:"Their agent",html:"That’s the whole trick: the commission existed either way. Now it pays you instead of disappearing.",delay:1500,style:"background:#20293d"}
+    ];
+    var stage=document.getElementById("dm-demo-stage"),replay=document.getElementById("dm-demo-replay"),status=document.getElementById("dm-demo-status"),timers=[];
+    function play(){
+      timers.forEach(clearTimeout);timers=[];stage.innerHTML="";replay.disabled=true;status.textContent="Playing…";
+      var t=300;
+      steps.forEach(function(s){
+        t+=s.delay;
+        timers.push(setTimeout(function(){
+          var d=document.createElement("div");
+          d.setAttribute("style","max-width:88%;padding:11px 14px;border-radius:12px;margin:0 0 12px;border:1px solid #2a3247;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;"+s.style);
+          d.innerHTML='<div style="font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#9aa3b8;margin-bottom:4px">'+s.who+"</div>"+s.html;
+          stage.appendChild(d);
+          requestAnimationFrame(function(){d.style.opacity="1";d.style.transform="none";});
+        },t));
+      });
+      timers.push(setTimeout(function(){replay.disabled=false;status.textContent="Done. Founding offer: the first 25 members earn 100% of their first commission.";},t+700));
+    }
+    replay.addEventListener("click",play);
+    play();
+  })();
+  </script>
+  <!-- FOR AGENTS -->
   <section class="block alt" id="agents">
     <div class="wrap">
       <div class="split">
@@ -485,6 +531,7 @@
           <p class="sec-tag">Join</p>
           <h2>Join Dark Money — membership is free.</h2>
           <p class="lede">Joining costs nothing. When you join, you get a <strong>personal member ID</strong> and <strong>tracked links for the live stores</strong>, so purchases you make through them are credited to your balance.</p>
+          <p class="lede"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of the commission</strong> on their first confirmed purchase — no 70/30 split on that one.</p>
           <p class="lede">You receive <strong>70% of the commission</strong> on your purchases, and Dark Money retains 30% for running the service. Cashback pays out once your confirmed balance reaches <strong>$20</strong>.</p>
         </div>
 
@@ -620,6 +667,7 @@
         <ul>
           <li>Cashback is earned by completing a purchase at a participating store after arriving through a Dark Money tracked link, where the purchase is successfully attributed by the store's affiliate network.</li>
           <li>Members receive 70% of the commission Dark Money is paid on their purchase, and Dark Money retains 30%.</li>
+          <li><strong>Founding members:</strong> the first 25 members to join receive 100% of the commission on their first confirmed purchase (Dark Money retains 0% on that purchase). The founding list is kept in join order and closes at 25 members.</li>
           <li><strong>Rates vary by store.</strong> Cashback percentages and amounts are set by each store's affiliate program, differ between stores and offers, and can change or end at any time. The rate that applies is the rate in effect for the confirmed commission on your purchase.</li>
           <li>Clicking other coupon, cashback, or referral links after a Dark Money link may cause the purchase to be attributed elsewhere, in which case no cashback is earned.</li>
         </ul>

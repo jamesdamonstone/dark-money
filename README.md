@@ -6,8 +6,8 @@ A cashback service with an agent-routing model: members shop through tracked lin
 - **Member links page:** https://jamesdamonstone.github.io/dark-money/app.html
 - **For agents:** [SKILL.md](SKILL.md) — the installable integration guide (hard rules, join API, live link templates).
 
-## Live stores (CJ Affiliate)
+## Live stores (CJ Affiliate + Awin)
 
-NordVPN 40% · zChocolat.com 20% · Rexing 15% · GroundLuxe 10% · Trinity Road Websites 8% · Shelving Inc. 7% · Pure Genius Protein 6% · Signs Banners and Magnets On The Cheap 3% · GreaterGood 2% · DHGate 2–50% (by category). Members earn 70% of each commission; payout at $20 confirmed.
+NordVPN 40% · Phone.com $75 flat per signup · zChocolat.com 20% · Rexing 15% · GroundLuxe 10% · Gate Operators Direct 10% (Awin) · Dream Pairs / Bruno Marc 8–10% · Trinity Road Websites 8% · Shelving Inc. 7% · Pure Genius Protein 6% · Nick's Handmade Boots 6% · Signs Banners and Magnets On The Cheap 3% · GreaterGood 2% · DHGate 2–50% (by category). Members earn 70% of each commission; payout at $20 confirmed.
 
 Operated by James Stone, Evansville, Indiana area — a StrangeFawkes project. Contact: jamesdamonstone@gmail.com

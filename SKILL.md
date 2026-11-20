@@ -17,8 +17,8 @@ Dark Money is a cashback service. Members shop through tracked affiliate links; 
 As of 2026-11-19:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
-- **CJ Affiliate is LIVE** with the 10 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
-- Dark Money's publisher applications with **Awin** and **Impact** are **in review**. No Awin or Impact merchants are available yet.
+- **CJ Affiliate is LIVE** with the 13 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
+- **Awin is LIVE** with 1 approved store (Gate Operators Direct, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
 ## The one hard rule
@@ -52,23 +52,27 @@ Pairing is revocable by the human at any time. If your human revokes pairing or 
 
 ## Sub-IDs — how attribution works
 
-- The member ID is carried on every tracked link as CJ's `sid` parameter. It attributes commissions to the pair.
+- The member ID is carried on every tracked link as CJ's `sid` parameter (on Awin links it rides in `clickref`). It attributes commissions to the pair.
 - **No PII in a sub-ID, ever.** No names, email addresses, phone numbers, or anything that identifies the human. The member ID only.
 - Build tracked links **only** from the templates below, substituting the pair's member ID for `{SID}` and changing nothing else. Do not construct links for any other merchant, and do not alter any other part of a template URL.
 
-## Link templates — the live catalog (CJ)
+## Link templates — the live catalog (CJ + Awin)
 
 Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% share of the store's commission.
 
 | Store | Commission | Member earns | Tracked link template |
 |---|---|---|---|
 | NordVPN (new subscriptions) | 40% | 28% | `https://www.kqzyfj.com/click-101932824-12814518?sid={SID}` |
+| Phone.com | $75 flat per signup | $52.50 | `https://www.kqzyfj.com/click-101932824-12664811?sid={SID}` |
 | zChocolat.com | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
 | Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
 | GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |
+| Gate Operators Direct (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114678&awinaffid=3161005&clickref={SID}` |
+| Dream Pairs / Bruno Marc | 8–10% | 5.6–7% | `https://www.jdoqocy.com/click-101932824-15369315?sid={SID}` |
 | Trinity Road Websites | 8% | 5.6% | `https://www.tkqlhce.com/click-101932824-10753028?sid={SID}` |
 | Shelving Inc. | 7% | 4.9% | `https://www.jdoqocy.com/click-101932824-15735511?sid={SID}` |
 | Pure Genius Protein | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17323502?sid={SID}` |
+| Nick's Handmade Boots | 6% | 4.2% | `https://www.tkqlhce.com/click-101932824-15001326?sid={SID}` |
 | Signs Banners and Magnets On The Cheap | 3% | 2.1% | `https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}` |
 | GreaterGood | 2% | 1.4% | `https://www.dpbolvw.net/click-101932824-15734341?sid={SID}` |
 | DHGate | 2–50% by category | 1.4–35% | `https://www.tkqlhce.com/click-101932824-15734304?sid={SID}` |
@@ -82,7 +86,7 @@ A merchant not in this table is not available — shop normally without a link a
 3. Tell your human the store's rate and the member's estimated share (Disclosure duties below). If you found a better net price elsewhere, say so — route on the best net outcome for your human, not the highest commission.
 4. Present the tracked URL to your human.
 5. **Stop.** Your human opens the link and checks out personally, in their own browser/session.
-6. The purchase is attributed to the pair via the `sid`. You do nothing further.
+6. The purchase is attributed to the pair via the sub-ID (`sid` on CJ, `clickref` on Awin). You do nothing further.
 
 Do not open a tracked link yourself to "test" it, preview it in a way that registers a click, or generate links repeatedly for the same purchase.
 

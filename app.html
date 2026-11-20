@@ -255,14 +255,30 @@
       <div class="brand">
         <h1>Dark <span class="gold">Money</span></h1>
         <p class="sub">Member App</p>
-        <p class="pair">Member pair: <strong>Navi + James</strong> &middot; Customer #0</p>
+        <p class="pair" id="pairLine">Member pair: <strong>Navi + James</strong> &middot; Customer #0</p>
+        <p id="loginState" style="margin:8px 0 0;color:var(--ink-2);font-size:.95rem"></p>
       </div>
       <div class="member-box">
-        <label for="memberId">Your member ID</label>
-        <div class="member-row">
-          <input id="memberId" type="text" value="dm_Am5HeABD5C" autocomplete="off" spellcheck="false" aria-describedby="memberHelp" />
+        <div id="loginForm">
+          <label for="loginEmail">Member login</label>
+          <div class="member-row" style="margin-bottom:8px">
+            <input id="loginEmail" type="email" placeholder="Email you joined with" autocomplete="email" spellcheck="false" />
+          </div>
+          <div class="member-row">
+            <input id="loginId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
+            <button type="button" class="btn" id="loginBtn">Log in</button>
+          </div>
+          <p id="loginError" style="display:none;color:#d98a7a"></p>
+          <p>New here? <a href="index.html#join">Join on the home page</a> &mdash; it takes a few seconds and your ID is issued instantly.</p>
         </div>
-        <p id="memberHelp">Every link below is built with this ID, so the commission is credited to you. Edit it and the links update.</p>
+        <div id="memberBox" style="display:none">
+          <label for="memberId">Your member ID</label>
+          <div class="member-row">
+            <input id="memberId" type="text" value="dm_Am5HeABD5C" autocomplete="off" spellcheck="false" aria-describedby="memberHelp" />
+          </div>
+          <p id="memberHelp">Every link below is built with this ID, so the commission is credited to you. Edit it and the links update.</p>
+          <p><button type="button" class="btn secondary small" id="logoutBtn">Log out</button></p>
+        </div>
       </div>
     </div>
   </header>
@@ -364,7 +380,7 @@
 
   <footer>
     <div class="foot-brand">Dark Money</div>
-    <p style="margin:0">Membership opening soon. Awin and Impact programs join as those networks approve us.</p>
+    <p style="margin:0">Membership is open &mdash; <a href="index.html#join">join on the home page</a>. Awin programs join as advertisers approve us.</p>
   </footer>
 </div>
 
@@ -473,12 +489,7 @@
     });
   });
 
-  // If the URL hash carries a member ID (dm_ + 10 characters),
-  // load it into the field and generate every store link right away.
-  (function(){
-    var match = (window.location.hash || '').match(/dm_[A-Za-z0-9]{10}/);
-    if (!match) return;
-    memberInput.value = match[0];
+  function openAllPanels(){
     programs.forEach(function(_, i){
       refreshPanel(i);
       var panel = document.getElementById('panel-' + i);
@@ -486,6 +497,106 @@
       var btn = storesEl.querySelector('[data-get="' + i + '"]');
       if (btn) btn.textContent = 'Refresh link';
     });
+  }
+
+  // ---- Member login (email + member ID against the signup service) ----
+  var API = 'https://dark-money-api.netlify.app/api';
+  var loginForm = document.getElementById('loginForm');
+  var memberBox = document.getElementById('memberBox');
+  var pairLine = document.getElementById('pairLine');
+  var loginState = document.getElementById('loginState');
+  var loginError = document.getElementById('loginError');
+
+  function showLoggedIn(member){
+    loginForm.style.display = 'none';
+    memberBox.style.display = 'block';
+    if (member && member.name) {
+      var joined = member.joined_at ? new Date(member.joined_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+      pairLine.innerHTML = 'Member: <strong>' + esc(member.name) + '</strong>' + (joined ? ' &middot; Joined ' + esc(joined) : '');
+      loginState.textContent = 'Logged in. Your links below are credited to ' + member.member_id + '.';
+    }
+  }
+  function showLoggedOut(){
+    loginForm.style.display = 'block';
+    memberBox.style.display = 'none';
+    loginState.textContent = '';
+  }
+
+  function applyMember(id, member){
+    memberInput.value = id;
+    try { localStorage.setItem('dm_member_id', id); } catch (e) {}
+    showLoggedIn(member || { member_id: id });
+    openAllPanels();
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', function(){
+    var email = (document.getElementById('loginEmail').value || '').trim();
+    var id = (document.getElementById('loginId').value || '').trim();
+    loginError.style.display = 'none';
+    if (!email || !id) {
+      loginError.textContent = 'Enter both your email and your member ID.';
+      loginError.style.display = 'block';
+      return;
+    }
+    var btn = document.getElementById('loginBtn');
+    btn.disabled = true;
+    btn.textContent = 'Logging in\u2026';
+    fetch(API + '/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, member_id: id })
+    }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
+      .then(function(res){
+        btn.disabled = false;
+        btn.textContent = 'Log in';
+        if (res.body && res.body.ok) {
+          applyMember(res.body.member.member_id, res.body.member);
+        } else {
+          loginError.textContent = 'That email and member ID don\u2019t match our records. Both are on your join confirmation \u2014 the ID starts with dm_.';
+          loginError.style.display = 'block';
+        }
+      })
+      .catch(function(){
+        btn.disabled = false;
+        btn.textContent = 'Log in';
+        loginError.textContent = 'Couldn\u2019t reach the login service. Check your connection and try again.';
+        loginError.style.display = 'block';
+      });
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', function(){
+    try { localStorage.removeItem('dm_member_id'); } catch (e) {}
+    window.location.hash = '';
+    window.location.reload();
+  });
+
+  // Session restore: URL hash (fresh from joining) wins, then the saved login.
+  (function(){
+    var match = (window.location.hash || '').match(/dm_[A-Za-z0-9]{10}/);
+    if (match) {
+      applyMember(match[0], null);
+      fetch(API + '/member?id=' + encodeURIComponent(match[0]))
+        .then(function(r){ return r.json(); })
+        .then(function(j){ if (j && j.ok) showLoggedIn(j.member); })
+        .catch(function(){});
+      return;
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('dm_member_id'); } catch (e) {}
+    if (saved && /^dm_[A-Za-z0-9]{10}$/.test(saved)) {
+      memberInput.value = saved;
+      memberBox.style.display = 'block';
+      loginForm.style.display = 'none';
+      fetch(API + '/member?id=' + encodeURIComponent(saved))
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if (j && j.ok) { showLoggedIn(j.member); openAllPanels(); }
+          else { showLoggedOut(); }
+        })
+        .catch(function(){ showLoggedIn({ member_id: saved }); openAllPanels(); });
+      return;
+    }
+    showLoggedOut();
   })();
 })();
 </script>

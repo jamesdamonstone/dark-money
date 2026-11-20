@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>Dark Money — Owner Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0908;
+    --panel:#161310;
+    --panel-2:#1c1915;
+    --panel-3:#211d18;
+    --line:#2b251d;
+    --line-soft:#231f1a;
+    --gold:#c9a24a;
+    --gold-dim:#9a7f3a;
+    --gold-soft:rgba(201,162,74,.14);
+    --text:#ece6d9;
+    --text-2:#b8ad99;
+    --text-3:#8a7f6d;
+    --danger:#e08a7a;
+    --danger-bg:rgba(224,138,122,.10);
+    --radius:14px;
+    --radius-sm:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+  body{
+    font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(900px 420px at 50% -120px, rgba(201,162,74,.07), transparent 65%),
+      radial-gradient(700px 300px at 90% 0%, rgba(201,162,74,.04), transparent 60%);
+    min-height:100vh;
+  }
+  button, input{font:inherit}
+  button, [role="button"], select, summary, input:not([type="checkbox"],[type="radio"]){min-height:44px}
+  a{color:var(--gold)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
+  @media (max-width:640px){ .wrap{padding:20px 16px 32px} }
+
+  /* ---------- Gate ---------- */
+  .gate-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+  .gate{
+    width:100%;max-width:420px;
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:34px 30px 28px;
+    box-shadow:0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .gate-mark{
+    width:52px;height:52px;border-radius:999px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--gold-soft);border:1px solid rgba(201,162,74,.35);
+    color:var(--gold);margin-bottom:18px;
+  }
+  .gate h1{
+    font-family:"Cinzel", serif;font-weight:700;letter-spacing:.02em;
+    font-size:28px;line-height:1.15;margin:0 0 6px;color:var(--text);
+  }
+  .gate .sub{color:var(--text-2);margin:0 0 22px;font-size:15.5px;line-height:1.5}
+  .field-label{display:block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+  .gate input[type="password"]{
+    width:100%;background:#0f0d0b;border:1px solid var(--line);border-radius:10px;
+    color:var(--text);padding:12px 14px;outline:none;
+  }
+  .gate input[type="password"]:focus{border-color:var(--gold-dim);box-shadow:0 0 0 3px rgba(201,162,74,.18)}
+  .gate input[type="password"]::placeholder{color:#6f6454}
+  .btn{
+    appearance:none;border:1px solid transparent;cursor:pointer;
+    border-radius:10px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;letter-spacing:.01em;text-decoration:none;white-space:nowrap;
+  }
+  .btn-gold{background:var(--gold);color:#171310;border-color:var(--gold)}
+  .btn-gold:hover{background:#d6b25e}
+  .btn-gold:active{transform:translateY(1px)}
+  .btn-gold:disabled{opacity:.6;cursor:wait}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--gold-dim);color:var(--gold)}
+  .btn-block{width:100%;margin-top:14px;min-height:48px;font-size:16px}
+  .gate-error{
+    display:none;margin-top:14px;padding:11px 13px;border-radius:10px;
+    background:var(--danger-bg);border:1px solid rgba(224,138,122,.35);color:#f0b8ab;font-size:14.5px;line-height:1.45;
+  }
+  .gate-error.show{display:block}
+  .gate-foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--line-soft);color:var(--text-3);font-size:13.5px;line-height:1.5}
+  .gate-status{margin-top:12px;color:var(--text-3);font-size:14px;min-height:20px}
+
+  /* ---------- Dashboard ---------- */
+  .dash-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+  .dash-head h1{
+    font-family:"Cinzel", serif;font-weight:700;font-size:clamp(28px,4vw,38px);line-height:1.1;margin:0;color:var(--text);letter-spacing:.01em;
+  }
+  .dash-head p{margin:6px 0 0;color:var(--text-2);max-width:560px}
+  .head-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .head-actions .btn{min-height:44px}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  @media (max-width:900px){ .stats{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:420px){ .stats{grid-template-columns:1fr 1fr;gap:10px} }
+  .stat{
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;
+  }
+  .stat-label{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin:0 0 8px}
+  .stat-value{font-family:"Cinzel", serif;font-size:34px;line-height:1;font-weight:700;color:var(--text);margin:0}
+  .stat-value.gold{color:var(--gold)}
+  .stat-note{margin:9px 0 0;color:var(--text-2);font-size:13.5px;line-height:1.45}
+
+  .panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  }
+  .panel-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:18px 20px 14px;border-bottom:1px solid var(--line-soft)}
+  .panel-head h2{font-family:"Cinzel", serif;font-size:20px;margin:0;font-weight:600;letter-spacing:.01em}
+  .panel-head p{margin:2px 0 0;color:var(--text-3);font-size:14px}
+  .updated{font-size:13px;color:var(--text-3)}
+  .updated .mono{color:var(--text-2)}
+
+  .table-scroll{width:100%}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  thead th{
+    text-align:left;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);font-weight:700;
+    padding:12px 20px 10px;border-bottom:1px solid var(--line);background:var(--panel-2);white-space:nowrap;
+  }
+  tbody td{padding:14px 20px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--text)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover td{background:rgba(255,255,255,.015)}
+  .member-name{font-weight:700;color:var(--text)}
+  .member-email{color:var(--text-2);word-break:break-all}
+  .mono{font-family:"IBM Plex Mono", ui-monospace, monospace;font-size:13.5px;letter-spacing:-.01em;color:#d8c9a3;word-break:break-all}
+  .pill{
+    display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600;line-height:1.3;white-space:nowrap;
+    border:1px solid var(--line);color:var(--text-2);background:var(--panel-3);
+  }
+  .pill.agent{border-color:rgba(201,162,74,.4);color:var(--gold);background:var(--gold-soft)}
+  .pill::before{content:"";width:6px;height:6px;border-radius:999px;background:currentColor;opacity:.9}
+  .joined{color:var(--text-2);white-space:nowrap}
+  .empty-row td{padding:34px 20px;text-align:center;color:var(--text-2)}
+  .dash-error{
+    display:none;margin-bottom:16px;padding:12px 14px;border-radius:10px;background:var(--danger-bg);border:1px solid rgba(224,138,122,.35);color:#f0b8ab;
+  }
+  .dash-error.show{display:block}
+  .loading-row td{padding:28px 20px;text-align:center;color:var(--text-3)}
+
+  footer{margin-top:22px;color:var(--text-3);font-size:14px;line-height:1.6;border-top:1px solid var(--line-soft);padding-top:16px}
+  footer strong{color:var(--text-2);font-weight:600}
+
+  .hidden{display:none !important}
+
+  /* Mobile: table becomes stacked cards, no sideways scroll */
+  @media (max-width:760px){
+    thead{display:none}
+    table, tbody, tr, td{display:block;width:100%}
+    tbody tr{border-bottom:1px solid var(--line);padding:14px 16px}
+    tbody tr:last-child{border-bottom:none}
+    tbody td{border:none;padding:3px 0}
+    tbody td::before{
+      content:attr(data-label);display:block;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);font-weight:700;margin-bottom:2px;
+    }
+    tbody td.no-label::before{display:none}
+    .joined{white-space:normal}
+    .empty-row td, .loading-row td{padding:10px 0;text-align:left}
+    .panel-head{padding:16px 16px 12px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- Gate view -->
+<div id="gateView" class="gate-wrap">
+  <section class="gate" aria-labelledby="gateTitle">
+    <div class="gate-mark" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <h1 id="gateTitle">Owner access</h1>
+    <p class="sub">This page shows the live Dark Money signup registry. Enter the owner key to unlock it.</p>
+
+    <form id="gateForm" novalidate>
+      <label class="field-label" for="ownerKey">Owner key</label>
+      <input id="ownerKey" name="ownerKey" type="password" autocomplete="current-password" placeholder="Enter owner key" />
+      <button id="unlockBtn" class="btn btn-gold btn-block" type="submit">Unlock</button>
+      <div id="gateError" class="gate-error" role="alert"></div>
+      <div id="gateStatus" class="gate-status" aria-live="polite"></div>
+    </form>
+
+    <p class="gate-foot">The key is kept only for this browser session. Locking the dashboard clears it.</p>
+  </section>
+</div>
+
+<!-- Dashboard view -->
+<div id="dashView" class="wrap hidden">
+  <header class="dash-head">
+    <div>
+      <h1>Owner dashboard</h1>
+      <p>Live signup registry for Dark Money — who joined, how they joined, and where payouts go.</p>
+    </div>
+    <div class="head-actions">
+      <button id="refreshBtn" class="btn btn-ghost" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        Refresh
+      </button>
+      <button id="lockBtn" class="btn btn-ghost" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        Lock
+      </button>
+    </div>
+  </header>
+
+  <div id="dashError" class="dash-error" role="alert"></div>
+
+  <section class="stats" aria-label="Registry totals">
+    <article class="stat">
+      <p class="stat-label">Members</p>
+      <p class="stat-value" id="statMembers">—</p>
+      <p class="stat-note">Total in the signup registry</p>
+    </article>
+    <article class="stat">
+      <p class="stat-label">Joined today</p>
+      <p class="stat-value" id="statToday">—</p>
+      <p class="stat-note">New signups today</p>
+    </article>
+    <article class="stat">
+      <p class="stat-label">With an agent</p>
+      <p class="stat-value" id="statAgent">—</p>
+      <p class="stat-note">Joined with my AI agent</p>
+    </article>
+    <article class="stat">
+      <p class="stat-label">Commissions</p>
+      <p class="stat-value gold" id="statCommissions">$0.00</p>
+      <p class="stat-note">balances live in the local ledger until networks report</p>
+    </article>
+  </section>
+
+  <section class="panel" aria-labelledby="membersTitle">
+    <div class="panel-head">
+      <div>
+        <h2 id="membersTitle">Members</h2>
+        <p>Newest first, as returned by the registry.</p>
+      </div>
+      <div class="updated" id="updatedAt"></div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Member</th>
+            <th scope="col">Email</th>
+            <th scope="col">Member ID</th>
+            <th scope="col">Style</th>
+            <th scope="col">Payout</th>
+            <th scope="col">Joined</th>
+          </tr>
+        </thead>
+        <tbody id="membersBody">
+          <tr class="loading-row"><td colspan="6" class="no-label">Loading registry…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <strong>Dark Money owner view.</strong> Member balances and payout batches are prepared from the commission ledger; this page shows the live signup registry.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var API_URL = "https://dark-money-api.netlify.app/api/admin/members";
+  var STORAGE_KEY = "dm_admin_key";
+  var ERROR_TEXT = "That key didn't unlock the registry. Check it and try again.";
+
+  var gateView = document.getElementById("gateView");
+  var dashView = document.getElementById("dashView");
+  var gateForm = document.getElementById("gateForm");
+  var ownerKeyInput = document.getElementById("ownerKey");
+  var unlockBtn = document.getElementById("unlockBtn");
+  var gateError = document.getElementById("gateError");
+  var gateStatus = document.getElementById("gateStatus");
+  var dashError = document.getElementById("dashError");
+  var refreshBtn = document.getElementById("refreshBtn");
+  var lockBtn = document.getElementById("lockBtn");
+  var membersBody = document.getElementById("membersBody");
+  var statMembers = document.getElementById("statMembers");
+  var statToday = document.getElementById("statToday");
+  var statAgent = document.getElementById("statAgent");
+  var updatedAt = document.getElementById("updatedAt");
+
+  function escapeHtml(value){
+    if (value === null || value === undefined) return "";
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function getStoredKey(){
+    try { return sessionStorage.getItem(STORAGE_KEY) || ""; } catch(e){ return ""; }
+  }
+  function storeKey(key){
+    try { sessionStorage.setItem(STORAGE_KEY, key); } catch(e){}
+  }
+  function clearKey(){
+    try { sessionStorage.removeItem(STORAGE_KEY); } catch(e){}
+  }
+
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function formatJoined(value){
+    if (!value) return "";
+    var d = new Date(value);
+    if (isNaN(d.getTime())) return String(value);
+    var month = MONTHS[d.getMonth()];
+    var day = d.getDate();
+    var year = d.getFullYear();
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var ampm = hours >= 12 ? "PM" : "AM";
+    var h12 = hours % 12;
+    if (h12 === 0) h12 = 12;
+    var mm = minutes < 10 ? "0" + minutes : String(minutes);
+    return month + " " + day + ", " + year + " " + h12 + ":" + mm + " " + ampm;
+  }
+
+  function showGateError(){
+    gateError.textContent = ERROR_TEXT;
+    gateError.classList.add("show");
+  }
+  function hideGateError(){
+    gateError.textContent = "";
+    gateError.classList.remove("show");
+  }
+  function showDashError(){
+    dashError.textContent = ERROR_TEXT;
+    dashError.classList.add("show");
+  }
+  function hideDashError(){
+    dashError.textContent = "";
+    dashError.classList.remove("show");
+  }
+
+  function setGateLoading(loading, msg){
+    unlockBtn.disabled = loading;
+    unlockBtn.textContent = loading ? "Unlocking…" : "Unlock";
+    gateStatus.textContent = msg || "";
+  }
+
+  function renderDashboard(data){
+    var members = [];
+    var totals = {};
+    if (data && Array.isArray(data.members)) members = data.members;
+    else if (Array.isArray(data)) members = data;
+    if (data && data.totals && typeof data.totals === "object") totals = data.totals;
+
+    var count = members.length;
+    // If the API provides an explicit total count, prefer the members array length per spec ("count from the response" = registry count).
+    statMembers.textContent = String(count);
+
+    var joinedToday = (totals.joined_today !== undefined && totals.joined_today !== null) ? totals.joined_today : 0;
+    statToday.textContent = String(joinedToday);
+
+    var agentCount = 0;
+    if (totals.by_style && totals.by_style.agent !== undefined && totals.by_style.agent !== null) {
+      agentCount = totals.by_style.agent;
+    }
+    statAgent.textContent = String(agentCount);
+
+    // Commissions stays fixed per spec
+    document.getElementById("statCommissions").textContent = "$0.00";
+
+    if (!members.length) {
+      membersBody.innerHTML = '<tr class="empty-row"><td colspan="6" class="no-label">No members yet.</td></tr>';
+    } else {
+      var html = "";
+      for (var i = 0; i < members.length; i++) {
+        var m = members[i] || {};
+        var name = escapeHtml(m.name || "");
+        var email = escapeHtml(m.email || "");
+        var idVal = escapeHtml(m.member_id || m.id || m.memberId || "");
+        var isAgent = (m.style === "agent");
+        var styleLabel = isAgent ? "With my AI agent" : "Myself";
+        var payout = escapeHtml(m.payout !== undefined && m.payout !== null ? m.payout : "");
+        var joined = escapeHtml(formatJoined(m.joined_at || m.joinedAt || ""));
+        html += "<tr>"
+          + '<td data-label="Member"><span class="member-name">' + name + "</span></td>"
+          + '<td data-label="Email"><span class="member-email">' + email + "</span></td>"
+          + '<td data-label="Member ID"><span class="mono">' + idVal + "</span></td>"
+          + '<td data-label="Style"><span class="pill' + (isAgent ? " agent" : "") + '">' + escapeHtml(styleLabel) + "</span></td>"
+          + '<td data-label="Payout">' + payout + "</td>"
+          + '<td data-label="Joined"><span class="joined">' + joined + "</span></td>"
+          + "</tr>";
+      }
+      membersBody.innerHTML = html;
+    }
+
+    var now = new Date();
+    updatedAt.innerHTML = 'Updated <span class="mono">' + escapeHtml(formatJoined(now.toISOString())) + "</span>";
+  }
+
+  function showDashboard(){
+    gateView.classList.add("hidden");
+    dashView.classList.remove("hidden");
+  }
+  function showGate(){
+    dashView.classList.add("hidden");
+    gateView.classList.remove("hidden");
+  }
+
+  function fetchMembers(key){
+    return fetch(API_URL, {
+      method: "GET",
+      headers: { "X-Admin-Key": key }
+    }).then(function(res){
+      if (!res.ok) throw new Error("unlock_failed");
+      return res.json();
+    });
+  }
+
+  function loadWithKey(key, opts){
+    opts = opts || {};
+    if (opts.fromGate) setGateLoading(true, "Checking the key…");
+    if (!opts.fromGate) {
+      // dashboard refresh state
+      refreshBtn.disabled = true;
+      refreshBtn.textContent = "Refreshing…";
+    }
+    hideGateError();
+    hideDashError();
+    return fetchMembers(key).then(function(data){
+      storeKey(key);
+      renderDashboard(data);
+      showDashboard();
+      setGateLoading(false, "");
+      refreshBtn.disabled = false;
+      refreshBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> Refresh';
+      return true;
+    }).catch(function(){
+      setGateLoading(false, "");
+      refreshBtn.disabled = false;
+      refreshBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> Refresh';
+      if (opts.fromGate || gateView.classList.contains("hidden") === false) {
+        // Still on gate (or attempted auto-load from gate context)
+        if (dashView.classList.contains("hidden")) {
+          showGateError();
+        } else {
+          showDashError();
+        }
+      } else {
+        showDashError();
+      }
+      // If auto-load failed, clear stale key so user can retry cleanly
+      if (opts.auto) {
+        clearKey();
+        showGate();
+        showGateError();
+      }
+      return false;
+    });
+  }
+
+  gateForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var key = ownerKeyInput.value ? ownerKeyInput.value.trim() : "";
+    if (!key) { showGateError(); ownerKeyInput.focus(); return; }
+    loadWithKey(key, { fromGate: true });
+  });
+
+  ownerKeyInput.addEventListener("keydown", function(e){
+    if (e.key === "Enter") {
+      // form submit handles it, but ensure trigger if form not submitted in some webviews
+      // Let the form submit fire; prevent double handling
+    }
+  });
+  ownerKeyInput.addEventListener("input", function(){ hideGateError(); });
+
+  refreshBtn.addEventListener("click", function(){
+    var key = getStoredKey();
+    if (!key) { showGate(); return; }
+    loadWithKey(key, { fromGate: false });
+  });
+
+  lockBtn.addEventListener("click", function(){
+    clearKey();
+    window.location.reload();
+  });
+
+  // Auto-load on page load if key is stored
+  (function init(){
+    var stored = getStoredKey();
+    if (stored) {
+      gateStatus.textContent = "Unlocking with your saved session key…";
+      loadWithKey(stored, { fromGate: true, auto: true });
+    } else {
+      // focus for convenience on desktop
+      try { ownerKeyInput.focus(); } catch(e){}
+    }
+  })();
+})();
+</script>
+</body>
+</html>

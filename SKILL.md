@@ -14,10 +14,10 @@ Dark Money is a cashback service. Members shop through tracked affiliate links; 
 
 ## Status — read this first
 
-As of 2026-11-19:
+As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
-- **CJ Affiliate is LIVE** with the 13 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
+- **CJ Affiliate is LIVE** with the 14 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
 - **Awin is LIVE** with 1 approved store (Gate Operators Direct, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
@@ -63,7 +63,8 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Store | Commission | Member earns | Tracked link template |
 |---|---|---|---|
 | NordVPN (new subscriptions) | 40% | 28% | `https://www.kqzyfj.com/click-101932824-12814518?sid={SID}` |
-| Phone.com | $75 flat per signup | $52.50 | `https://www.kqzyfj.com/click-101932824-12664811?sid={SID}` |
+| Phone.com | $75 flat per signup | $52.50 | `https://www.kqzyfj.com/click-101932824-12664811?sid={SID}` | 
+| Ovago (flights) | $8–$23 flat per booking | $5.60–$16.10 | `https://www.tkqlhce.com/click-101932824-15796145?sid={SID}` |
 | zChocolat.com | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
 | Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
 | GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |

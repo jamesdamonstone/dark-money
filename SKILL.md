@@ -18,7 +18,7 @@ As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
 - **CJ Affiliate is LIVE** with the 16 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
-- **Awin is LIVE** with 17 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, Coziwow, Maddie Grace Jewelry, LifeVibe, ShedRX, Signos, Curex, ClarityX, Neuro Gum, SNOW, Measured, and Wallshoppe, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
+- **Awin is LIVE** with 18 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, Coziwow, Maddie Grace Jewelry, LifeVibe, ShedRX, Signos, Curex, ClarityX, Neuro Gum, SNOW, Measured, Wallshoppe, and Skoot, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
 ## The one hard rule
@@ -82,6 +82,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | SNOW (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=75744&awinaffid=3161005&clickref={SID}` |
 | Measured (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126727&awinaffid=3161005&clickref={SID}` |
 | Wallshoppe (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126215&awinaffid=3161005&clickref={SID}` |
+| Skoot (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=127911&awinaffid=3161005&clickref={SID}` |
 | Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
 | ALZOO (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}` |
 | GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |

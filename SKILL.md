@@ -17,7 +17,7 @@ Dark Money is a cashback service. Members shop through tracked affiliate links; 
 As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
-- **CJ Affiliate is LIVE** with the 16 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
+- **CJ Affiliate is LIVE** with the 17 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
 - **Awin is LIVE** with 19 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, Coziwow, Maddie Grace Jewelry, LifeVibe, ShedRX, Signos, Curex, ClarityX, Neuro Gum, SNOW, Measured, Wallshoppe, Skoot, and Edify, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 

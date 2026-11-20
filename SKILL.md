@@ -17,7 +17,7 @@ Dark Money is a cashback service. Members shop through tracked affiliate links; 
 As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
-- **CJ Affiliate is LIVE** with the 14 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
+- **CJ Affiliate is LIVE** with the 16 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
 - **Awin is LIVE** with 1 approved store (Gate Operators Direct, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
@@ -68,11 +68,13 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | zChocolat.com | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
 | Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
 | GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |
+| Xplora | 10% | 7% | `https://www.kqzyfj.com/click-101932824-15736994?sid={SID}` |
 | Gate Operators Direct (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114678&awinaffid=3161005&clickref={SID}` |
 | Dream Pairs / Bruno Marc | 8–10% | 5.6–7% | `https://www.jdoqocy.com/click-101932824-15369315?sid={SID}` |
 | Trinity Road Websites | 8% | 5.6% | `https://www.tkqlhce.com/click-101932824-10753028?sid={SID}` |
 | Shelving Inc. | 7% | 4.9% | `https://www.jdoqocy.com/click-101932824-15735511?sid={SID}` |
 | Pure Genius Protein | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17323502?sid={SID}` |
+| XPLORA UK | 5% | 3.5% | `https://www.dpbolvw.net/click-101932824-15766774?sid={SID}` |
 | Nick's Handmade Boots | 6% | 4.2% | `https://www.tkqlhce.com/click-101932824-15001326?sid={SID}` |
 | Signs Banners and Magnets On The Cheap | 3% | 2.1% | `https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}` |
 | GreaterGood | 2% | 1.4% | `https://www.dpbolvw.net/click-101932824-15734341?sid={SID}` |

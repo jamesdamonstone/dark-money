@@ -67,6 +67,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Ovago (flights) | $8–$23 flat per booking | $5.60–$16.10 | `https://www.tkqlhce.com/click-101932824-15796145?sid={SID}` |
 | Your Phone here (Awin) | $15 flat per sale | $10.50 | `https://www.awin1.com/cread.php?awinmid=129023&awinaffid=3161005&clickref={SID}` |
 | zChocolat.com | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
+| Winebasket | 7% | 4.9% | `https://www.anrdoezrs.net/click-101932824-10570212?sid={SID}` |
 | Buena Cura US (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=106723&awinaffid=3161005&clickref={SID}` |
 | Shed Supplements (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=125186&awinaffid=3161005&clickref={SID}` |
 | Miles Jewellery (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=129311&awinaffid=3161005&clickref={SID}` |

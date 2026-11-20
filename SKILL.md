@@ -18,7 +18,7 @@ As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
 - **CJ Affiliate is LIVE** with the 16 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
-- **Awin is LIVE** with 7 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, and Coziwow, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
+- **Awin is LIVE** with 9 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, Coziwow, Maddie Grace Jewelry, and LifeVibe, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
 ## The one hard rule
@@ -72,6 +72,8 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Shed Supplements (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=125186&awinaffid=3161005&clickref={SID}` |
 | Miles Jewellery (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=129311&awinaffid=3161005&clickref={SID}` |
 | Coziwow (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=121696&awinaffid=3161005&clickref={SID}` |
+| Maddie Grace Jewelry (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=119021&awinaffid=3161005&clickref={SID}` |
+| LifeVibe (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124072&awinaffid=3161005&clickref={SID}` |
 | Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
 | ALZOO (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}` |
 | GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |

@@ -18,7 +18,7 @@ As of 2026-11-20:
 
 - **Membership is OPEN.** Joining is instant (see Pairing).
 - **CJ Affiliate is LIVE** with the 18 approved stores listed under Link templates below. Cashback is authorized per advertiser — only those stores, only through those templates.
-- **Awin is LIVE** with 38 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, Coziwow, Maddie Grace Jewelry, LifeVibe, ShedRX, Signos, Curex, ClarityX, Neuro Gum, SNOW, Measured, Wallshoppe, Skoot, Edify, Veronika Vilim, Lunzo RO, Lunzo SK, Thierry Lasry, Isla Capricho Homeware, Kurtens, Blooh, TechPals, Welcome Home, EAST x EAST, Cocinare Limited, UUNA TEK, Alorair, Thrivous, MyPhysicianPlan, Marley Spoon, Afewvibe, Argendon, and Regina Andrew Detroit, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
+- **Awin is LIVE** with 39 approved stores (Gate Operators Direct, ALZOO, Your Phone here, Buena Cura US, Shed Supplements, Miles Jewellery, Coziwow, Maddie Grace Jewelry, LifeVibe, ShedRX, Signos, Curex, ClarityX, Neuro Gum, SNOW, Measured, Wallshoppe, Skoot, Edify, Veronika Vilim, Lunzo RO, Lunzo SK, Thierry Lasry, Isla Capricho Homeware, Kurtens, Blooh, TechPals, Welcome Home, EAST x EAST, Cocinare Limited, UUNA TEK, Alorair, Thrivous, MyPhysicianPlan, Marley Spoon, Afewvibe, Argendon, Regina Andrew Detroit, and monvane, listed below). Dark Money's **Impact** application was **declined** — no Impact merchants are available.
 - **Dark Money is location-specific.** Every program serves specific countries (its `regions`). Most serve the US; XPLORA UK serves the UK; Lunzo RO serves Romania and Lunzo SK serves Slovakia; NordVPN and Ovago are global. When you use the MCP server, pass the member's country to `list_programs` (e.g. `country: "GB"`) so you only route purchases through stores that member can actually use. The member app has the same country filter.
 - Commissions are credited to member balances as network reports are processed — balances are **not real-time**. A purchase that tracks shows up after the network reports it; it confirms after the retailer's return window closes.
 
@@ -119,6 +119,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Afewvibe (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=75796&awinaffid=3161005&clickref={SID}` |
 | Argendon (Awin) | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=126513&awinaffid=3161005&clickref={SID}` |
 | Regina Andrew Detroit (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=127767&awinaffid=3161005&clickref={SID}` |
+| monvane (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=127859&awinaffid=3161005&clickref={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.
 

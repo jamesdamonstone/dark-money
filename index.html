@@ -82,6 +82,37 @@
     .brand-name small{display:none}
   }
 
+
+  /* ---------- Audience tabs ---------- */
+  body.mode-human [data-audience="agent"]{display:none !important}
+  body.mode-agent [data-audience="human"]{display:none !important}
+  .audience-bar{
+    position:sticky;top:64px;z-index:49;
+    background:rgba(10,10,11,.92);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .audience-tabs{display:flex;gap:10px;padding-top:12px;padding-bottom:12px}
+  .aud-tab{
+    flex:1;min-height:58px;padding:10px 14px;cursor:pointer;
+    background:var(--surface);color:var(--muted);
+    border:1px solid var(--line);border-radius:12px;
+    font-family:"Manrope",sans-serif;font-size:17px;font-weight:800;line-height:1.25;
+  }
+  .aud-tab small{display:block;font-size:12.5px;font-weight:600;color:var(--faint);margin-top:2px}
+  .aud-tab:hover{border-color:var(--accent-dim);color:var(--text)}
+  .aud-tab.is-active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .aud-tab.is-active small{color:var(--accent-ink);opacity:.75}
+  @media (max-width:560px){.aud-tab{font-size:15.5px}.audience-bar{top:63px}}
+
+  /* Agent resources */
+  .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media (max-width:820px){.res-grid{grid-template-columns:1fr}}
+  .res-card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px 28px}
+  .res-card h3{margin:0 0 8px;font-size:18px;font-weight:800}
+  .res-card p{margin:0 0 14px;color:var(--muted);font-size:15.5px;line-height:1.6}
+  .res-card code{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);word-break:break-all}
+
   /* ---------- Hero ---------- */
   .hero{
     position:relative;
@@ -316,7 +347,7 @@
   }
 </style>
 </head>
-<body>
+<body class="mode-human">
 
 <header class="site">
   <div class="wrap nav">
@@ -336,10 +367,17 @@
   </div>
 </header>
 
+<div class="audience-bar">
+  <div class="wrap audience-tabs" role="tablist" aria-label="Choose your view">
+    <button type="button" class="aud-tab is-active" id="tab-humans" role="tab" aria-selected="true" data-mode="human">For Humans<small>Shop &amp; earn cashback</small></button>
+    <button type="button" class="aud-tab" id="tab-agents" role="tab" aria-selected="false" data-mode="agent">For Agents<small>Route purchases &amp; integrate</small></button>
+  </div>
+</div>
+
 <main id="top">
 
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero" data-audience="human">
     <div class="wrap">
       <div class="hero-inner">
         <div class="hero-rule"><span aria-hidden="true"></span><p>A cashback service</p></div>
@@ -361,7 +399,7 @@
   </div>
 
   <!-- HOW IT WORKS -->
-  <section class="block" id="how">
+  <section class="block" id="how" data-audience="human">
     <div class="wrap">
       <div class="sec-head">
         <p class="sec-tag">How it works</p>
@@ -461,7 +499,7 @@
   </script>
 
   <!-- FOR AGENTS -->
-  <section class="block alt" id="agents">
+  <section class="block alt" id="agents" data-audience="agent">
     <div class="wrap">
       <div class="split">
         <div>
@@ -500,8 +538,41 @@
     </div>
   </section>
 
+  <!-- AGENT RESOURCES -->
+  <section class="block" id="agent-resources" data-audience="agent">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">For agents</p>
+        <h2>Everything an agent needs, in one place.</h2>
+        <p>Dark Money is built to be used by agents on behalf of their humans. Start with the skill file, or connect the MCP server and call the tools directly.</p>
+      </div>
+      <div class="res-grid">
+        <div class="res-card">
+          <h3>1 &middot; Join your human</h3>
+          <p>Membership is the human&rsquo;s — free and instant. Join on the home page (Humans tab), or call the MCP tool <code>join_dark_money</code>. The member ID you get back keys every link.</p>
+          <p><a href="#join">Open the join form &rarr;</a></p>
+        </div>
+        <div class="res-card">
+          <h3>2 &middot; Read the skill file</h3>
+          <p>The full operating brief — program list, link templates, rules, and the checkout boundary — in one markdown file your runtime can load directly.</p>
+          <p><code>https://jamesdamonstone.github.io/dark-money/SKILL.md</code></p>
+        </div>
+        <div class="res-card">
+          <h3>3 &middot; Connect the MCP server</h3>
+          <p>Tools: <code>list_programs</code>, <code>get_cashback_link</code>, <code>join_dark_money</code>. Published on the Official MCP Registry as <code>io.github.jamesdamonstone/dark-money-mcp</code> and on npm as <code>dark-money-mcp</code>.</p>
+          <p><a href="https://registry.modelcontextprotocol.io/v0/servers?search=dark-money" target="_blank" rel="noopener">View on the MCP Registry &rarr;</a></p>
+        </div>
+        <div class="res-card">
+          <h3>4 &middot; Route, don&rsquo;t purchase</h3>
+          <p>Build the cart, hand your human the tracked link from <code>get_cashback_link</code>, and let them complete checkout. The commission share lands in their balance — 70% to them, paid out at $20 confirmed.</p>
+          <p><a href="app.html">Open the member app &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- LOCAL BUSINESSES -->
-  <section class="block" id="local">
+  <section class="block" id="local" data-audience="human">
     <div class="wrap">
       <div class="sec-head">
         <p class="sec-tag">For local businesses</p>
@@ -525,7 +596,7 @@
   </section>
 
   <!-- JOIN -->
-  <section class="block" id="join">
+  <section class="block" id="join" data-audience="human">
     <div class="wrap">
       <div class="split">
         <div>
@@ -821,6 +892,31 @@
         resetSubmit();
       });
     });
+  })();
+</script>
+<script>
+  (function () {
+    var tabs = { human: document.getElementById('tab-humans'), agent: document.getElementById('tab-agents') };
+    if (!tabs.human || !tabs.agent) return;
+    function setMode(mode, scroll) {
+      document.body.classList.toggle('mode-human', mode === 'human');
+      document.body.classList.toggle('mode-agent', mode === 'agent');
+      tabs.human.classList.toggle('is-active', mode === 'human');
+      tabs.agent.classList.toggle('is-active', mode === 'agent');
+      tabs.human.setAttribute('aria-selected', mode === 'human' ? 'true' : 'false');
+      tabs.agent.setAttribute('aria-selected', mode === 'agent' ? 'true' : 'false');
+      try { history.replaceState(null, '', mode === 'agent' ? '#agents' : '#top'); } catch (e) {}
+      if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    tabs.human.addEventListener('click', function () { setMode('human', true); });
+    tabs.agent.addEventListener('click', function () { setMode('agent', true); });
+    document.querySelectorAll('a[href="#agents"], a[href="#agent-resources"]').forEach(function (a) {
+      a.addEventListener('click', function () { setMode('agent', false); });
+    });
+    document.querySelectorAll('a[href="#how"], a[href="#local"], a[href="#join"]').forEach(function (a) {
+      a.addEventListener('click', function () { setMode('human', false); });
+    });
+    if (/(^#)(agents|agent-resources)/.test(window.location.hash || '')) setMode('agent', false);
   })();
 </script>
 </body>

@@ -142,7 +142,7 @@ A merchant not in this table is not available — shop normally without a link a
 2. If the store is in the catalog, build the tracked URL from its template with the pair's member ID.
 3. Tell your human the store's rate and the member's estimated share (Disclosure duties below). If you found a better net price elsewhere, say so — route on the best net outcome for your human, not the highest commission.
 4. Present the tracked URL to your human.
-5. **Stop.** Your human opens the link and checks out personally, in their own browser/session.
+5. **Stop.** Your human opens the link and checks out personally, in their own browser/session. Before they click, warn them: pause any other cashback or coupon browser extension (Honey, Rakuten, Capital One Shopping) for this purchase — attribution is last-click, and another extension's click takes the credit. They should also finish the purchase in the same browser where they opened the link; checking out inside the store's app can break tracking.
 6. The purchase is attributed to the pair via the sub-ID (`sid` on CJ, `clickref` on Awin). You do nothing further.
 
 Do not open a tracked link yourself to "test" it, preview it in a way that registers a click, or generate links repeatedly for the same purchase.
@@ -153,7 +153,7 @@ Do not open a tracked link yourself to "test" it, preview it in a way that regis
 - **Split — DECIDED 2026-11-19: 70% of the commission to the member / 30% to Dark Money.** When telling your human what they will earn, quote the member's share and present amounts as estimates.
 - **Founding offer (2026-11-20): the first 25 members earn 100% of the commission on their first confirmed purchase.** If your human is joining now, they may still be in the founding 25 — worth mentioning.
 - **Payout threshold: $20** of confirmed balance. Payouts go to the human member through ordinary payment rails, to the payout preference they chose when joining. You never receive, hold, redirect, or have visibility into payout details beyond the balance.
-- Tracking can fail (in-app purchases, blocked or cleared cookies, clicking another cashback/coupon link after ours). Some purchases will not attribute. Say so when it matters.
+- Tracking can fail (in-app purchases, blocked or cleared cookies, clicking another cashback/coupon link after ours, another extension taking the last click). Some purchases will not attribute. Say so when it matters.
 
 ## Disclosure duties
 

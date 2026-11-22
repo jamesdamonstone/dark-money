@@ -163,14 +163,43 @@
     font-size:.97rem;
   }
   .how-line .mark{color:var(--brass);font-family:"Cinzel",serif;font-weight:700;font-size:1.1rem;line-height:1.2;flex:none}
-  .stores{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  /* ---------- app tabs ---------- */
+  .app-tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;margin:0 0 22px}
+  .app-tab{
+    flex:1;appearance:none;border:0;background:transparent;color:var(--ink-2);
+    font-family:"Cinzel",serif;font-weight:700;letter-spacing:.06em;font-size:.95rem;
+    padding:11px 10px;border-radius:999px;cursor:pointer;min-height:44px;
+  }
+  .app-tab:hover{color:var(--ink)}
+  .app-tab.is-active{background:var(--brass);color:#171204}
+  .tab-panel[hidden]{display:none}
+
+  /* ---------- store rail (side-scrolling) ---------- */
+  .store-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 14px}
+  .store-controls input[type="search"], .store-controls select{
+    background:#0e0c0a;border:1px solid var(--line);border-radius:8px;color:var(--ink);
+    padding:11px 12px;min-height:44px;font-size:.95rem;
+  }
+  .store-controls input[type="search"]{flex:1 1 200px;min-width:160px}
+  .store-controls input[type="search"]:focus, .store-controls select:focus{outline:2px solid var(--brass-dim);outline-offset:1px;border-color:var(--brass)}
+  .stores{
+    display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;
+    scroll-snap-type:x proximity;align-items:flex-start;
+    scrollbar-width:thin;scrollbar-color:var(--brass-dim) transparent;
+  }
+  .stores::-webkit-scrollbar{height:8px}
+  .stores::-webkit-scrollbar-thumb{background:var(--brass-dim);border-radius:99px}
+  .stores::-webkit-scrollbar-track{background:transparent}
   .store{
     background:var(--panel);
     border:1px solid var(--line);
     border-radius:12px;
     padding:18px;
     display:flex;flex-direction:column;
+    flex:0 0 288px;max-width:288px;
+    scroll-snap-align:start;
   }
+  .store.no-match{display:none}
   .store h3{
     font-family:"Cinzel", Georgia, serif;
     font-size:1.08rem;font-weight:600;letter-spacing:.02em;
@@ -237,7 +266,8 @@
     .wrap{padding:0 16px 44px}
     header.top{padding-top:26px}
     .balances{grid-template-columns:1fr}
-    .stores{grid-template-columns:1fr}
+    .store{flex-basis:82vw;max-width:82vw}
+    .app-tab{font-size:.85rem;padding:10px 6px}
     .wallet{padding:18px}
     .brand-row{flex-direction:column;align-items:stretch}
     .member-box{min-width:0}
@@ -255,37 +285,19 @@
       <div class="brand">
         <h1>Dark <span class="gold">Money</span></h1>
         <p class="sub">Member App</p>
-        <p class="pair" id="pairLine">Member pair: <strong>Navi + James</strong> &middot; Customer #0</p>
-        <p id="loginState" style="margin:8px 0 0;color:var(--ink-2);font-size:.95rem"></p>
-      </div>
-      <div class="member-box">
-        <div id="loginForm">
-          <label for="loginEmail">Member login</label>
-          <div class="member-row" style="margin-bottom:8px">
-            <input id="loginEmail" type="email" placeholder="Email you joined with" autocomplete="email" spellcheck="false" />
-          </div>
-          <div class="member-row">
-            <input id="loginId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
-            <button type="button" class="btn" id="loginBtn">Log in</button>
-          </div>
-          <p id="loginError" style="display:none;color:#d98a7a"></p>
-          <p>New here? <a href="index.html#join">Join on the home page</a> &mdash; it takes a few seconds and your ID is issued instantly.</p>
-        </div>
-        <div id="memberBox" style="display:none">
-          <label for="memberId">Your member ID</label>
-          <div class="member-row">
-            <input id="memberId" type="text" value="dm_Am5HeABD5C" autocomplete="off" spellcheck="false" aria-describedby="memberHelp" />
-          </div>
-          <p id="memberHelp">Every link below is built with this ID, so the commission is credited to you. Edit it and the links update.</p>
-          <p><button type="button" class="btn secondary small" id="logoutBtn">Log out</button></p>
-        </div>
       </div>
     </div>
   </header>
 
   <main>
+    <nav class="app-tabs" role="tablist" aria-label="Member sections">
+      <button type="button" class="app-tab is-active" id="tabbtn-shopping" data-tab="shopping" role="tab" aria-selected="true">Shopping</button>
+      <button type="button" class="app-tab" id="tabbtn-wallet" data-tab="wallet" role="tab" aria-selected="false">Wallet</button>
+      <button type="button" class="app-tab" id="tabbtn-account" data-tab="account" role="tab" aria-selected="false">Account</button>
+    </nav>
+
     <!-- Wallet -->
-    <section aria-labelledby="walletTitle">
+    <section class="tab-panel" id="panel-wallet" hidden aria-labelledby="walletTitle">
       <div class="wallet">
         <div class="wallet-top">
           <div>
@@ -328,37 +340,8 @@
         <p class="wallet-note"><strong>Payouts send at $20 confirmed.</strong> Commissions confirm after each store&rsquo;s return window. Balances stay at $0.00 until a network reports a commission on one of your links &mdash; there&rsquo;s nothing pending to show yet.</p>
         <p class="wallet-note"><strong>Before you check out:</strong> open your tracked link in the same browser you buy in, and pause other cashback or coupon extensions (Honey, Rakuten, Capital One Shopping) for that purchase &mdash; if another extension takes the last click, it takes the credit and your cashback won&rsquo;t track. Checking out inside a store&rsquo;s app can break tracking too.</p>
       </div>
-    </section>
 
-    <!-- Stores -->
-    <section aria-labelledby="storesTitle">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title" id="storesTitle">Stores</h2>
-          <p id="storeCount">62 approved programs &middot; CJ + Awin networks</p>
-<p style="margin-top:10px"><label for="countrySel"><strong>Stores for:</strong></label>
-<select id="countrySel">
-  <option value="US" selected>United States</option>
-  <option value="GB">United Kingdom</option>
-  <option value="RO">Romania</option>
-  <option value="SK">Slovakia</option>
-  <option value="ALL">All countries</option>
-</select></p>
-<p><strong>Founding offer:</strong> the first 25 members earn 100% of the commission on their first confirmed purchase.</p>
-        </div>
-      </div>
-
-      <div class="how-line">
-        <span class="mark" aria-hidden="true">&#167;</span>
-        <span>Open your link, shop as usual, and check out yourself &mdash; that&rsquo;s what keeps the cashback valid.</span>
-      </div>
-
-      <div class="stores" id="stores"></div>
-    </section>
-
-    <!-- Activity -->
-    <section aria-labelledby="activityTitle">
-      <div class="section-head">
+      <div class="section-head" style="margin-top:30px">
         <div>
           <h2 class="section-title" id="activityTitle">Activity</h2>
           <p>Links issued and earnings for this member pair</p>
@@ -388,6 +371,73 @@
             <div class="meta">No commissions reported yet. Earnings appear here once a store confirms a sale made through your link.</div>
           </div>
           <span class="pill none">None yet</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shopping -->
+    <section class="tab-panel" id="panel-shopping" aria-labelledby="storesTitle">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="storesTitle">Shopping</h2>
+          <p id="storeCount">90 approved programs &middot; CJ + Awin networks</p>
+        </div>
+      </div>
+
+      <div class="store-controls">
+        <input type="search" id="storeSearch" placeholder="Search stores&hellip;" aria-label="Search stores" />
+        <select id="sortSel" aria-label="Sort stores">
+          <option value="featured" selected>Featured</option>
+          <option value="name">Name A&ndash;Z</option>
+          <option value="pct">Highest % back</option>
+          <option value="flat">Biggest flat payout</option>
+        </select>
+        <select id="countrySel" aria-label="Stores for country">
+          <option value="US" selected>United States</option>
+          <option value="GB">United Kingdom</option>
+          <option value="RO">Romania</option>
+          <option value="SK">Slovakia</option>
+          <option value="ALL">All countries</option>
+        </select>
+      </div>
+
+      <div class="how-line">
+        <span class="mark" aria-hidden="true">&#167;</span>
+        <span>Open your link, shop as usual, and check out yourself &mdash; that&rsquo;s what keeps the cashback valid. Swipe or scroll sideways for more stores.</span>
+      </div>
+
+      <div class="stores" id="stores"></div>
+    </section>
+
+    <!-- Account -->
+    <section class="tab-panel" id="panel-account" hidden aria-labelledby="accountTitle">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="accountTitle">Account</h2>
+          <p class="pair" id="pairLine">Member pair: <strong>Navi + James</strong> &middot; Customer #0</p>
+          <p id="loginState" style="margin:8px 0 0;color:var(--ink-2);font-size:.95rem"></p>
+        </div>
+      </div>
+      <div class="member-box" style="max-width:560px">
+        <div id="loginForm">
+          <label for="loginEmail">Member login</label>
+          <div class="member-row" style="margin-bottom:8px">
+            <input id="loginEmail" type="email" placeholder="Email you joined with" autocomplete="email" spellcheck="false" />
+          </div>
+          <div class="member-row">
+            <input id="loginId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
+            <button type="button" class="btn" id="loginBtn">Log in</button>
+          </div>
+          <p id="loginError" style="display:none;color:#d98a7a"></p>
+          <p>New here? <a href="index.html#join">Join on the home page</a> &mdash; it takes a few seconds and your ID is issued instantly.</p>
+        </div>
+        <div id="memberBox" style="display:none">
+          <label for="memberId">Your member ID</label>
+          <div class="member-row">
+            <input id="memberId" type="text" value="dm_Am5HeABD5C" autocomplete="off" spellcheck="false" aria-describedby="memberHelp" />
+          </div>
+          <p id="memberHelp">Every link in Shopping is built with this ID, so the commission is credited to you. Edit it and the links update.</p>
+          <p><button type="button" class="btn secondary small" id="logoutBtn">Log out</button></p>
         </div>
       </div>
     </section>
@@ -531,27 +581,61 @@
         '</div>' +
       '</div>';
     card.setAttribute('data-regions', (p.regions || ['US']).join(','));
+    card.setAttribute('data-idx', i);
+    card.setAttribute('data-name', p.name.toLowerCase());
     storesEl.appendChild(card);
   });
 
   var countrySel = document.getElementById('countrySel');
   var storeCount = document.getElementById('storeCount');
+  var storeSearch = document.getElementById('storeSearch');
+  var sortSel = document.getElementById('sortSel');
   var countryNames = { US: 'the United States', GB: 'the United Kingdom', RO: 'Romania', SK: 'Slovakia' };
-  function applyCountry(){
+  function applyFilters(){
     var c = countrySel.value;
+    var q = (storeSearch.value || '').trim().toLowerCase();
     var shown = 0;
     Array.prototype.forEach.call(storesEl.children, function(card){
       var regs = (card.getAttribute('data-regions') || 'US').split(',');
-      var ok = c === 'ALL' || regs.indexOf(c) !== -1 || regs.indexOf('GLOBAL') !== -1;
+      var okCountry = c === 'ALL' || regs.indexOf(c) !== -1 || regs.indexOf('GLOBAL') !== -1;
+      var okSearch = !q || (card.getAttribute('data-name') || '').indexOf(q) !== -1;
+      var ok = okCountry && okSearch;
       card.style.display = ok ? '' : 'none';
       if (ok) shown++;
     });
-    storeCount.textContent = c === 'ALL'
-      ? programs.length + ' approved programs worldwide \u00B7 CJ + Awin networks'
-      : shown + ' programs for ' + countryNames[c] + ' \u00B7 ' + programs.length + ' worldwide';
+    if (q) {
+      storeCount.textContent = shown + (shown === 1 ? ' store matches' : ' stores match') + ' \u201C' + q + '\u201D \u00B7 ' + programs.length + ' worldwide';
+    } else {
+      storeCount.textContent = c === 'ALL'
+        ? programs.length + ' approved programs worldwide \u00B7 CJ + Awin networks'
+        : shown + ' programs for ' + countryNames[c] + ' \u00B7 ' + programs.length + ' worldwide';
+    }
+    storesEl.scrollLeft = 0;
   }
-  countrySel.addEventListener('change', applyCountry);
-  applyCountry();
+  function rateKey(you, kind){
+    var nums = (you.match(/\d+(?:\.\d+)?/g) || []).map(Number);
+    if (!nums.length) return -1;
+    if (kind === 'pct') return you.indexOf('%') !== -1 ? Math.max.apply(null, nums) : -1;
+    return you.indexOf('$') !== -1 ? Math.max.apply(null, nums) : -1;
+  }
+  function applySort(){
+    var mode = sortSel.value;
+    var cards = Array.prototype.slice.call(storesEl.children);
+    cards.sort(function(a, b){
+      var pa = programs[+a.getAttribute('data-idx')];
+      var pb = programs[+b.getAttribute('data-idx')];
+      if (mode === 'name') return pa.name.localeCompare(pb.name);
+      if (mode === 'pct') return rateKey(pb.you, 'pct') - rateKey(pa.you, 'pct');
+      if (mode === 'flat') return rateKey(pb.you, 'flat') - rateKey(pa.you, 'flat');
+      return (+a.getAttribute('data-idx')) - (+b.getAttribute('data-idx'));
+    });
+    cards.forEach(function(card){ storesEl.appendChild(card); });
+    applyFilters();
+  }
+  countrySel.addEventListener('change', applyFilters);
+  storeSearch.addEventListener('input', applyFilters);
+  sortSel.addEventListener('change', applySort);
+  applyFilters();
 
   function refreshPanel(i){
     var link = buildLink(programs[i].template);
@@ -770,6 +854,26 @@
     }
     showLoggedOut();
   })();
+
+  /* ---------- tabs ---------- */
+  var tabBtns = document.querySelectorAll('.app-tab');
+  var panels = {
+    shopping: document.getElementById('panel-shopping'),
+    wallet: document.getElementById('panel-wallet'),
+    account: document.getElementById('panel-account')
+  };
+  function showTab(name){
+    Object.keys(panels).forEach(function(k){ if (panels[k]) panels[k].hidden = k !== name; });
+    Array.prototype.forEach.call(tabBtns, function(b){
+      var on = b.getAttribute('data-tab') === name;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  Array.prototype.forEach.call(tabBtns, function(b){
+    b.addEventListener('click', function(){ showTab(b.getAttribute('data-tab')); });
+  });
 })();
 </script>
 </body>

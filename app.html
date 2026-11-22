@@ -227,14 +227,11 @@
   .btn.small{min-height:40px;padding:8px 13px;font-size:.88rem}
   .link-panel{display:none;margin-top:14px;border-top:1px solid var(--line-soft);padding-top:14px}
   .link-panel.open{display:block}
-  .link-panel label{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:700;display:block;margin-bottom:7px}
-  .link-url{
-    font-family:"IBM Plex Mono", ui-monospace, monospace;
-    font-size:.8rem;line-height:1.5;word-break:break-all;
-    background:#0d0b09;border:1px solid var(--line);border-radius:8px;
-    padding:11px 12px;color:var(--brass-bright);
-  }
-  .link-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+  .store-actions .btn{width:100%}
+  .link-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .link-actions .open-store{flex:1;justify-content:center;background:var(--brass);color:#171204;border-color:var(--brass-dim);font-weight:700}
+  .link-actions .open-store:hover{background:var(--brass-bright);color:#171204}
+  .link-actions .btn{flex:1}
   .open-store{
     display:inline-flex;align-items:center;min-height:40px;padding:8px 13px;
     border:1px solid var(--line);border-radius:8px;color:var(--ink);
@@ -572,11 +569,9 @@
         '<button type="button" class="btn" data-get="' + i + '">Get my link</button>' +
       '</div>' +
       '<div class="link-panel" id="panel-' + i + '">' +
-        '<label>Your tracked link</label>' +
-        '<div class="link-url" id="url-' + i + '"></div>' +
         '<div class="link-actions">' +
-          '<button type="button" class="btn secondary small" data-copy="' + i + '">Copy link</button>' +
           '<a class="open-store" id="open-' + i + '" href="#" target="_blank" rel="noopener noreferrer">Open store &rarr;</a>' +
+          '<button type="button" class="btn secondary small" data-copy="' + i + '">Copy link</button>' +
           '<span class="copied" id="copied-' + i + '">Copied</span>' +
         '</div>' +
       '</div>';
@@ -639,7 +634,6 @@
 
   function refreshPanel(i){
     var link = buildLink(programs[i].template);
-    document.getElementById('url-' + i).textContent = link;
     document.getElementById('open-' + i).setAttribute('href', link);
     return link;
   }

@@ -308,25 +308,25 @@
         <div class="balances">
           <div class="bal">
             <div class="label">Pending</div>
-            <div class="amount dim">$0.00</div>
+            <div class="amount dim" id="balPending">$0.00</div>
           </div>
           <div class="bal">
             <div class="label">Confirmed</div>
-            <div class="amount">$0.00</div>
+            <div class="amount" id="balConfirmed">$0.00</div>
           </div>
           <div class="bal">
             <div class="label">Paid out</div>
-            <div class="amount dim">$0.00</div>
+            <div class="amount dim" id="balPaid">$0.00</div>
           </div>
         </div>
 
         <div class="progress-wrap">
           <div class="progress-meta">
             <span><strong>$0.00</strong> of $20.00 confirmed</span>
-            <span>$20.00 to go</span>
+            <span id="progToGo">$20.00 to go</span>
           </div>
           <div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" aria-label="Progress toward $20 payout threshold">
-            <div class="fill"></div>
+            <div class="fill" id="progFill"></div>
           </div>
         </div>
 
@@ -343,6 +343,12 @@
         <div>
           <h2 class="section-title" id="activityTitle">Activity</h2>
           <p>Links issued and earnings for this member pair</p>
+        </div>
+      </div>
+      <div id="purchaseBlock" style="margin-bottom:18px">
+        <h3 style="margin:0 0 8px;color:var(--ink)">Your purchases</h3>
+        <div id="purchaseList">
+          <p style="margin:0;color:var(--ink-2)">No purchases tracked yet &mdash; when a store reports a purchase made through one of your links, it shows up here with your cashback.</p>
         </div>
       </div>
       <div class="activity">
@@ -778,7 +784,7 @@
       loginState.textContent = 'Logged in. Your links below are credited to ' + member.member_id + '.';
     }
     refreshPayout();
-    if (member && member.member_id) loyaltyCheckin(member.member_id);
+    if (member && member.member_id) { loyaltyCheckin(member.member_id); loadPurchases(member.member_id); }
   }
   function showLoggedOut(){
     loginForm.style.display = 'block';
@@ -856,6 +862,49 @@
       badge.textContent = share.toFixed(1) + '% you \u00B7 ' + (100 - share).toFixed(1) + '% Dark Money';
     }
   }
+  function money(n){ return '$' + (Number(n) || 0).toFixed(2); }
+  function loadPurchases(memberId){
+    fetch(API + '/purchases?id=' + encodeURIComponent(memberId))
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j || !j.ok) return;
+        var t = j.totals || { pending: 0, confirmed: 0, paid: 0 };
+        var bp = document.getElementById('balPending');
+        var bc = document.getElementById('balConfirmed');
+        var bd = document.getElementById('balPaid');
+        if (bp) bp.textContent = money(t.pending);
+        if (bc) bc.textContent = money(t.confirmed);
+        if (bd) bd.textContent = money(t.paid);
+        var strong = document.querySelector('.progress-meta strong');
+        if (strong) strong.textContent = money(t.confirmed);
+        var toGo = document.getElementById('progToGo');
+        if (toGo) toGo.textContent = t.confirmed >= 20 ? 'Threshold reached' : money(20 - t.confirmed) + ' to go';
+        var fill = document.getElementById('progFill');
+        if (fill) fill.style.width = Math.min(100, (t.confirmed / 20) * 100) + '%';
+        var track = document.querySelector('.track');
+        if (track) track.setAttribute('aria-valuenow', Math.min(20, t.confirmed));
+        var list = document.getElementById('purchaseList');
+        if (list) {
+          var items = (j.purchases || []).slice().sort(function(a, b){ return (b.date || '').localeCompare(a.date || ''); });
+          if (!items.length) {
+            list.innerHTML = '<p style="margin:0;color:var(--ink-2)">No purchases tracked yet &mdash; when a store reports a purchase made through one of your links, it shows up here with your cashback.</p>';
+          } else {
+            var pill = { pending: 'Pending', confirmed: 'Confirmed', paid: 'Paid out', reversed: 'Reversed' };
+            list.innerHTML = items.map(function(pu){
+              var d = pu.date ? new Date(pu.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+              return '<div class="act-row">' +
+                '<span class="dot" aria-hidden="true"></span>' +
+                '<div class="main"><div class="title">' + esc(pu.store) + '</div>' +
+                '<div class="meta">' + (d ? esc(d) + ' &middot; ' : '') + 'Spent ' + money(pu.sale_amount) + ' &middot; cashback ' + money(pu.member_share) + '</div></div>' +
+                '<span class="pill">' + (pill[pu.status] || 'Pending') + '</span></div>';
+            }).join('');
+          }
+        }
+        refreshPayout();
+      })
+      .catch(function(){});
+  }
+
   function loyaltyCheckin(memberId){
     fetch(API + '/checkin', {
       method: 'POST',

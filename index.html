@@ -222,6 +222,15 @@
   details.legal-fold{border:1px solid var(--line-soft);border-radius:12px;padding:4px 20px;background:var(--bg-2)}
   details.legal-fold summary{cursor:pointer;font-weight:600;color:var(--text);padding:12px 0;list-style-position:inside}
   details.legal-fold .legal{padding-bottom:14px}
+  button.btn{font:inherit;cursor:pointer}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(5,8,14,.74);display:flex;align-items:flex-start;justify-content:center;padding:6vh 16px 24px;z-index:200;overflow:auto}
+  .modal-backdrop[hidden]{display:none}
+  .modal-card{position:relative;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:16px;max-width:470px;width:100%;padding:26px 24px 22px}
+  .modal-close{position:absolute;top:6px;right:12px;background:none;border:0;color:var(--muted);font-size:28px;line-height:1;cursor:pointer}
+  .modal-tabs{display:flex;gap:8px;margin:0 34px 18px 0}
+  .modal-tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line-soft);background:transparent;color:var(--text);font-weight:600;font-size:15px;cursor:pointer}
+  .modal-tab.is-active{background:#c8a96e;color:#14100a;border-color:#c8a96e}
+  body.modal-open{overflow:hidden}
   .flow-note p strong{color:var(--text)}
 
   /* Flow diagram */
@@ -383,8 +392,8 @@
       <a href="#privacy">Privacy</a>
       <a href="#terms">Terms</a>
       <a href="#contact">Contact</a>
-      <a href="app.html">Log in</a>
-      <a class="cta" href="#join">Join free</a>
+      <a href="app.html" data-open-auth="login">Log in</a>
+      <a class="cta" href="#join" data-open-auth="join">Join free</a>
     </nav>
   </div>
 </header>
@@ -412,7 +421,7 @@
         <h1>Cashback on the shopping <em>you already do.</em></h1>
         <p class="hero-sub">Shop through a Dark Money link at stores you already use. The store pays us a commission — <strong>we share it back with you as cash.</strong> No points, no new habits, same prices.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#join">Join free</a>
+          <a class="btn btn-gold" href="#join" data-open-auth="join">Join free</a>
           <a class="btn btn-ghost" href="#stores">See the stores</a>
         </div>
       </div>
@@ -627,17 +636,28 @@
 
   <!-- JOIN -->
   <section class="block" id="join" data-audience="human">
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <p class="sec-tag">Join</p>
-          <h2>Join Dark Money — membership is free.</h2>
-          <p class="lede">Free and instant — join and you land on your personal links page with your member ID.</p>
-          <p class="lede"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of the commission</strong> on their first confirmed purchase. After that, you keep <strong>70%</strong> of every commission, paid out at <strong>$20</strong> confirmed.</p>
-        </div>
+    <div class="wrap" style="text-align:center">
+      <p class="sec-tag">Join</p>
+      <h2>Join Dark Money — membership is free.</h2>
+      <p class="lede" style="max-width:560px;margin:0 auto 8px">Free and instant — join and you land on your personal links page with your member ID.</p>
+      <p class="lede" style="max-width:560px;margin:0 auto 22px"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of the commission</strong> on their first confirmed purchase. After that, you keep <strong>70%</strong> of every commission, paid out at <strong>$20</strong> confirmed.</p>
+      <p>
+        <button type="button" class="btn btn-gold" data-open-auth="join">Join free</button>
+        <button type="button" class="btn btn-ghost" data-open-auth="login">Log in</button>
+      </p>
+    </div>
+  </section>
 
-        <div class="panel">
-          <h3>Join Dark Money</h3>
+  <!-- LOGIN / JOIN MODAL -->
+  <div class="modal-backdrop" id="authModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Join or log in to Dark Money">
+      <button type="button" class="modal-close" id="authClose" aria-label="Close">&times;</button>
+      <div class="modal-tabs" role="tablist">
+        <button type="button" class="modal-tab is-active" id="mtab-join" role="tab" aria-selected="true">Join free</button>
+        <button type="button" class="modal-tab" id="mtab-login" role="tab" aria-selected="false">Log in</button>
+      </div>
+      <div id="mpanel-join">
+        <div class="panel" style="border:0;background:transparent;padding:0;margin:0;box-shadow:none">
           <p class="panel-sub">Fill this in and we'll set up your membership.</p>
           <form id="join-form" class="join-form" novalidate>
             <div class="join-field">
@@ -676,11 +696,26 @@
             <button type="submit" class="btn btn-gold join-submit">Join</button>
           </form>
           <p class="join-note">Joining is instant: press Join and you'll land on your personal links page with your member ID. Keep your member ID — it's the key to your links and your balance.</p>
-          <p class="join-note">Already a member? <a href="app.html">Log in with your email and member ID &rarr;</a></p>
         </div>
       </div>
+      <div id="mpanel-login" hidden>
+        <p class="panel-sub" style="margin:0 0 22px;color:var(--faint);font-size:14px">Log in with the email and member ID from your join confirmation.</p>
+        <form id="auth-login-form" class="join-form" novalidate>
+          <div class="join-field">
+            <label for="auth-login-email">Email address</label>
+            <input type="email" id="auth-login-email" autocomplete="email" required />
+          </div>
+          <div class="join-field">
+            <label for="auth-login-id">Member ID</label>
+            <input type="text" id="auth-login-id" placeholder="dm_…" autocomplete="off" spellcheck="false" required />
+          </div>
+          <p class="join-error" id="auth-login-error" role="alert" hidden></p>
+          <button type="submit" class="btn btn-gold join-submit">Log in</button>
+        </form>
+        <p class="join-note">New here? <a href="#" id="auth-to-join">Join free instead &rarr;</a></p>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- ABOUT + CONTACT -->
   <section class="block alt" id="about">
@@ -952,6 +987,87 @@
       a.addEventListener('click', function () { setMode('human', false); });
     });
     if (/(^#)(how|local|join)/.test(window.location.hash || '')) setMode('human', false); else setMode('agent', false);
+  })();
+</script>
+<script>
+  (function () {
+    var modal = document.getElementById('authModal');
+    if (!modal) return;
+    var tabJoin = document.getElementById('mtab-join');
+    var tabLogin = document.getElementById('mtab-login');
+    var panelJoin = document.getElementById('mpanel-join');
+    var panelLogin = document.getElementById('mpanel-login');
+    function showTab(which) {
+      var join = which !== 'login';
+      tabJoin.classList.toggle('is-active', join);
+      tabLogin.classList.toggle('is-active', !join);
+      tabJoin.setAttribute('aria-selected', join ? 'true' : 'false');
+      tabLogin.setAttribute('aria-selected', join ? 'false' : 'true');
+      panelJoin.hidden = !join;
+      panelLogin.hidden = join;
+      var first = (join ? panelJoin : panelLogin).querySelector('input');
+      if (first) first.focus();
+    }
+    function openAuth(which) {
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      showTab(which);
+    }
+    function closeAuth() {
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+    }
+    document.querySelectorAll('[data-open-auth]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        openAuth(el.getAttribute('data-open-auth'));
+      });
+    });
+    tabJoin.addEventListener('click', function () { showTab('join'); });
+    tabLogin.addEventListener('click', function () { showTab('login'); });
+    document.getElementById('authClose').addEventListener('click', closeAuth);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeAuth(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeAuth(); });
+    modal.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', closeAuth);
+    });
+    var toJoin = document.getElementById('auth-to-join');
+    if (toJoin) toJoin.addEventListener('click', function (e) { e.preventDefault(); showTab('join'); });
+
+    var form = document.getElementById('auth-login-form');
+    var emailInput = document.getElementById('auth-login-email');
+    var idInput = document.getElementById('auth-login-id');
+    var error = document.getElementById('auth-login-error');
+    var submitBtn = form ? form.querySelector('.join-submit') : null;
+    if (form) form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = emailInput.value.trim();
+      var id = idInput.value.trim();
+      error.hidden = true;
+      if (!email || !id) {
+        error.textContent = 'Enter both your email and your member ID.';
+        error.hidden = false;
+        return;
+      }
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Logging in…'; }
+      fetch('https://dark-money-api.netlify.app/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, member_id: id })
+      }).then(function (res) {
+        return res.json().catch(function () { return null; }).then(function (data) {
+          if (res.ok && data && data.ok && data.member) {
+            window.location.href = 'app.html#' + data.member.member_id;
+            return;
+          }
+          throw new Error('Login failed');
+        });
+      }).catch(function () {
+        error.textContent = 'That email and member ID don’t match our records. Both are on your join confirmation — the ID starts with dm_.';
+        error.hidden = false;
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Log in'; }
+      });
+    });
   })();
 </script>
 </body>

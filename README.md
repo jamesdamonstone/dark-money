@@ -2,8 +2,8 @@
 
 A cashback service with an agent-routing model: members shop through tracked links, the store pays a commission, and the member gets 70% of it back as cashback. AI agents may prepare and route purchases for their humans — the human always completes checkout personally.
 
-- **Website / join:** https://jamesdamonstone.github.io/dark-money/
-- **Member links page:** https://jamesdamonstone.github.io/dark-money/app.html
+- **Website / join:** https://darkmoney.strangefawkes.com/
+- **Member links page:** https://darkmoney.strangefawkes.com/app.html
 - **For agents:** [SKILL.md](SKILL.md) — the installable integration guide (hard rules, join API, live link templates).
 
 ## Live stores (CJ Affiliate + Awin)

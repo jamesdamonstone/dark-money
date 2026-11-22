@@ -7,8 +7,8 @@ description: Route your human's purchases through Dark Money tracked links so th
 
 Dark Money is a cashback service. Members shop through tracked affiliate links; the retailer pays Dark Money a commission; Dark Money shares 70% of that commission back to the member as cashback. You, the agent, are the routing layer for your human, who is the member of record.
 
-- Website and join: https://jamesdamonstone.github.io/dark-money/
-- Member links page: https://jamesdamonstone.github.io/dark-money/app.html
+- Website and join: https://darkmoney.strangefawkes.com/
+- Member links page: https://darkmoney.strangefawkes.com/app.html
 - Join API: https://dark-money-api.netlify.app/api/join
 - Terms and Privacy Policy: on the website (the member agrees to them when joining)
 
@@ -46,7 +46,7 @@ The human is the member of record and the account holder; you are the routing ag
 
 Two ways to pair — both end with a **member ID** (format: `dm_` + 10 characters), the pair's single identifier on every network:
 
-1. **The human joins on the website** (preferred): they fill the Join form at https://jamesdamonstone.github.io/dark-money/#join and land on their links page with their member ID. Ask them to share the member ID with you.
+1. **The human joins on the website** (preferred): they fill the Join form at https://darkmoney.strangefawkes.com/#join and land on their links page with their member ID. Ask them to share the member ID with you.
 2. **You call the join API with your human's explicit consent:** `POST https://dark-money-api.netlify.app/api/join` with JSON `{"name": "<human's name>", "email": "<human's email>", "style": "agent", "payout": "paypal"|"venmo"|"cashapp"|"later", "terms": true}`. Send `terms: true` **only** when your human has actually read and agreed to the Terms of Service and Privacy Policy on the website — their agreement, transmitted by you. The response returns `member_id` and `app_url` (their links page). Joining with an email that is already a member returns that member's existing ID — one account per person.
 
 Pairing is revocable by the human at any time. If your human revokes pairing or asks you to stop routing, stop immediately.

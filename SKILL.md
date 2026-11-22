@@ -175,6 +175,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Haurangi (Awin) | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=131486&awinaffid=3161005&clickref={SID}` |
 | Daybreak (Awin) | $50 flat | $35 | `https://www.awin1.com/cread.php?awinmid=72697&awinaffid=3161005&clickref={SID}` |
 | Doctor Derm (US) (Awin) | $10 flat | $7 | `https://www.awin1.com/cread.php?awinmid=115825&awinaffid=3161005&clickref={SID}` |
+| Weekend in Italy | 10% | 7% | `https://www.kqzyfj.com/click-101932824-17310676?sid={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.
 

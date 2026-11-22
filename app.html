@@ -212,7 +212,9 @@
   .rate .v{font-size:1.05rem;font-weight:700;margin-top:2px;color:var(--ink)}
   .rate.you .v{color:var(--brass-bright)}
   .rate .note{font-size:.78rem;color:var(--ink-3);font-weight:400}
-  .store-actions{margin-top:16px}
+  .store-actions{margin-top:auto;padding-top:16px;display:flex;gap:8px;align-items:center}
+  .store{cursor:pointer}
+  .store-actions .btn{flex:1}
   .btn{
     appearance:none;border:1px solid var(--brass-dim);
     background:var(--brass);color:#171204;
@@ -225,19 +227,6 @@
   .btn.secondary{background:transparent;color:var(--brass-bright);border-color:var(--brass-dim)}
   .btn.secondary:hover{background:rgba(201,162,74,.12)}
   .btn.small{min-height:40px;padding:8px 13px;font-size:.88rem}
-  .link-panel{display:none;margin-top:14px;border-top:1px solid var(--line-soft);padding-top:14px}
-  .link-panel.open{display:block}
-  .store-actions .btn{width:100%}
-  .link-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .link-actions .open-store{flex:1;justify-content:center;background:var(--brass);color:#171204;border-color:var(--brass-dim);font-weight:700}
-  .link-actions .open-store:hover{background:var(--brass-bright);color:#171204}
-  .link-actions .btn{flex:1}
-  .open-store{
-    display:inline-flex;align-items:center;min-height:40px;padding:8px 13px;
-    border:1px solid var(--line);border-radius:8px;color:var(--ink);
-    text-decoration:none;font-weight:600;font-size:.88rem;background:#0e0c0a;
-  }
-  .open-store:hover{border-color:var(--brass-dim);color:var(--brass-bright)}
   .copied{font-size:.85rem;color:var(--good);font-weight:600;display:none}
   .copied.show{display:inline}
 
@@ -567,13 +556,8 @@
       '</div>' +
       '<div class="store-actions">' +
         '<button type="button" class="btn" data-get="' + i + '">Get my link</button>' +
-      '</div>' +
-      '<div class="link-panel" id="panel-' + i + '">' +
-        '<div class="link-actions">' +
-          '<a class="open-store" id="open-' + i + '" href="#" target="_blank" rel="noopener noreferrer">Open store &rarr;</a>' +
-          '<button type="button" class="btn secondary small" data-copy="' + i + '">Copy link</button>' +
-          '<span class="copied" id="copied-' + i + '">Copied</span>' +
-        '</div>' +
+        '<button type="button" class="btn secondary" data-copy="' + i + '">Copy link</button>' +
+        '<span class="copied" id="copied-' + i + '">Copied</span>' +
       '</div>';
     card.setAttribute('data-regions', (p.regions || ['US']).join(','));
     card.setAttribute('data-idx', i);
@@ -633,17 +617,13 @@
   applyFilters();
 
   function refreshPanel(i){
-    var link = buildLink(programs[i].template);
-    document.getElementById('open-' + i).setAttribute('href', link);
-    return link;
+    return buildLink(programs[i].template);
   }
 
   storesEl.addEventListener('click', function(e){
     var getBtn = e.target.closest('[data-get]');
     if (getBtn) {
-      var idx = getBtn.getAttribute('data-get');
-      refreshPanel(idx);
-      document.getElementById('panel-' + idx).classList.add('open');
+      refreshPanel(getBtn.getAttribute('data-get'));
       getBtn.textContent = 'Refresh link';
       return;
     }
@@ -661,6 +641,12 @@
       } else {
         fallbackCopy(link); done();
       }
+      return;
+    }
+    var card = e.target.closest('.store');
+    if (card) {
+      var ci = card.getAttribute('data-idx');
+      window.open(buildLink(programs[ci].template), '_blank', 'noopener');
     }
   });
 
@@ -675,20 +661,9 @@
     document.body.removeChild(ta);
   }
 
-  memberInput.addEventListener('input', function(){
-    programs.forEach(function(_, i){
-      var panel = document.getElementById('panel-' + i);
-      if (panel && panel.classList.contains('open')) refreshPanel(i);
-    });
-  });
-
   function openAllPanels(){
-    programs.forEach(function(_, i){
-      refreshPanel(i);
-      var panel = document.getElementById('panel-' + i);
-      if (panel) panel.classList.add('open');
-      var btn = storesEl.querySelector('[data-get="' + i + '"]');
-      if (btn) btn.textContent = 'Refresh link';
+    Array.prototype.forEach.call(storesEl.querySelectorAll('[data-get]'), function(btn){
+      btn.textContent = 'Refresh link';
     });
   }
 

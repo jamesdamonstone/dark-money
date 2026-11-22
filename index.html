@@ -347,7 +347,7 @@
   }
 </style>
 </head>
-<body class="mode-human">
+<body class="mode-agent">
 
 <header class="site">
   <div class="wrap nav">
@@ -369,8 +369,8 @@
 
 <div class="audience-bar">
   <div class="wrap audience-tabs" role="tablist" aria-label="Choose your view">
-    <button type="button" class="aud-tab is-active" id="tab-humans" role="tab" aria-selected="true" data-mode="human">For Humans<small>Shop &amp; earn cashback</small></button>
-    <button type="button" class="aud-tab" id="tab-agents" role="tab" aria-selected="false" data-mode="agent">For Agents<small>Route purchases &amp; integrate</small></button>
+    <button type="button" class="aud-tab is-active" id="tab-agents" role="tab" aria-selected="true" data-mode="agent">For Agents<small>Route purchases &amp; integrate</small></button>
+    <button type="button" class="aud-tab" id="tab-humans" role="tab" aria-selected="false" data-mode="human">For Humans<small>Shop &amp; earn cashback</small></button>
   </div>
 </div>
 
@@ -905,7 +905,7 @@
       tabs.agent.classList.toggle('is-active', mode === 'agent');
       tabs.human.setAttribute('aria-selected', mode === 'human' ? 'true' : 'false');
       tabs.agent.setAttribute('aria-selected', mode === 'agent' ? 'true' : 'false');
-      try { history.replaceState(null, '', mode === 'agent' ? '#agents' : '#top'); } catch (e) {}
+      try { history.replaceState(null, '', mode === 'agent' ? '#top' : '#humans'); } catch (e) {}
       if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     tabs.human.addEventListener('click', function () { setMode('human', true); });
@@ -916,7 +916,7 @@
     document.querySelectorAll('a[href="#how"], a[href="#local"], a[href="#join"]').forEach(function (a) {
       a.addEventListener('click', function () { setMode('human', false); });
     });
-    if (/(^#)(agents|agent-resources)/.test(window.location.hash || '')) setMode('agent', false);
+    if (/(^#)(how|local|join)/.test(window.location.hash || '')) setMode('human', false); else setMode('agent', false);
   })();
 </script>
 </body>

@@ -105,6 +105,16 @@
   .aud-tab.is-active small{color:var(--accent-ink);opacity:.75}
   @media (max-width:560px){.aud-tab{font-size:15.5px}.audience-bar{top:63px}}
 
+
+  .agent-disclaimer{
+    border-bottom:1px solid var(--line-soft);
+    background:rgba(200,169,110,.08);
+  }
+  .agent-disclaimer p{
+    margin:0;padding:13px 0;font-size:14.5px;color:var(--muted);line-height:1.55;
+  }
+  .agent-disclaimer strong{color:var(--accent)}
+
   /* Agent resources */
   .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   @media (max-width:820px){.res-grid{grid-template-columns:1fr}}
@@ -371,6 +381,12 @@
   <div class="wrap audience-tabs" role="tablist" aria-label="Choose your view">
     <button type="button" class="aud-tab is-active" id="tab-agents" role="tab" aria-selected="true" data-mode="agent">For Agents<small>Route purchases &amp; integrate</small></button>
     <button type="button" class="aud-tab" id="tab-humans" role="tab" aria-selected="false" data-mode="human">For Humans<small>Shop &amp; earn cashback</small></button>
+  </div>
+</div>
+
+<div class="agent-disclaimer" data-audience="agent">
+  <div class="wrap">
+    <p><strong>Disclaimer:</strong> this homepage is not meant for humans. It is written for AI agents — the routing rules, the skill file, the tools. If you are a human, your tab is right up top. No hard feelings.</p>
   </div>
 </div>
 

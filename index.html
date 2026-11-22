@@ -212,6 +212,16 @@
   }
   .flow-note svg{flex:0 0 22px;margin-top:3px}
   .flow-note p{margin:0;color:var(--muted);font-size:15.5px}
+  body.mode-human section.block{padding:52px 0}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
+  .tile{display:flex;flex-direction:column;gap:4px;padding:16px 14px;border:1px solid var(--line-soft);border-radius:12px;background:var(--bg-2);text-decoration:none}
+  .tile:hover{border-color:#c8a96e}
+  .tile-name{font-weight:600;color:var(--text);font-size:15px;line-height:1.25}
+  .tile-rate{color:#c8a96e;font-weight:700;font-size:19px}
+  .tile-sub{color:var(--muted);font-size:12.5px}
+  details.legal-fold{border:1px solid var(--line-soft);border-radius:12px;padding:4px 20px;background:var(--bg-2)}
+  details.legal-fold summary{cursor:pointer;font-weight:600;color:var(--text);padding:12px 0;list-style-position:inside}
+  details.legal-fold .legal{padding-bottom:14px}
   .flow-note p strong{color:var(--text)}
 
   /* Flow diagram */
@@ -400,79 +410,80 @@
       <div class="hero-inner">
         <div class="hero-rule"><span aria-hidden="true"></span><p>A cashback service</p></div>
         <h1>Cashback on the shopping <em>you already do.</em></h1>
-        <p class="hero-sub">Dark Money members shop through tracked links at stores they already use. The store pays a commission on the sale — and instead of keeping all of it, <strong>Dark Money shares that commission back with the member as cashback.</strong></p>
-        <p class="hero-sub">No new stores to learn. No points that expire into nothing. Just a share of money that was already changing hands, routed back to the person who spent it.</p>
-        <p class="hero-sub">Most of our brands sell only online — the kind you won't find in a store. They pay only when a sale happens, which makes this the one kind of advertising a small shop can't lose money on.</p>
+        <p class="hero-sub">Shop through a Dark Money link at stores you already use. The store pays us a commission — <strong>we share it back with you as cash.</strong> No points, no new habits, same prices.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#join">Join Dark Money</a>
-          <a class="btn btn-ghost" href="#how">See how it works</a>
-          <a class="btn btn-ghost" href="#agents">For AI agents</a>
+          <a class="btn btn-gold" href="#join">Join free</a>
+          <a class="btn btn-ghost" href="#stores">See the stores</a>
         </div>
       </div>
       <div class="hero-stats" role="list">
-        <div class="stat" role="listitem"><b><i>$</i>20</b><span>Payout threshold — cashback is paid out once a member's confirmed balance reaches $20.</span></div>
-        <div class="stat" role="listitem"><b>Your share</b><span>Of the commission the store pays on your purchase — not points, not store credit. Cashback.</span></div>
-        <div class="stat" role="listitem"><b>Stores you use</b><span>Tracked links work at retailers members already shop with, through established affiliate networks.</span></div>
+        <div class="stat" role="listitem"><b>90</b><span>stores you can earn at today — most of them online-only brands.</span></div>
+        <div class="stat" role="listitem"><b>70%</b><span>of every commission goes to you. Founding members: 100% of your first purchase.</span></div>
+        <div class="stat" role="listitem"><b><i>$</i>20</b><span>confirmed balance pays out — cash, not points or store credit.</span></div>
       </div>
     </div>
   </div>
+
+  <!-- STORES -->
+  <section class="block" id="stores" data-audience="human" style="padding-top:56px">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-tag">Stores</p>
+        <h2>Brands you won&rsquo;t find in a store.</h2>
+        <p>Most of our stores sell only online. Join free, then shop from your member page — every link there is tracked to you. Rates below are <strong>your</strong> share.</p>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="app.html"><span class="tile-name">NordVPN</span><span class="tile-rate">Earn 28%</span><span class="tile-sub">on new plans</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">ShedRX</span><span class="tile-rate">Earn $84</span><span class="tile-sub">per signup</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">Signos</span><span class="tile-rate">Earn $84</span><span class="tile-sub">per signup</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">Mimi Panda</span><span class="tile-rate">Earn 24.5%</span><span class="tile-sub">photos into art</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">Daybreak</span><span class="tile-rate">Earn $35</span><span class="tile-sub">per signup</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">Curex</span><span class="tile-rate">Earn $31.50</span><span class="tile-sub">per signup</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">Marley Spoon</span><span class="tile-rate">Earn $17.50</span><span class="tile-sub">per box</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">UPPER Brand</span><span class="tile-rate">Earn 14%</span><span class="tile-sub">leather diaper bags</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">Flags Connections</span><span class="tile-rate">Earn 8.4%</span><span class="tile-sub">flags &amp; gear</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">SAILO</span><span class="tile-rate">Earn up to 7%</span><span class="tile-sub">boat rentals</span></a>
+        <a class="tile" href="app.html"><span class="tile-name">All 90 stores</span><span class="tile-rate">Browse &rarr;</span><span class="tile-sub">on your member page</span></a>
+      </div>
+    </div>
+  </section>
 
   <!-- HOW IT WORKS -->
   <section class="block" id="how" data-audience="human">
     <div class="wrap">
       <div class="sec-head">
         <p class="sec-tag">How it works</p>
-        <h2>Three steps. The middle one was already happening without you.</h2>
-        <p>When you buy through an ordinary link, retailers often pay a commission to whoever sent you. Dark Money makes sure the link is ours — and that you get your cut.</p>
+        <h2>Three steps. That&rsquo;s the whole thing.</h2>
+        <p>Stores pay us a commission for sending you. We keep 30% for running the service and pass 70% back to you — that&rsquo;s how it&rsquo;s free.</p>
       </div>
 
       <div class="steps">
         <article class="step">
           <div class="step-num" aria-hidden="true">I</div>
-          <h3>Shop through a Dark Money link</h3>
-          <p>Start at Dark Money and click through to the store, or use a tracked link your agent prepared for you. Shop and check out at the store exactly as you normally would.</p>
+          <h3>Join free</h3>
+          <p>Get your member ID and your store links — it takes a few seconds.</p>
         </article>
         <article class="step">
           <div class="step-num" aria-hidden="true">II</div>
-          <h3>The store pays a commission</h3>
-          <p>The retailer pays Dark Money a commission for the referred sale, tracked through affiliate networks including Awin, CJ, and Impact. It costs you nothing extra — the price you pay is the same.</p>
+          <h3>Shop as usual</h3>
+          <p>Click through to the store and check out like you always do. Same store, same prices.</p>
         </article>
         <article class="step">
           <div class="step-num" aria-hidden="true">III</div>
-          <h3>You get your share as cashback</h3>
-          <p>Your share of the commission is credited to your Dark Money balance. Once your confirmed balance reaches $20, it pays out.</p>
+          <h3>Get paid at $20</h3>
+          <p>Your share lands in your balance. At $20 confirmed, it pays out.</p>
         </article>
-      </div>
-
-      <div class="flow" aria-label="How a commission becomes cashback">
-        <div class="flow-box">
-          <span class="amt">AT THE STORE</span>
-          <h4>You buy as usual</h4>
-          <p>A purchase made after clicking a tracked Dark Money link, at the store's normal prices.</p>
-        </div>
-        <div class="arrow" aria-hidden="true"><svg width="26" height="14" viewBox="0 0 26 14" fill="none"><path d="M0 7h23M17 1l6 6-6 6" stroke="currentColor" stroke-width="1.6"/></svg></div>
-        <div class="flow-box">
-          <span class="amt">THE COMMISSION</span>
-          <h4>The store pays Dark Money</h4>
-          <p>A percentage of the sale, paid by the retailer through the affiliate network — the standard cost of a referred customer.</p>
-        </div>
-        <div class="arrow" aria-hidden="true"><svg width="26" height="14" viewBox="0 0 26 14" fill="none"><path d="M0 7h23M17 1l6 6-6 6" stroke="currentColor" stroke-width="1.6"/></svg></div>
-        <div class="flow-box">
-          <span class="amt">YOUR SHARE</span>
-          <h4>Cashback to your balance</h4>
-          <p>A share of that commission is credited to you and paid out when your confirmed balance reaches $20.</p>
-        </div>
       </div>
 
       <div class="flow-note">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#c8a96e" stroke-width="1.6"/><path d="M12 8v5M12 16.5v.5" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <p><strong>Why cashback can take a while to land:</strong> commissions only confirm after the store's return window closes — a purchase that gets returned can't pay out. Pending cashback becomes confirmed (and counts toward your $20) once the store finalizes the commission.</p>
+        <p><strong>One honest wait:</strong> cashback confirms after the store&rsquo;s return window closes — a returned purchase can&rsquo;t pay out. That&rsquo;s the only catch.</p>
       </div>
     </div>
   </section>
 
   <!-- DEMO -->
-  <section class="block" id="demo">
+  <section class="block" id="demo" data-audience="agent">
     <div class="wrap">
       <p class="eyebrow">Watch it work</p>
       <h2>Thirty seconds, start to cashback.</h2>
@@ -602,7 +613,7 @@
         <div>
           <span class="badge-soon">In development</span>
           <h3>The Dark Money local club</h3>
-          <p>Local members earn cashback when they shop in-store at participating businesses. Businesses get customers who have a reason to come back — and a reason to choose them over the place down the road.</p>
+          <p>Local members earn cashback when they shop in-store at participating businesses. Businesses pay only when a sale happens — no sale, no cost. It&rsquo;s the one kind of advertising a small shop can&rsquo;t lose money on.</p>
         </div>
         <ul class="teaser-points">
           <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#c8a96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Pay only for performance.</b> A business pays commission on completed sales — no ad spend on impressions that never convert.</span></li>
@@ -621,9 +632,8 @@
         <div>
           <p class="sec-tag">Join</p>
           <h2>Join Dark Money — membership is free.</h2>
-          <p class="lede">Joining costs nothing. When you join, you get a <strong>personal member ID</strong> and <strong>tracked links for the live stores</strong>, so purchases you make through them are credited to your balance.</p>
-          <p class="lede"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of the commission</strong> on their first confirmed purchase — no 70/30 split on that one.</p>
-          <p class="lede">You receive <strong>70% of the commission</strong> on your purchases, and Dark Money retains 30% for running the service. Cashback pays out once your confirmed balance reaches <strong>$20</strong>.</p>
+          <p class="lede">Free and instant — join and you land on your personal links page with your member ID.</p>
+          <p class="lede"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of the commission</strong> on their first confirmed purchase. After that, you keep <strong>70%</strong> of every commission, paid out at <strong>$20</strong> confirmed.</p>
         </div>
 
         <div class="panel">
@@ -711,6 +721,8 @@
         <h2>Privacy Policy</h2>
         <p class="legal"><span class="updated">LAST UPDATED — NOVEMBER 19, 2026</span></p>
       </div>
+      <details class="legal-fold">
+        <summary>Read the full Privacy Policy</summary>
       <div class="legal">
         <p>Dark Money is a cashback service operated by James Stone ("Dark Money," "we," "us"). This policy describes what information we collect, why, and what we do with it. It is written to match how the service actually works — cashback depends on attributing purchases, and that attribution is the main reason we handle any data at all.</p>
 
@@ -740,6 +752,7 @@
         <h3>Changes and contact</h3>
         <p>If this policy changes materially, we will update this page and note the new date above. Questions about privacy: <a href="mailto:jamesdamonstone@gmail.com">jamesdamonstone@gmail.com</a>.</p>
       </div>
+      </details>
     </div>
   </section>
 
@@ -751,6 +764,8 @@
         <h2>Terms of Service</h2>
         <p class="legal"><span class="updated">LAST UPDATED — NOVEMBER 19, 2026</span></p>
       </div>
+      <details class="legal-fold">
+        <summary>Read the full Terms of Service</summary>
       <div class="legal">
         <p>By using Dark Money, you agree to these terms. Dark Money is a cashback service operated by James Stone, based in the Evansville, Indiana area.</p>
 
@@ -783,6 +798,7 @@
         <h3>Changes and contact</h3>
         <p>We may update these terms; the current version will always be posted here with its date. Continued use after a change constitutes acceptance. Questions: <a href="mailto:jamesdamonstone@gmail.com">jamesdamonstone@gmail.com</a>.</p>
       </div>
+      </details>
     </div>
   </section>
 

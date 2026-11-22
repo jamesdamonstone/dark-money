@@ -296,6 +296,15 @@
           <div class="split-badge">70% you &middot; 30% Dark Money</div>
         </div>
 
+        <div class="loyalty" id="loyaltyCard" hidden style="margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:14px 16px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between">
+            <strong style="color:var(--ink)">Loyalty streak</strong>
+            <span id="loyaltyLine" style="color:var(--ink-2)"></span>
+          </div>
+          <p id="loyaltyNext" style="margin:8px 0 0;color:var(--ink-2);font-size:.94rem"></p>
+          <p style="margin:6px 0 0;color:var(--ink-2);font-size:.9rem">Check in every day to grow your share: +0.1% on day 2, then +0.1% more each week, up to +5% (75% total). Miss a day and it starts over.</p>
+        </div>
+
         <div class="balances">
           <div class="bal">
             <div class="label">Pending</div>
@@ -544,7 +553,8 @@
     { name: "House of Twist", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=120193&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["US"] },
     { name: "eFootwear.com", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=90809&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["US"] },
     { name: "BlackboxMeats (US)", commission: "3%", commissionNote: "per sale · Awin", you: "2.1%", template: "https://www.awin1.com/cread.php?awinmid=25940&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["US"] },
-    { name: "Celsius Herbs", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=126887&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["US"] }
+    { name: "Celsius Herbs", commission: "20%", commissionNote: "per sale · Awin", you: "14%", template: "https://www.awin1.com/cread.php?awinmid=126887&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["US"] },
+    { name: "Primeful", commission: "16%", commissionNote: "per sale · Awin", you: "11.2%", template: "https://www.awin1.com/cread.php?awinmid=130555&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["US"] }
   ];
 
   var memberInput = document.getElementById('memberId');
@@ -768,6 +778,7 @@
       loginState.textContent = 'Logged in. Your links below are credited to ' + member.member_id + '.';
     }
     refreshPayout();
+    if (member && member.member_id) loyaltyCheckin(member.member_id);
   }
   function showLoggedOut(){
     loginForm.style.display = 'block';
@@ -817,6 +828,43 @@
         loginError.style.display = 'block';
       });
   });
+
+  function localToday(){
+    var d = new Date();
+    function p2(n){ return (n < 10 ? '0' : '') + n; }
+    return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate());
+  }
+  function renderLoyalty(j){
+    var card = document.getElementById('loyaltyCard');
+    if (!card || !j || !j.ok) return;
+    card.hidden = false;
+    var bonus = j.bonus_pct || 0;
+    var share = j.share_pct || 70;
+    document.getElementById('loyaltyLine').textContent =
+      (j.streak || 0) + ((j.streak === 1) ? ' day' : ' days') + ' \u00B7 bonus +' + bonus.toFixed(1) + '% \u00B7 your share ' + share.toFixed(1) + '%';
+    var next = document.getElementById('loyaltyNext');
+    if (bonus >= 5) {
+      next.textContent = 'Max bonus reached \u2014 keep checking in daily to hold it.';
+    } else if ((j.streak || 0) < 2) {
+      next.textContent = 'Check in again tomorrow for your first +0.1%.';
+    } else {
+      var toNext = 7 - ((j.streak - 2) % 7);
+      next.textContent = 'Next +0.1% in ' + toNext + (toNext === 1 ? ' day' : ' days') + ' \u2014 don\u2019t miss a day.';
+    }
+    var badge = document.querySelector('.split-badge');
+    if (badge && bonus > 0) {
+      badge.textContent = share.toFixed(1) + '% you \u00B7 ' + (100 - share).toFixed(1) + '% Dark Money';
+    }
+  }
+  function loyaltyCheckin(memberId){
+    fetch(API + '/checkin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ member_id: memberId, date: localToday() })
+    }).then(function(r){ return r.json(); })
+      .then(function(j){ renderLoyalty(j); })
+      .catch(function(){});
+  }
 
   document.getElementById('logoutBtn').addEventListener('click', function(){
     try { localStorage.removeItem('dm_member_id'); } catch (e) {}

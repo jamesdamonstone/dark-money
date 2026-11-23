@@ -447,6 +447,15 @@
             <input id="memberId" type="text" value="dm_Am5HeABD5C" autocomplete="off" spellcheck="false" aria-describedby="memberHelp" />
           </div>
           <p id="memberHelp">Every link in Shopping is built with this ID, so the commission is credited to you. Edit it and the links update.</p>
+          <div id="inviteBox" style="margin-top:18px">
+            <label for="inviteLink">Invite friends</label>
+            <p style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">Anyone who joins through your link is counted as your referral.</p>
+            <div class="member-row">
+              <input id="inviteLink" type="text" readonly value="" autocomplete="off" spellcheck="false" />
+              <button type="button" class="btn secondary small" id="inviteCopyBtn">Copy link</button>
+            </div>
+            <p id="inviteCount" style="margin:8px 0 0;color:var(--ink-2);font-size:.92rem"></p>
+          </div>
           <div id="pwBox" style="margin-top:18px">
             <label for="newPw" id="pwLabel">Set a login password</label>
             <p id="pwHint" style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">With a password you can log in with just your email &mdash; no need to keep your member ID handy, and your password manager can save it like any other login.</p>
@@ -840,6 +849,17 @@
       pairLine.innerHTML = 'Member: <strong>' + esc(member.name) + '</strong>' + (joined ? ' &middot; Joined ' + esc(joined) : '');
       loginState.textContent = 'Logged in. Your links below are credited to ' + member.member_id + '.';
     }
+    if (member && member.member_id) {
+      var inviteLink = document.getElementById('inviteLink');
+      if (inviteLink) inviteLink.value = 'https://darkmoney.strangefawkes.com/?ref=' + member.member_id;
+      var inviteCount = document.getElementById('inviteCount');
+      if (inviteCount && typeof member.referral_count === 'number') {
+        var refNames = (member.referrals || []).map(function(r){ return r.name; }).filter(Boolean);
+        inviteCount.textContent = member.referral_count === 0
+          ? 'No referrals yet \u2014 share your link to get started.'
+          : 'Referrals: ' + member.referral_count + (refNames.length ? ' (' + refNames.join(', ') + ')' : '');
+      }
+    }
     refreshPayout();
     if (member && member.member_id) { loyaltyCheckin(member.member_id); loadPurchases(member.member_id); }
   }
@@ -918,6 +938,23 @@
       return;
     }
     doLogin({ email: email, member_id: id }, this, 'That email and member ID don\u2019t match our records. Both are on your join confirmation \u2014 the ID starts with dm_.');
+  });
+
+  var inviteCopyBtn = document.getElementById('inviteCopyBtn');
+  if (inviteCopyBtn) inviteCopyBtn.addEventListener('click', function(){
+    var input = document.getElementById('inviteLink');
+    if (!input || !input.value) return;
+    function done(){
+      inviteCopyBtn.textContent = 'Copied';
+      setTimeout(function(){ inviteCopyBtn.textContent = 'Copy link'; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(input.value).then(done).catch(function(){ input.select(); try { document.execCommand('copy'); } catch(e) {} done(); });
+    } else {
+      input.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      done();
+    }
   });
 
   var pwBtn = document.getElementById('pwBtn');

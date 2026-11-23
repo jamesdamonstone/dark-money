@@ -427,12 +427,17 @@
         <div id="loginForm">
           <label for="loginEmail">Member login</label>
           <div class="member-row" style="margin-bottom:8px">
-            <input id="loginEmail" type="email" placeholder="Email you joined with" autocomplete="email" spellcheck="false" />
+            <input id="loginEmail" type="email" name="email" placeholder="Email you joined with" autocomplete="email" spellcheck="false" />
           </div>
-          <div class="member-row">
-            <input id="loginId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
+          <div class="member-row" id="loginPwRow">
+            <input id="loginPw" type="password" name="password" placeholder="Password" autocomplete="current-password" />
             <button type="button" class="btn" id="loginBtn">Log in</button>
           </div>
+          <div class="member-row" id="loginIdRow" style="display:none">
+            <input id="loginId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
+            <button type="button" class="btn" id="loginIdBtn">Log in</button>
+          </div>
+          <p style="margin:8px 0 0"><a href="#" id="loginToggle">Log in with member ID instead &rarr;</a></p>
           <p id="loginError" style="display:none;color:#d98a7a"></p>
           <p>New here? <a href="index.html#join">Join on the home page</a> &mdash; it takes a few seconds and your ID is issued instantly.</p>
         </div>
@@ -442,6 +447,18 @@
             <input id="memberId" type="text" value="dm_Am5HeABD5C" autocomplete="off" spellcheck="false" aria-describedby="memberHelp" />
           </div>
           <p id="memberHelp">Every link in Shopping is built with this ID, so the commission is credited to you. Edit it and the links update.</p>
+          <div id="pwBox" style="margin-top:18px">
+            <label for="newPw" id="pwLabel">Set a login password</label>
+            <p id="pwHint" style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">With a password you can log in with just your email &mdash; no need to keep your member ID handy, and your password manager can save it like any other login.</p>
+            <div class="member-row" style="margin-bottom:8px">
+              <input id="newPw" type="password" name="new-password" placeholder="New password (8+ characters)" autocomplete="new-password" />
+            </div>
+            <div class="member-row">
+              <input id="newPw2" type="password" placeholder="Repeat it" autocomplete="new-password" />
+              <button type="button" class="btn secondary small" id="pwBtn">Save password</button>
+            </div>
+            <p id="pwMsg" style="display:none"></p>
+          </div>
           <p><button type="button" class="btn secondary small" id="logoutBtn">Log out</button></p>
         </div>
       </div>
@@ -793,6 +810,12 @@
   function showLoggedIn(member){
     loginForm.style.display = 'none';
     memberBox.style.display = 'block';
+    if (member && typeof member.has_password === 'boolean') {
+      var pwLabel = document.getElementById('pwLabel');
+      var pwHint = document.getElementById('pwHint');
+      if (pwLabel) pwLabel.textContent = member.has_password ? 'Change your login password' : 'Set a login password';
+      if (pwHint) pwHint.style.display = member.has_password ? 'none' : 'block';
+    }
     if (member && member.name) {
       var joined = member.joined_at ? new Date(member.joined_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
       pairLine.innerHTML = 'Member: <strong>' + esc(member.name) + '</strong>' + (joined ? ' &middot; Joined ' + esc(joined) : '');
@@ -815,30 +838,36 @@
     openAllPanels();
   }
 
-  document.getElementById('loginBtn').addEventListener('click', function(){
-    var email = (document.getElementById('loginEmail').value || '').trim();
-    var id = (document.getElementById('loginId').value || '').trim();
+  var loginUseId = false;
+  var loginToggle = document.getElementById('loginToggle');
+  if (loginToggle) loginToggle.addEventListener('click', function(e){
+    e.preventDefault();
+    loginUseId = !loginUseId;
+    document.getElementById('loginPwRow').style.display = loginUseId ? 'none' : '';
+    document.getElementById('loginIdRow').style.display = loginUseId ? '' : 'none';
+    loginToggle.innerHTML = loginUseId ? 'Log in with password instead &rarr;' : 'Log in with member ID instead &rarr;';
     loginError.style.display = 'none';
-    if (!email || !id) {
-      loginError.textContent = 'Enter both your email and your member ID.';
-      loginError.style.display = 'block';
-      return;
-    }
-    var btn = document.getElementById('loginBtn');
+  });
+
+  function doLogin(payload, btn, mismatchMsg){
+    loginError.style.display = 'none';
     btn.disabled = true;
     btn.textContent = 'Logging in\u2026';
     fetch(API + '/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, member_id: id })
+      body: JSON.stringify(payload)
     }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
       .then(function(res){
         btn.disabled = false;
         btn.textContent = 'Log in';
         if (res.body && res.body.ok) {
           applyMember(res.body.member.member_id, res.body.member);
+        } else if (res.body && res.body.error === 'no_password_set') {
+          loginError.textContent = 'No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password right here in Account.';
+          loginError.style.display = 'block';
         } else {
-          loginError.textContent = 'That email and member ID don\u2019t match our records. Both are on your join confirmation \u2014 the ID starts with dm_.';
+          loginError.textContent = mismatchMsg;
           loginError.style.display = 'block';
         }
       })
@@ -847,6 +876,66 @@
         btn.textContent = 'Log in';
         loginError.textContent = 'Couldn\u2019t reach the login service. Check your connection and try again.';
         loginError.style.display = 'block';
+      });
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', function(){
+    var email = (document.getElementById('loginEmail').value || '').trim();
+    var pw = document.getElementById('loginPw').value || '';
+    if (!email || !pw) {
+      loginError.textContent = 'Enter both your email and your password.';
+      loginError.style.display = 'block';
+      return;
+    }
+    doLogin({ email: email, password: pw }, this, 'That email and password don\u2019t match our records.');
+  });
+
+  document.getElementById('loginIdBtn').addEventListener('click', function(){
+    var email = (document.getElementById('loginEmail').value || '').trim();
+    var id = (document.getElementById('loginId').value || '').trim();
+    if (!email || !id) {
+      loginError.textContent = 'Enter both your email and your member ID.';
+      loginError.style.display = 'block';
+      return;
+    }
+    doLogin({ email: email, member_id: id }, this, 'That email and member ID don\u2019t match our records. Both are on your join confirmation \u2014 the ID starts with dm_.');
+  });
+
+  var pwBtn = document.getElementById('pwBtn');
+  if (pwBtn) pwBtn.addEventListener('click', function(){
+    var id = (memberInput.value || '').trim();
+    var p1 = document.getElementById('newPw').value || '';
+    var p2 = document.getElementById('newPw2').value || '';
+    var msg = document.getElementById('pwMsg');
+    msg.style.display = 'block';
+    if (!/^dm_[A-Za-z0-9]{10}$/.test(id)) { msg.textContent = 'Log in first, then set your password.'; return; }
+    if (p1.length < 8) { msg.textContent = 'Use at least 8 characters.'; return; }
+    if (p1 !== p2) { msg.textContent = 'The two passwords don\u2019t match.'; return; }
+    pwBtn.disabled = true;
+    pwBtn.textContent = 'Saving\u2026';
+    fetch(API + '/set-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ member_id: id, password: p1 })
+    }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
+      .then(function(res){
+        pwBtn.disabled = false;
+        pwBtn.textContent = 'Save password';
+        if (res.body && res.body.ok) {
+          document.getElementById('newPw').value = '';
+          document.getElementById('newPw2').value = '';
+          document.getElementById('pwLabel').textContent = 'Change your login password';
+          var hint = document.getElementById('pwHint');
+          if (hint) hint.style.display = 'none';
+          msg.textContent = 'Saved. You can now log in with your email and this password.';
+        } else {
+          msg.textContent = 'That didn\u2019t save \u2014 try again in a moment.';
+        }
+      })
+      .catch(function(){
+        pwBtn.disabled = false;
+        pwBtn.textContent = 'Save password';
+        msg.textContent = 'Couldn\u2019t reach the service \u2014 try again in a moment.';
       });
   });
 

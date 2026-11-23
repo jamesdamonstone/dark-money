@@ -699,20 +699,24 @@
         </div>
       </div>
       <div id="mpanel-login" hidden>
-        <p class="panel-sub" style="margin:0 0 22px;color:var(--faint);font-size:14px">Log in with the email and member ID from your join confirmation.</p>
+        <p class="panel-sub" style="margin:0 0 22px;color:var(--faint);font-size:14px">Log in with your email and the password you set. First time? Use your member ID once, then set a password in Account.</p>
         <form id="auth-login-form" class="join-form" novalidate>
           <div class="join-field">
             <label for="auth-login-email">Email address</label>
-            <input type="email" id="auth-login-email" autocomplete="email" required />
+            <input type="email" id="auth-login-email" name="email" autocomplete="email" required />
           </div>
-          <div class="join-field">
+          <div class="join-field" id="auth-pw-field">
+            <label for="auth-login-pw">Password</label>
+            <input type="password" id="auth-login-pw" name="password" autocomplete="current-password" />
+          </div>
+          <div class="join-field" id="auth-id-field" hidden>
             <label for="auth-login-id">Member ID</label>
-            <input type="text" id="auth-login-id" placeholder="dm_…" autocomplete="off" spellcheck="false" required />
+            <input type="text" id="auth-login-id" placeholder="dm_…" autocomplete="off" spellcheck="false" />
           </div>
           <p class="join-error" id="auth-login-error" role="alert" hidden></p>
           <button type="submit" class="btn btn-gold join-submit">Log in</button>
         </form>
-        <p class="join-note">New here? <a href="#" id="auth-to-join">Join free instead &rarr;</a></p>
+        <p class="join-note"><a href="#" id="auth-toggle-id">Log in with member ID instead &rarr;</a><br />New here? <a href="#" id="auth-to-join">Join free instead &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -1036,34 +1040,67 @@
 
     var form = document.getElementById('auth-login-form');
     var emailInput = document.getElementById('auth-login-email');
+    var pwInput = document.getElementById('auth-login-pw');
     var idInput = document.getElementById('auth-login-id');
+    var pwField = document.getElementById('auth-pw-field');
+    var idField = document.getElementById('auth-id-field');
+    var toggleId = document.getElementById('auth-toggle-id');
     var error = document.getElementById('auth-login-error');
     var submitBtn = form ? form.querySelector('.join-submit') : null;
+    var useId = false;
+    if (toggleId) toggleId.addEventListener('click', function (e) {
+      e.preventDefault();
+      useId = !useId;
+      pwField.hidden = useId;
+      idField.hidden = !useId;
+      toggleId.innerHTML = useId ? 'Log in with password instead &rarr;' : 'Log in with member ID instead &rarr;';
+      error.hidden = true;
+      (useId ? idInput : pwInput).focus();
+    });
     if (form) form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = emailInput.value.trim();
-      var id = idInput.value.trim();
+      var payload = { email: email };
       error.hidden = true;
-      if (!email || !id) {
-        error.textContent = 'Enter both your email and your member ID.';
-        error.hidden = false;
-        return;
+      if (useId) {
+        var id = idInput.value.trim();
+        if (!email || !id) {
+          error.textContent = 'Enter both your email and your member ID.';
+          error.hidden = false;
+          return;
+        }
+        payload.member_id = id;
+      } else {
+        if (!email || !pwInput.value) {
+          error.textContent = 'Enter both your email and your password.';
+          error.hidden = false;
+          return;
+        }
+        payload.password = pwInput.value;
       }
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Logging in…'; }
       fetch('https://api.strangefawkes.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, member_id: id })
+        body: JSON.stringify(payload)
       }).then(function (res) {
         return res.json().catch(function () { return null; }).then(function (data) {
           if (res.ok && data && data.ok && data.member) {
             window.location.href = 'app.html#' + data.member.member_id;
             return;
           }
-          throw new Error('Login failed');
+          if (data && data.error === 'no_password_set') {
+            error.textContent = 'No password set for this account yet. Log in with your member ID (link below), then set a password in Account.';
+          } else if (useId) {
+            error.textContent = 'That email and member ID don’t match our records. Both are on your join confirmation — the ID starts with dm_.';
+          } else {
+            error.textContent = 'That email and password don’t match our records.';
+          }
+          error.hidden = false;
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Log in'; }
         });
       }).catch(function () {
-        error.textContent = 'That email and member ID don’t match our records. Both are on your join confirmation — the ID starts with dm_.';
+        error.textContent = 'Couldn’t reach the login service. Check your connection and try again.';
         error.hidden = false;
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Log in'; }
       });

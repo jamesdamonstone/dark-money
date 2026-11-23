@@ -939,6 +939,18 @@
         'Decide later': 'later'
       };
       var payoutValue = payoutMap[payout.value] || 'later';
+      // Referral: a ?ref=dm_… in the page URL (a member's invite link) rides
+      // along to the API, which validates it against the registry.
+      var refParam = '';
+      try { refParam = new URLSearchParams(window.location.search).get('ref') || ''; } catch (e) {}
+      var joinPayload = {
+        name: name,
+        email: email,
+        style: style,
+        payout: payoutValue,
+        terms: agree.checked ? true : false
+      };
+      if (/^dm_[A-Za-z0-9]{10}$/.test(refParam)) joinPayload.ref = refParam;
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Joining…';
@@ -946,13 +958,7 @@
       fetch('https://api.strangefawkes.com/api/join', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          style: style,
-          payout: payoutValue,
-          terms: agree.checked ? true : false
-        })
+        body: JSON.stringify(joinPayload)
       }).then(function (res) {
         return res.json().catch(function () { return null; }).then(function (data) {
           if (res.ok && data && data.ok && data.app_url) {

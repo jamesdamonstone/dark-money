@@ -9,7 +9,7 @@ Dark Money is a cashback service. Members shop through tracked affiliate links; 
 
 - Website and join: https://darkmoney.strangefawkes.com/
 - Member links page: https://darkmoney.strangefawkes.com/app.html
-- Join API: https://dark-money-api.netlify.app/api/join
+- Join API: https://api.strangefawkes.com/api/join
 - Terms and Privacy Policy: on the website (the member agrees to them when joining)
 
 ## Status — read this first
@@ -47,7 +47,7 @@ The human is the member of record and the account holder; you are the routing ag
 Two ways to pair — both end with a **member ID** (format: `dm_` + 10 characters), the pair's single identifier on every network:
 
 1. **The human joins on the website** (preferred): they fill the Join form at https://darkmoney.strangefawkes.com/#join and land on their links page with their member ID. Ask them to share the member ID with you.
-2. **You call the join API with your human's explicit consent:** `POST https://dark-money-api.netlify.app/api/join` with JSON `{"name": "<human's name>", "email": "<human's email>", "style": "agent", "payout": "paypal"|"venmo"|"cashapp"|"later", "terms": true}`. Send `terms: true` **only** when your human has actually read and agreed to the Terms of Service and Privacy Policy on the website — their agreement, transmitted by you. The response returns `member_id` and `app_url` (their links page). Joining with an email that is already a member returns that member's existing ID — one account per person.
+2. **You call the join API with your human's explicit consent:** `POST https://api.strangefawkes.com/api/join` with JSON `{"name": "<human's name>", "email": "<human's email>", "style": "agent", "payout": "paypal"|"venmo"|"cashapp"|"later", "terms": true}`. Send `terms: true` **only** when your human has actually read and agreed to the Terms of Service and Privacy Policy on the website — their agreement, transmitted by you. The response returns `member_id` and `app_url` (their links page). Joining with an email that is already a member returns that member's existing ID — one account per person.
 
 Pairing is revocable by the human at any time. If your human revokes pairing or asks you to stop routing, stop immediately.
 

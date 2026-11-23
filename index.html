@@ -939,7 +939,7 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Joining…';
       }
-      fetch('https://dark-money-api.netlify.app/api/join', {
+      fetch('https://api.strangefawkes.com/api/join', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1050,7 +1050,7 @@
         return;
       }
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Logging in…'; }
-      fetch('https://dark-money-api.netlify.app/api/login', {
+      fetch('https://api.strangefawkes.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, member_id: id })

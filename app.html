@@ -329,6 +329,9 @@
           <input id="wallJoinName" type="text" placeholder="First and last name" autocomplete="name" spellcheck="false" />
           <label for="wallJoinEmail">Email</label>
           <input id="wallJoinEmail" type="email" placeholder="you@example.com" autocomplete="email" spellcheck="false" />
+          <label for="wallJoinPw">Set a password (optional)</label>
+          <input id="wallJoinPw" type="password" placeholder="8+ characters" autocomplete="new-password" spellcheck="false" />
+          <p style="margin:6px 0 0;color:var(--ink-2);font-size:.88rem">With a password you can log in with just your email &mdash; no need to keep your member ID handy.</p>
           <label>How will you shop?</label>
           <div class="wall-radios">
             <label><input type="radio" name="wall-style" value="self" checked /> Myself</label>
@@ -771,7 +774,11 @@
     { name: "ATLRx", commission: "$10", commissionNote: "flat per sale · Awin", you: "$7", template: "https://www.awin1.com/cread.php?awinmid=96109&awinaffid=3161005&clickref={SID}", regions: ["US"] },
     { name: "Enable Accessible Haircare", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=113722&awinaffid=3161005&clickref={SID}", regions: ["US"] },
     { name: "Lunzo AT", commission: "13.8%", commissionNote: "per sale · Awin · Austria", you: "9.66%", template: "https://www.awin1.com/cread.php?awinmid=114104&awinaffid=3161005&clickref={SID}", sb: 1, regions: ["AT"] },
-    { name: "Verafied", commission: "15%", commissionNote: "per sale · Awin", you: "10.5%", template: "https://www.awin1.com/cread.php?awinmid=114176&awinaffid=3161005&clickref={SID}", regions: ["US"] }
+    { name: "Verafied", commission: "15%", commissionNote: "per sale · Awin", you: "10.5%", template: "https://www.awin1.com/cread.php?awinmid=114176&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "MIMMTI", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=114442&awinaffid=3161005&clickref={SID}", regions: ["NL"] },
+    { name: "Earkings NL", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=114444&awinaffid=3161005&clickref={SID}", regions: ["NL", "BE", "DE", "AT", "FR", "DK", "FI", "SE", "NO", "ES", "IT", "IE", "PT", "PL", "CZ", "SK", "HU", "SI", "HR", "EE", "LV", "LT", "GR", "NZ"] },
+    { name: "THE ORFY", commission: "40%", commissionNote: "per sale · Awin", you: "28%", template: "https://www.awin1.com/cread.php?awinmid=114458&awinaffid=3161005&clickref={SID}", regions: ["US"] },
+    { name: "SOPHELIA", commission: "5%", commissionNote: "per sale · Awin", you: "3.5%", template: "https://www.awin1.com/cread.php?awinmid=114504&awinaffid=3161005&clickref={SID}", regions: ["GB"] }
   ];
 
   var memberInput = document.getElementById('memberId');
@@ -1007,7 +1014,7 @@
     }
     if (member && member.member_id) {
       var inviteLink = document.getElementById('inviteLink');
-      if (inviteLink) inviteLink.value = 'https://darkmoney.strangefawkes.com/?ref=' + member.member_id;
+      if (inviteLink) inviteLink.value = 'https://darkmoney.strangefawkes.com/?ref=' + (member.ref_code || member.member_id);
       var inviteCount = document.getElementById('inviteCount');
       if (inviteCount && typeof member.referral_count === 'number') {
         var refNames = (member.referrals || []).map(function(r){ return r.name; }).filter(Boolean);
@@ -1061,6 +1068,12 @@
           applyMember(res.body.member.member_id, res.body.member);
         } else if (res.body && res.body.error === 'no_password_set') {
           loginError.textContent = 'No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password right here in Account.';
+          loginError.style.display = 'block';
+        } else if (res.body && res.body.error === 'password_required') {
+          loginError.textContent = 'This account has a password \u2014 log in with your email and password instead.';
+          loginError.style.display = 'block';
+        } else if (res.body && res.body.error === 'too_many_attempts') {
+          loginError.textContent = 'Too many failed attempts \u2014 wait 15 minutes and try again.';
           loginError.style.display = 'block';
         } else {
           loginError.textContent = mismatchMsg;
@@ -1328,6 +1341,10 @@
             applyMember(res.body.member.member_id, res.body.member);
           } else if (res.body && res.body.error === 'no_password_set') {
             wallLoginFail('No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password in Account.');
+          } else if (res.body && res.body.error === 'password_required') {
+            wallLoginFail('This account has a password \u2014 log in with your email and password instead.');
+          } else if (res.body && res.body.error === 'too_many_attempts') {
+            wallLoginFail('Too many failed attempts \u2014 wait 15 minutes and try again.');
           } else {
             wallLoginFail(mismatchMsg);
           }
@@ -1360,9 +1377,14 @@
         payout: payoutMap[document.getElementById('wallJoinPayout').value] || 'later',
         terms: true
       };
+      var joinPw = document.getElementById('wallJoinPw').value || '';
+      if (joinPw) {
+        if (joinPw.length < 8 || joinPw.length > 200) { wallJoinFail('Password must be 8\u2013200 characters.'); return; }
+        payload.password = joinPw;
+      }
       var refParam = '';
       try { refParam = new URLSearchParams(window.location.search).get('ref') || ''; } catch (e) {}
-      if (/^dm_[A-Za-z0-9]{10}$/.test(refParam)) payload.ref = refParam;
+      if (/^(dm_[A-Za-z0-9]{10}|dmr_[A-Za-z0-9]{8})$/.test(refParam)) payload.ref = refParam;
       wallJoinBtn.disabled = true;
       wallJoinBtn.textContent = 'Joining\u2026';
       fetch(API + '/join', {

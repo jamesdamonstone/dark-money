@@ -670,6 +670,11 @@
               <input type="email" id="join-email" name="email" autocomplete="email" required />
             </div>
             <div class="join-field">
+              <label for="join-password">Set a password (optional)</label>
+              <input type="password" id="join-password" name="password" autocomplete="new-password" />
+              <p style="margin:6px 0 0;color:var(--faint);font-size:13.5px;line-height:1.55">With a password you can log in with just your email — no need to keep your member ID handy.</p>
+            </div>
+            <div class="join-field">
               <fieldset>
                 <legend>How will you shop?</legend>
                 <div class="radio-group">
@@ -940,8 +945,9 @@
         'Decide later': 'later'
       };
       var payoutValue = payoutMap[payout.value] || 'later';
-      // Referral: a ?ref=dm_… in the page URL (a member's invite link) rides
-      // along to the API, which validates it against the registry.
+      // Referral: a ?ref=dmr_… (or legacy ?ref=dm_…) in the page URL — a
+      // member's invite link — rides along to the API, which validates it
+      // against the registry.
       var refParam = '';
       try { refParam = new URLSearchParams(window.location.search).get('ref') || ''; } catch (e) {}
       var joinPayload = {
@@ -951,7 +957,17 @@
         payout: payoutValue,
         terms: agree.checked ? true : false
       };
-      if (/^dm_[A-Za-z0-9]{10}$/.test(refParam)) joinPayload.ref = refParam;
+      var joinPwInput = document.getElementById('join-password');
+      var joinPw = joinPwInput ? (joinPwInput.value || '') : '';
+      if (joinPw) {
+        if (joinPw.length < 8 || joinPw.length > 200) {
+          showError('Password must be 8–200 characters.');
+          joinPwInput.focus();
+          return;
+        }
+        joinPayload.password = joinPw;
+      }
+      if (/^(dm_[A-Za-z0-9]{10}|dmr_[A-Za-z0-9]{8})$/.test(refParam)) joinPayload.ref = refParam;
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Joining…';

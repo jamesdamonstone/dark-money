@@ -265,6 +265,56 @@
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important}
   }
+  /* ---- loyalty streak card ---- */
+  .loyalty{margin-top:18px;border:1px solid var(--brass-dim);border-radius:14px;padding:18px;background:linear-gradient(160deg,#1d1811,#14110c 60%);box-shadow:0 0 0 1px rgba(201,162,74,.12),0 10px 28px rgba(0,0,0,.35)}
+  .loy-head{display:flex;align-items:center;gap:12px}
+  .loy-flame{width:42px;height:42px;flex:0 0 42px;border-radius:50%;border:1px solid var(--brass-dim);background:rgba(201,162,74,.1);display:flex;align-items:center;justify-content:center}
+  .loy-flame svg{width:24px;height:24px;fill:var(--brass-bright)}
+  .loy-title{flex:1;min-width:0}
+  .loy-title strong{display:block;font-family:"Cinzel",serif;letter-spacing:.14em;text-transform:uppercase;font-size:.86rem;color:var(--brass-bright)}
+  .loy-title span{color:var(--ink-2);font-size:.85rem}
+  .loy-count{text-align:right}
+  .loy-count b{font-size:2rem;line-height:1;color:var(--ink);font-weight:700}
+  .loy-count span{display:block;color:var(--ink-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}
+  .loy-days{display:flex;gap:5px;margin-top:16px}
+  .loy-day{flex:1;text-align:center;min-width:0}
+  .loy-wd{display:block;font-size:.66rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+  .loy-dot{display:flex;align-items:center;justify-content:center;height:34px;border-radius:9px;font-size:.95rem;border:1px solid var(--line)}
+  .loy-day.hit .loy-dot{background:var(--brass);border-color:var(--brass);color:#171307;font-weight:700}
+  .loy-day.miss .loy-dot{color:var(--ink-3);background:rgba(255,255,255,.02)}
+  .loy-day.today .loy-dot{border-color:var(--brass-bright);border-style:dashed;color:var(--brass-bright);animation:loyPulse 1.6s ease-in-out infinite}
+  .loy-day.today.hit .loy-dot{border-style:solid;animation:none;background:var(--brass);color:#171307}
+  .loy-dn{display:block;font-size:.68rem;color:var(--ink-3);margin-top:4px}
+  @keyframes loyPulse{0%,100%{box-shadow:0 0 0 0 rgba(227,192,106,0)}50%{box-shadow:0 0 0 4px rgba(227,192,106,.18)}}
+  .loy-legend{display:flex;gap:16px;margin-top:10px;color:var(--ink-3);font-size:.78rem}
+  .loy-legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
+  .lg-hit{background:var(--brass)}
+  .lg-miss{border:1px solid var(--line)}
+  .lg-today{border:1px dashed var(--brass-bright)}
+  .loy-btn{width:100%;margin-top:14px;padding:13px 16px;border-radius:11px;border:1px solid var(--brass);background:var(--brass);color:#171307;font:inherit;font-weight:700;font-size:1rem;cursor:pointer}
+  .loy-btn:hover:not(:disabled){background:var(--brass-bright)}
+  .loy-btn:disabled{cursor:default}
+  .loy-btn.done{background:var(--panel-2);color:var(--good);border-color:var(--line)}
+  .loy-reward{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:14px}
+  .loy-reward-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;color:var(--ink-2);font-size:.92rem}
+  .loy-reward-top strong{color:var(--ink)}
+  .loy-bonus strong{color:var(--brass-bright)}
+  .loy-bar{height:9px;border-radius:6px;background:var(--bg-2);border:1px solid var(--line);margin-top:8px;overflow:hidden}
+  .loy-bar-fill{height:100%;background:linear-gradient(90deg,var(--brass-dim),var(--brass-bright));width:0;transition:width .5s ease}
+  .loy-next{margin:10px 0 0;color:var(--ink);font-size:.94rem}
+  .loy-how{margin:6px 0 0;color:var(--ink-2);font-size:.88rem}
+  /* ---- promo codes card ---- */
+  .promo-card{margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--panel)}
+  .promo-card h3{margin:0;font-family:"Cinzel",serif;letter-spacing:.14em;text-transform:uppercase;font-size:.86rem;color:var(--brass-bright)}
+  .promo-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line-soft);flex-wrap:wrap}
+  .promo-row:first-of-type{border-top:none}
+  .promo-main{flex:1;min-width:140px}
+  .promo-store{color:var(--ink);font-weight:600}
+  .promo-note{color:var(--ink-2);font-size:.88rem}
+  .promo-exp{color:var(--ink-3);font-size:.8rem}
+  .promo-code{font-family:"IBM Plex Mono",monospace;font-weight:700;letter-spacing:.08em;background:var(--bg-2);border:1px dashed var(--brass-dim);border-radius:8px;padding:8px 12px;color:var(--brass-bright);white-space:nowrap}
+  .promo-copy{border:1px solid var(--brass-dim);background:transparent;color:var(--brass-bright);border-radius:8px;padding:8px 12px;font:inherit;font-size:.88rem;cursor:pointer;white-space:nowrap}
+  .promo-copy:hover{border-color:var(--brass-bright)}
   /* ---- sign-in wall ---- */
   #signinWall{position:fixed;inset:0;z-index:300;background:var(--bg);overflow-y:auto;padding:28px 16px 48px}
   #signinWall .wall-card{max-width:430px;margin:4vh auto 0;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:26px 24px}
@@ -373,13 +423,33 @@
           <div class="split-badge">70% you &middot; 30% Dark Money</div>
         </div>
 
-        <div class="loyalty" id="loyaltyCard" hidden style="margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:14px 16px">
-          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between">
-            <strong style="color:var(--ink)">Loyalty streak</strong>
-            <span id="loyaltyLine" style="color:var(--ink-2)"></span>
+        <div class="loyalty" id="loyaltyCard" hidden>
+          <div class="loy-head">
+            <div class="loy-flame" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.177A7.547 7.547 0 0 1 6.648 6.61a.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248z"/></svg></div>
+            <div class="loy-title">
+              <strong>Loyalty streak</strong>
+              <span id="loyTotal">0 total check-ins</span>
+            </div>
+            <div class="loy-count"><b id="loyStreakNum">0</b><span id="loyStreakUnit">days</span></div>
           </div>
-          <p id="loyaltyNext" style="margin:8px 0 0;color:var(--ink-2);font-size:.94rem"></p>
-          <p style="margin:6px 0 0;color:var(--ink-2);font-size:.9rem">Check in every day to grow your share: +0.1% on day 2, then +0.1% more each week, up to +5% (75% total). Miss a day and it starts over.</p>
+          <div class="loy-days" id="loyDays" aria-label="Your last 14 days"></div>
+          <div class="loy-legend"><span><i class="lg-hit"></i>Checked in</span><span><i class="lg-miss"></i>Missed</span><span><i class="lg-today"></i>Today</span></div>
+          <button type="button" id="loyCheckinBtn" class="loy-btn">Check in for today</button>
+          <div class="loy-reward">
+            <div class="loy-reward-top"><span>Your share <strong id="loyShare">70.0%</strong></span><span class="loy-bonus">Streak bonus <strong id="loyBonus">+0.0%</strong> of +5% max</span></div>
+            <div class="loy-bar"><div class="loy-bar-fill" id="loyBonusFill"></div></div>
+            <p id="loyNext" class="loy-next"></p>
+            <div class="loy-reward-top" style="margin-top:14px"><span>Referral bonus <strong id="loyRefBonus">+0.0%</strong></span><span class="loy-bonus"><span id="loyRefCount">0</span> buying referrals &middot; permanent</span></div>
+            <div class="loy-bar"><div class="loy-bar-fill" id="loyRefFill" style="background:linear-gradient(90deg,#5d7a3a,var(--good))"></div></div>
+            <p id="loyRefNext" class="loy-next" style="font-size:.88rem;color:var(--ink-2)"></p>
+            <p class="loy-how">Check in once a day to grow your share: +0.1% on day 2, then +0.1% more each week, up to +5%. Referrals stack on top: every 20 referred members who complete a confirmed purchase adds a permanent +0.1%, up to +5% more &mdash; that part never resets. Miss a day and only the streak starts over. And no purchase can ever pay back more than 100% of what was spent.</p>
+          </div>
+        </div>
+
+        <div class="promo-card" id="promoCard" hidden>
+          <h3>Promo codes</h3>
+          <div id="promoList"></div>
+          <p style="margin:10px 0 0;color:var(--ink-2);font-size:.88rem">Codes we&rsquo;ve landed from stores, ready to use at checkout. Tap Copy, then paste the code in the store&rsquo;s promo box.</p>
         </div>
 
         <div class="balances">
@@ -784,7 +854,8 @@
     { name: "Arsynl RX", commission: "6%", commissionNote: "per sale · CJ", you: "4.2%", template: "https://www.jdoqocy.com/click-101932824-17355561?sid={SID}", regions: ["US"] },
     { name: "ABC Wigs", commission: "10%", commissionNote: "per sale · CJ", you: "7%", template: "https://www.dpbolvw.net/click-101932824-17240111?sid={SID}", regions: ["CA", "US"] },
     { name: "Arangrant", commission: "$25", commissionNote: "flat per booking · CJ", you: "$17.50", template: "https://www.anrdoezrs.net/click-101932824-17037905?sid={SID}", regions: ["AU", "CA", "FR", "DE", "IT", "MD", "ES", "GB", "US"] },
-    { name: "Marco Cerullo", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=114868&awinaffid=3161005&clickref={SID}", regions: ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "CH", "NO"] }
+    { name: "Marco Cerullo", commission: "10%", commissionNote: "per sale · Awin", you: "7%", template: "https://www.awin1.com/cread.php?awinmid=114868&awinaffid=3161005&clickref={SID}", regions: ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "CH", "NO"] },
+    { name: "Budget Pet Care", commission: "10%", commissionNote: "per sale · CJ", you: "7%", template: "https://www.jdoqocy.com/click-101932824-15734653?sid={SID}", regions: ["GLOBAL"] }
   ];
 
   var memberInput = document.getElementById('memberId');
@@ -1030,7 +1101,7 @@
       }
     }
     refreshPayout();
-    if (member && member.member_id) { loyaltyCheckin(member.member_id); loadPurchases(member.member_id); }
+    if (member && member.member_id) { loadLoyalty(member.member_id); loadPurchases(member.member_id); }
   }
   function showLoggedOut(){
     showWall();
@@ -1182,16 +1253,56 @@
     card.hidden = false;
     var bonus = j.bonus_pct || 0;
     var share = j.share_pct || 70;
-    document.getElementById('loyaltyLine').textContent =
-      (j.streak || 0) + ((j.streak === 1) ? ' day' : ' days') + ' \u00B7 bonus +' + bonus.toFixed(1) + '% \u00B7 your share ' + share.toFixed(1) + '%';
-    var next = document.getElementById('loyaltyNext');
-    if (bonus >= 5) {
+    var streak = j.streak || 0;
+    document.getElementById('loyStreakNum').textContent = streak;
+    document.getElementById('loyStreakUnit').textContent = streak === 1 ? 'day' : 'days';
+    document.getElementById('loyTotal').textContent = (j.total_checkins || 0) + ((j.total_checkins === 1) ? ' total check-in' : ' total check-ins');
+    document.getElementById('loyShare').textContent = share.toFixed(1) + '%';
+    var streakBonus = j.streak_bonus_pct || 0;
+    document.getElementById('loyBonus').textContent = '+' + streakBonus.toFixed(1) + '%';
+    document.getElementById('loyBonusFill').style.width = Math.min(100, streakBonus / 5 * 100) + '%';
+    var rb = j.referral_bonus_pct || 0;
+    var rc = j.referral_count || 0;
+    document.getElementById('loyRefBonus').textContent = '+' + rb.toFixed(1) + '%';
+    document.getElementById('loyRefCount').textContent = rc;
+    document.getElementById('loyRefFill').style.width = Math.min(100, (rc % 20) / 20 * 100) + '%';
+    var refNext = document.getElementById('loyRefNext');
+    if (rb >= 5) {
+      refNext.textContent = 'Referral bonus maxed \u2014 a permanent +5% that never resets.';
+    } else {
+      var toGo = 20 - (rc % 20);
+      refNext.textContent = 'Next +0.1% at ' + (rc + toGo) + ' buying referrals \u2014 ' + toGo + ' to go. A referral counts once they complete a confirmed purchase.';
+    }
+    var strip = document.getElementById('loyDays');
+    var days = j.recent_days || [];
+    strip.innerHTML = days.map(function(d){
+      var dt = new Date(d.date + 'T00:00:00');
+      var wd = 'SMTWTFS'[dt.getDay()];
+      var cls = 'loy-day' + (d.checked ? ' hit' : ' miss') + (d.today ? ' today' : '');
+      var mark = d.checked ? '\u2713' : (d.today ? '\u2022' : '\u2717');
+      var label = dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + (d.checked ? ' \u2014 checked in' : (d.today ? ' \u2014 today' : ' \u2014 missed'));
+      return '<div class="' + cls + '" title="' + label + '"><span class="loy-wd">' + wd + '</span><span class="loy-dot">' + mark + '</span><span class="loy-dn">' + dt.getDate() + '</span></div>';
+    }).join('');
+    var next = document.getElementById('loyNext');
+    if (j.lapsed) {
+      next.textContent = 'Your streak reset after a missed day \u2014 check in today to start a new one.';
+    } else if (streakBonus >= 5) {
       next.textContent = 'Max bonus reached \u2014 keep checking in daily to hold it.';
-    } else if ((j.streak || 0) < 2) {
+    } else if (streak < 2) {
       next.textContent = 'Check in again tomorrow for your first +0.1%.';
     } else {
-      var toNext = 7 - ((j.streak - 2) % 7);
+      var toNext = 7 - ((streak - 2) % 7);
       next.textContent = 'Next +0.1% in ' + toNext + (toNext === 1 ? ' day' : ' days') + ' \u2014 don\u2019t miss a day.';
+    }
+    var btn = document.getElementById('loyCheckinBtn');
+    if (j.checked_today) {
+      btn.disabled = true;
+      btn.textContent = '\u2713 Checked in today \u2014 come back tomorrow';
+      btn.classList.add('done');
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Check in for today';
+      btn.classList.remove('done');
     }
     var badge = document.querySelector('.split-badge');
     if (badge && bonus > 0) {
@@ -1241,15 +1352,60 @@
       .catch(function(){});
   }
 
-  function loyaltyCheckin(memberId){
-    fetch(API + '/checkin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ member_id: memberId, date: localToday() })
-    }).then(function(r){ return r.json(); })
+  var loyMemberId = null;
+  function loadLoyalty(memberId){
+    loyMemberId = memberId;
+    fetch(API + '/loyalty?id=' + encodeURIComponent(memberId) + '&date=' + encodeURIComponent(localToday()))
+      .then(function(r){ return r.json(); })
       .then(function(j){ renderLoyalty(j); })
       .catch(function(){});
   }
+  function doCheckin(){
+    if (!loyMemberId) return;
+    var btn = document.getElementById('loyCheckinBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Checking in\u2026'; }
+    fetch(API + '/checkin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ member_id: loyMemberId, date: localToday() })
+    }).then(function(r){ return r.json(); })
+      .then(function(j){ renderLoyalty(j); })
+      .catch(function(){ loadLoyalty(loyMemberId); });
+  }
+  document.getElementById('loyCheckinBtn').addEventListener('click', doCheckin);
+
+  // Promo codes Dark Money is putting out. Add an entry and it shows up here
+  // on its own; expired codes hide themselves. Only list codes a program has
+  // issued for distribution (through the network or the advertiser directly).
+  var promoCodes = [
+    // { store: 'Example Store', code: 'DARK10', note: '10% off your first order', expires: '2026-12-31' }
+  ];
+  function renderPromos(){
+    var card = document.getElementById('promoCard');
+    var list = document.getElementById('promoList');
+    if (!card || !list) return;
+    var today = localToday();
+    var live = promoCodes.filter(function(p){ return !p.expires || p.expires >= today; });
+    if (!live.length) { card.hidden = true; return; }
+    card.hidden = false;
+    list.innerHTML = live.map(function(p){
+      var exp = p.expires ? new Date(p.expires + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+      return '<div class="promo-row"><div class="promo-main"><div class="promo-store">' + esc(p.store) + '</div>' +
+        (p.note ? '<div class="promo-note">' + esc(p.note) + '</div>' : '') +
+        (exp ? '<div class="promo-exp">Ends ' + exp + '</div>' : '') +
+        '</div><span class="promo-code">' + esc(p.code) + '</span>' +
+        '<button type="button" class="promo-copy" data-code="' + esc(p.code) + '">Copy</button></div>';
+    }).join('');
+    list.querySelectorAll('.promo-copy').forEach(function(b){
+      b.addEventListener('click', function(){
+        var code = b.getAttribute('data-code');
+        function done(){ b.textContent = 'Copied \u2713'; setTimeout(function(){ b.textContent = 'Copy'; }, 1600); }
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(code).then(done, done); }
+        else { done(); }
+      });
+    });
+  }
+  renderPromos();
 
   document.getElementById('logoutBtn').addEventListener('click', function(){
     try { localStorage.removeItem('dm_member_id'); } catch (e) {}

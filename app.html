@@ -8,7 +8,8 @@
 <title>Dark Money — Member App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root{
     --bg:#0a0908;
@@ -281,6 +282,7 @@
   <main>
     <nav class="app-tabs" role="tablist" aria-label="Member sections">
       <button type="button" class="app-tab is-active" id="tabbtn-shopping" data-tab="shopping" role="tab" aria-selected="true">Shopping</button>
+      <button type="button" class="app-tab" id="tabbtn-local" data-tab="local" role="tab" aria-selected="false">Local</button>
       <button type="button" class="app-tab" id="tabbtn-wallet" data-tab="wallet" role="tab" aria-selected="false">Wallet</button>
       <button type="button" class="app-tab" id="tabbtn-account" data-tab="account" role="tab" aria-selected="false">Account</button>
     </nav>
@@ -414,6 +416,45 @@
       <div class="stores" id="stores"></div>
     </section>
 
+    <!-- Local -->
+    <section class="tab-panel" id="panel-local" hidden aria-labelledby="localTitle">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="localTitle">Local</h2>
+          <p>Cashback in person, at local shops near you.</p>
+        </div>
+      </div>
+
+      <div class="how-line">
+        <span class="mark" aria-hidden="true">&#167;</span>
+        <span>Shop in person and pay as usual. Then scan the shop&rsquo;s QR code at the register, enter what you spent, and snap a photo of your receipt. Your cashback lands once the claim is reviewed.</span>
+      </div>
+
+      <div id="localMap" style="height:320px;border:1px solid var(--line);border-radius:12px;margin:0 0 16px;background:var(--panel)" aria-label="Map of local businesses"></div>
+
+      <div id="localList">
+        <p style="margin:0;color:var(--ink-2)">Loading local businesses&hellip;</p>
+      </div>
+
+      <div id="localClaimBox" hidden style="margin-top:22px;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--panel)">
+        <h3 style="margin:0 0 4px;color:var(--ink)">Claim cashback</h3>
+        <p style="margin:0 0 12px;color:var(--ink-2)" id="claimBizLine"></p>
+        <label for="claimAmount" style="display:block;margin:0 0 4px;color:var(--ink)">What did you spend?</label>
+        <input id="claimAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" style="width:100%;margin:0 0 12px" />
+        <label for="claimReceipt" style="display:block;margin:0 0 4px;color:var(--ink)">Photo of your receipt</label>
+        <input id="claimReceipt" type="file" accept="image/*" style="width:100%;margin:0 0 12px" />
+        <button type="button" class="btn" id="claimSubmit">Send claim</button>
+        <p id="claimMsg" style="margin:10px 0 0;color:var(--ink-2)"></p>
+      </div>
+
+      <div style="margin-top:26px">
+        <h3 style="margin:0 0 8px;color:var(--ink)">Your local claims</h3>
+        <div id="localClaims">
+          <p style="margin:0;color:var(--ink-2)">Log in and your claims show up here.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Account -->
     <section class="tab-panel" id="panel-account" hidden aria-labelledby="accountTitle">
       <div class="section-head">
@@ -481,6 +522,7 @@
   </footer>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function(){
   var programs = [
@@ -1144,14 +1186,190 @@
     showLoggedOut();
   })();
 
+  /* ---------- local (brick-and-mortar) ---------- */
+  var localBiz = [];
+  var localMap = null;
+  var localMapReady = false;
+  var claimBizId = null;
+
+  function currentMemberId(){
+    var fromHash = (window.location.hash || '').match(/dm_[A-Za-z0-9]{10}/);
+    if (fromHash) return fromHash[0];
+    try {
+      var saved = localStorage.getItem('dm_member_id');
+      if (saved && /^dm_[A-Za-z0-9]{10}$/.test(saved)) return saved;
+    } catch (e) {}
+    var v = memberInput && memberInput.value ? memberInput.value.trim() : '';
+    return /^dm_[A-Za-z0-9]{10}$/.test(v) ? v : null;
+  }
+
+  function renderLocalList(){
+    var box = document.getElementById('localList');
+    if (!box) return;
+    if (!localBiz.length) {
+      box.innerHTML = '<p style="margin:0;color:var(--ink-2)">The first local businesses are being signed now &mdash; check back soon. Know a shop that should be here? Tell them it costs nothing unless a member buys.</p>';
+      return;
+    }
+    box.innerHTML = localBiz.map(function(b){
+      return '<div class="act-row">' +
+        '<span class="dot" aria-hidden="true"></span>' +
+        '<div class="main"><div class="title">' + esc(b.name) + '</div>' +
+        '<div class="meta">' + (b.category ? esc(b.category) + ' &middot; ' : '') + esc(b.address || '') + '</div>' +
+        (b.blurb ? '<div class="meta">' + esc(b.blurb) + '</div>' : '') + '</div>' +
+        '<span class="pill live">You earn ' + b.member_pct + '%</span>' +
+        '<button type="button" class="btn" data-claim="' + esc(b.id) + '">Claim</button></div>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('[data-claim]'), function(btn){
+      btn.addEventListener('click', function(){ openClaim(btn.getAttribute('data-claim')); });
+    });
+  }
+
+  function drawLocalMap(){
+    if (!window.L) return;
+    var el = document.getElementById('localMap');
+    if (!el) return;
+    if (!localMap) {
+      localMap = L.map(el).setView([37.99, -87.37], 11);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19, attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(localMap);
+    }
+    localBiz.forEach(function(b){
+      if (typeof b.lat === 'number' && typeof b.lng === 'number') {
+        L.marker([b.lat, b.lng]).addTo(localMap)
+          .bindPopup('<strong>' + esc(b.name) + '</strong><br>' + esc(b.address || '') + '<br>You earn ' + b.member_pct + '% back');
+      }
+    });
+    if (localBiz.length && typeof localBiz[0].lat === 'number') {
+      localMap.setView([localBiz[0].lat, localBiz[0].lng], 12);
+    }
+    setTimeout(function(){ if (localMap) localMap.invalidateSize(); }, 60);
+  }
+
+  function loadLocalClaims(){
+    var box = document.getElementById('localClaims');
+    if (!box) return;
+    var id = currentMemberId();
+    if (!id) {
+      box.innerHTML = '<p style="margin:0;color:var(--ink-2)">Log in and your claims show up here.</p>';
+      return;
+    }
+    fetch(API + '/local/claims?id=' + encodeURIComponent(id))
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j || !j.ok || !j.claims || !j.claims.length) {
+          box.innerHTML = '<p style="margin:0;color:var(--ink-2)">No local claims yet.</p>';
+          return;
+        }
+        var pill = { pending: 'Pending review', approved: 'Approved', rejected: 'Not approved' };
+        box.innerHTML = j.claims.map(function(c){
+          var d = c.created_at ? new Date(c.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+          return '<div class="act-row">' +
+            '<span class="dot" aria-hidden="true"></span>' +
+            '<div class="main"><div class="title">' + esc(c.business_name) + '</div>' +
+            '<div class="meta">' + (d ? esc(d) + ' &middot; ' : '') + 'Spent ' + money(c.amount) + ' &middot; cashback ' + money(c.member_share) + '</div></div>' +
+            '<span class="pill">' + (pill[c.status] || 'Pending review') + '</span></div>';
+        }).join('');
+      })
+      .catch(function(){});
+  }
+
+  function initLocal(){
+    loadLocalClaims();
+    if (localMapReady) { drawLocalMap(); return; }
+    localMapReady = true;
+    fetch(API + '/local/businesses')
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        localBiz = (j && j.ok && j.businesses) || [];
+        renderLocalList();
+        drawLocalMap();
+        var bizParam = new URLSearchParams(window.location.search).get('biz');
+        if (bizParam && localBiz.some(function(b){ return b.id === bizParam; })) openClaim(bizParam);
+      })
+      .catch(function(){
+        var box = document.getElementById('localList');
+        if (box) box.innerHTML = '<p style="margin:0;color:var(--ink-2)">Local businesses could not load just now &mdash; try again in a bit.</p>';
+      });
+  }
+
+  function openClaim(bizId){
+    var b = localBiz.filter(function(x){ return x.id === bizId; })[0];
+    if (!b) return;
+    claimBizId = bizId;
+    document.getElementById('claimBizLine').textContent =
+      b.name + ' \u00B7 you earn ' + b.member_pct + '% of what you spend.';
+    document.getElementById('claimMsg').textContent = '';
+    var box = document.getElementById('localClaimBox');
+    box.hidden = false;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function receiptDataUrl(file, cb){
+    var img = new Image();
+    var url = URL.createObjectURL(file);
+    img.onload = function(){
+      var scale = Math.min(1, 1200 / img.width);
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      cb(canvas.toDataURL('image/jpeg', 0.8));
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); cb(null); };
+    img.src = url;
+  }
+
+  document.getElementById('claimSubmit').addEventListener('click', function(){
+    var msg = document.getElementById('claimMsg');
+    var id = currentMemberId();
+    if (!id) { msg.textContent = 'Log in first (Account tab), then send your claim.'; return; }
+    if (!claimBizId) { msg.textContent = 'Pick a business from the list first.'; return; }
+    var amount = parseFloat(document.getElementById('claimAmount').value);
+    if (!amount || amount <= 0) { msg.textContent = 'Enter what you spent.'; return; }
+    var file = document.getElementById('claimReceipt').files[0];
+    if (!file) { msg.textContent = 'Add a photo of your receipt.'; return; }
+    msg.textContent = 'Sending\u2026';
+    receiptDataUrl(file, function(dataUrl){
+      if (!dataUrl) { msg.textContent = 'That photo could not be read \u2014 try another.'; return; }
+      fetch(API + '/local/claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ member_id: id, business_id: claimBizId, amount: amount, receipt: dataUrl })
+      }).then(function(r){ return r.json(); })
+        .then(function(j){
+          if (j && j.ok) {
+            msg.textContent = 'Claim sent \u2014 it is pending review. Approved cashback shows in your Wallet.';
+            document.getElementById('claimAmount').value = '';
+            document.getElementById('claimReceipt').value = '';
+            loadLocalClaims();
+          } else if (j && j.error === 'receipt_already_claimed') {
+            msg.textContent = 'That receipt has already been claimed.';
+          } else {
+            msg.textContent = 'The claim did not go through \u2014 try again in a bit.';
+          }
+        })
+        .catch(function(){ msg.textContent = 'The claim did not go through \u2014 try again in a bit.'; });
+    });
+  });
+
+  // A shop's QR code lands here with ?biz=<id> — open Local with the claim ready.
+  (function(){
+    var bizParam = new URLSearchParams(window.location.search).get('biz');
+    if (bizParam) setTimeout(function(){ showTab('local'); }, 350);
+  })();
+
   /* ---------- tabs ---------- */
   var tabBtns = document.querySelectorAll('.app-tab');
   var panels = {
     shopping: document.getElementById('panel-shopping'),
     wallet: document.getElementById('panel-wallet'),
-    account: document.getElementById('panel-account')
+    account: document.getElementById('panel-account'),
+    local: document.getElementById('panel-local')
   };
   function showTab(name){
+    if (name === 'local') initLocal();
     Object.keys(panels).forEach(function(k){ if (panels[k]) panels[k].hidden = k !== name; });
     Array.prototype.forEach.call(tabBtns, function(b){
       var on = b.getAttribute('data-tab') === name;

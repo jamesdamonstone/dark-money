@@ -271,6 +271,14 @@
     </div>
   </section>
 
+  <section aria-labelledby="localClaimsTitle" style="margin-top:34px">
+    <h2 id="localClaimsTitle" style="margin:0 0 6px">Local claims</h2>
+    <p style="margin:0 0 12px">Brick-and-mortar cashback claims (QR + receipt photo). Approving credits the member&rsquo;s wallet as a confirmed purchase.</p>
+    <button type="button" id="loadLocalClaimsBtn">Load local claims</button>
+    <p id="localClaimsMsg" style="margin:10px 0"></p>
+    <div id="localClaimsList"></div>
+  </section>
+
   <footer>
     <strong>Dark Money owner view.</strong> Member balances and payout batches are prepared from the commission ledger; this page shows the live signup registry.
   </footer>
@@ -508,6 +516,83 @@
       try { ownerKeyInput.focus(); } catch(e){}
     }
   })();
+})();
+</script>
+<script>
+(function(){
+  var API_BASE = "https://api.strangefawkes.com/api";
+  var btn = document.getElementById("loadLocalClaimsBtn");
+  var msg = document.getElementById("localClaimsMsg");
+  var list = document.getElementById("localClaimsList");
+  if (!btn) return;
+
+  function key(){
+    try { return sessionStorage.getItem("dm_admin_key") || ""; } catch(e){ return ""; }
+  }
+  function esc(v){
+    return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function money(n){ return "$" + (Number(n) || 0).toFixed(2); }
+
+  function load(){
+    var k = key();
+    if (!k) { msg.textContent = "Unlock the dashboard first — the owner key is needed."; return; }
+    msg.textContent = "Loading…";
+    fetch(API_BASE + "/admin/local-claims", { headers: { "X-Admin-Key": k } })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j || !j.ok) { msg.textContent = "Could not load claims (the key may have been rejected)."; return; }
+        var claims = j.claims || [];
+        msg.textContent = claims.length ? claims.length + " claim(s)" : "No local claims yet.";
+        list.innerHTML = claims.map(function(c){
+          var d = c.created_at ? new Date(c.created_at).toLocaleString("en-US") : "";
+          var actions = c.status === "pending"
+            ? '<button type="button" data-decide="approve" data-id="' + esc(c.id) + '">Approve</button> ' +
+              '<button type="button" data-decide="reject" data-id="' + esc(c.id) + '">Reject</button> '
+            : "";
+          return '<div style="border:1px solid #ccc;border-radius:10px;padding:12px;margin:0 0 10px">' +
+            '<strong>' + esc(c.business_name) + '</strong> · ' + esc(c.member_name || "") + ' (' + esc(c.member_id) + ')<br>' +
+            'Spent ' + money(c.amount) + ' · rate ' + esc(c.rate_pct) + '% · member gets ' + money(c.member_share) +
+            ' · <strong>' + esc(c.status) + '</strong>' + (d ? ' · ' + esc(d) : '') + '<br>' +
+            '<button type="button" data-receipt="' + esc(c.id) + '">View receipt</button> ' + actions +
+            '<div data-receipt-box="' + esc(c.id) + '"></div></div>';
+        }).join("");
+        Array.prototype.forEach.call(list.querySelectorAll("[data-receipt]"), function(b){
+          b.addEventListener("click", function(){
+            var id = b.getAttribute("data-receipt");
+            var box = list.querySelector('[data-receipt-box="' + id + '"]');
+            box.innerHTML = "Loading receipt…";
+            fetch(API_BASE + "/admin/local-receipt?id=" + encodeURIComponent(id), { headers: { "X-Admin-Key": key() } })
+              .then(function(r){ return r.json(); })
+              .then(function(j){
+                box.innerHTML = (j && j.ok && j.receipt)
+                  ? '<img src="' + j.receipt + '" alt="Receipt photo" style="max-width:100%;margin-top:8px;border-radius:8px" />'
+                  : "Receipt could not be loaded.";
+              })
+              .catch(function(){ box.innerHTML = "Receipt could not be loaded."; });
+          });
+        });
+        Array.prototype.forEach.call(list.querySelectorAll("[data-decide]"), function(b){
+          b.addEventListener("click", function(){
+            var id = b.getAttribute("data-id");
+            var decision = b.getAttribute("data-decide");
+            b.disabled = true;
+            fetch(API_BASE + "/admin/local-claim-decide", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "X-Admin-Key": key() },
+              body: JSON.stringify({ claim_id: id, decision: decision })
+            }).then(function(r){ return r.json(); })
+              .then(function(j){
+                if (j && j.ok) { msg.textContent = "Claim " + id + " " + (decision === "approve" ? "approved — member credited." : "rejected."); load(); }
+                else { msg.textContent = "That decision did not save — try again."; b.disabled = false; }
+              })
+              .catch(function(){ msg.textContent = "That decision did not save — try again."; b.disabled = false; });
+          });
+        });
+      })
+      .catch(function(){ msg.textContent = "Could not load claims."; });
+  }
+  btn.addEventListener("click", load);
 })();
 </script>
 </body>

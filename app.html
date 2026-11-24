@@ -265,6 +265,24 @@
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important}
   }
+  /* ---- sign-in wall ---- */
+  #signinWall{position:fixed;inset:0;z-index:300;background:var(--bg);overflow-y:auto;padding:28px 16px 48px}
+  #signinWall .wall-card{max-width:430px;margin:4vh auto 0;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+  #signinWall .wall-logo{display:block;margin:0 auto 10px;width:72px;height:72px;border-radius:16px}
+  #signinWall h1{margin:0;text-align:center;font-size:1.55rem}
+  #signinWall .wall-sub{margin:8px 0 0;text-align:center;color:var(--ink-2);font-size:.95rem}
+  #signinWall .wall-tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;margin:20px 0 18px}
+  #signinWall .wall-tab{flex:1;border:0;background:transparent;color:var(--ink-2);border-radius:999px;padding:9px 0;font:inherit;font-weight:600;cursor:pointer}
+  #signinWall .wall-tab.is-active{background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
+  #signinWall label{display:block;margin:14px 0 6px;font-weight:600;font-size:.92rem}
+  #signinWall input[type="email"],#signinWall input[type="text"],#signinWall input[type="password"],#signinWall select{width:100%;box-sizing:border-box;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+  #signinWall .wall-btn{width:100%;margin-top:18px;padding:12px;border-radius:10px;font-size:1rem}
+  #signinWall .wall-err{display:none;color:#d98a7a;margin:12px 0 0;font-size:.92rem}
+  #signinWall .wall-note{margin:14px 0 0;color:var(--ink-2);font-size:.88rem;text-align:center}
+  #signinWall .wall-radios{display:flex;gap:14px;margin-top:6px;font-size:.93rem}
+  #signinWall .wall-radios label{margin:0;font-weight:400;display:flex;gap:6px;align-items:center}
+  #signinWall .wall-agree{display:flex;gap:8px;align-items:flex-start;margin-top:16px;font-size:.88rem;color:var(--ink-2)}
+  #signinWall .wall-agree label{margin:0;font-weight:400}
 </style>
 </head>
 <body>
@@ -280,6 +298,60 @@
   </header>
 
   <main>
+    <!-- Sign-in wall: covers the app until the member logs in or joins. -->
+    <div id="signinWall" role="dialog" aria-modal="true" aria-labelledby="wallTitle">
+      <div class="wall-card">
+        <h1 id="wallTitle">Dark Money</h1>
+        <p class="wall-sub">Cashback on the shopping you already do. Members only &mdash; log in or join free.</p>
+        <div class="wall-tabs" role="tablist" aria-label="Log in or join">
+          <button type="button" class="wall-tab is-active" id="wallTabLogin" role="tab" aria-selected="true">Log in</button>
+          <button type="button" class="wall-tab" id="wallTabJoin" role="tab" aria-selected="false">Join free</button>
+        </div>
+
+        <div id="wallLoginPane">
+          <label for="wallEmail">Email</label>
+          <input id="wallEmail" type="email" placeholder="Email you joined with" autocomplete="email" spellcheck="false" />
+          <div id="wallPwRow">
+            <label for="wallPw">Password</label>
+            <input id="wallPw" type="password" placeholder="Password" autocomplete="current-password" />
+          </div>
+          <div id="wallIdRow" style="display:none">
+            <label for="wallId">Member ID</label>
+            <input id="wallId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
+          </div>
+          <button type="button" class="btn wall-btn" id="wallLoginBtn">Log in</button>
+          <p style="margin:10px 0 0"><a href="#" id="wallLoginToggle">Log in with member ID instead &rarr;</a></p>
+          <p class="wall-err" id="wallLoginError"></p>
+        </div>
+
+        <div id="wallJoinPane" hidden>
+          <label for="wallJoinName">Your name</label>
+          <input id="wallJoinName" type="text" placeholder="First and last name" autocomplete="name" spellcheck="false" />
+          <label for="wallJoinEmail">Email</label>
+          <input id="wallJoinEmail" type="email" placeholder="you@example.com" autocomplete="email" spellcheck="false" />
+          <label>How will you shop?</label>
+          <div class="wall-radios">
+            <label><input type="radio" name="wall-style" value="self" checked /> Myself</label>
+            <label><input type="radio" name="wall-style" value="agent" /> With my AI agent</label>
+          </div>
+          <label for="wallJoinPayout">Payout method</label>
+          <select id="wallJoinPayout">
+            <option>PayPal</option>
+            <option>Venmo</option>
+            <option>Cash App</option>
+            <option selected>Decide later</option>
+          </select>
+          <div class="wall-agree">
+            <input type="checkbox" id="wallJoinAgree" />
+            <label for="wallJoinAgree">I agree to the <a href="index.html#terms">Terms of Service</a> and <a href="index.html#privacy">Privacy Policy</a>.</label>
+          </div>
+          <button type="button" class="btn wall-btn" id="wallJoinBtn">Join free</button>
+          <p class="wall-err" id="wallJoinError"></p>
+          <p class="wall-note">Your member ID is issued instantly &mdash; no waiting.</p>
+        </div>
+      </div>
+    </div>
+
     <nav class="app-tabs" role="tablist" aria-label="Member sections">
       <button type="button" class="app-tab is-active" id="tabbtn-shopping" data-tab="shopping" role="tab" aria-selected="true">Shopping</button>
       <button type="button" class="app-tab" id="tabbtn-local" data-tab="local" role="tab" aria-selected="false">Local</button>
@@ -914,7 +986,12 @@
   var loginState = document.getElementById('loginState');
   var loginError = document.getElementById('loginError');
 
+  var signinWall = document.getElementById('signinWall');
+  function hideWall(){ if (signinWall) signinWall.style.display = 'none'; }
+  function showWall(){ if (signinWall) signinWall.style.display = ''; }
+
   function showLoggedIn(member){
+    hideWall();
     loginForm.style.display = 'none';
     memberBox.style.display = 'block';
     if (member && typeof member.has_password === 'boolean') {
@@ -943,6 +1020,7 @@
     if (member && member.member_id) { loyaltyCheckin(member.member_id); loadPurchases(member.member_id); }
   }
   function showLoggedOut(){
+    showWall();
     loginForm.style.display = 'block';
     memberBox.style.display = 'none';
     loginState.textContent = '';
@@ -1187,6 +1265,124 @@
       return;
     }
     showLoggedOut();
+  })();
+
+  /* ---------- sign-in wall wiring ---------- */
+  (function(){
+    var wallTabLogin = document.getElementById('wallTabLogin');
+    if (!wallTabLogin) return;
+    var wallTabJoin = document.getElementById('wallTabJoin');
+    var wallLoginPane = document.getElementById('wallLoginPane');
+    var wallJoinPane = document.getElementById('wallJoinPane');
+    function wallShow(join){
+      wallLoginPane.hidden = !!join;
+      wallJoinPane.hidden = !join;
+      wallTabLogin.classList.toggle('is-active', !join);
+      wallTabJoin.classList.toggle('is-active', !!join);
+      wallTabLogin.setAttribute('aria-selected', join ? 'false' : 'true');
+      wallTabJoin.setAttribute('aria-selected', join ? 'true' : 'false');
+    }
+    wallTabLogin.addEventListener('click', function(){ wallShow(false); });
+    wallTabJoin.addEventListener('click', function(){ wallShow(true); });
+
+    var wallErr = document.getElementById('wallLoginError');
+    function wallLoginFail(msg){ wallErr.textContent = msg; wallErr.style.display = 'block'; }
+    var wallUseId = false;
+    var wallToggle = document.getElementById('wallLoginToggle');
+    wallToggle.addEventListener('click', function(e){
+      e.preventDefault();
+      wallUseId = !wallUseId;
+      document.getElementById('wallPwRow').style.display = wallUseId ? 'none' : '';
+      document.getElementById('wallIdRow').style.display = wallUseId ? '' : 'none';
+      wallToggle.innerHTML = wallUseId ? 'Log in with password instead &rarr;' : 'Log in with member ID instead &rarr;';
+      wallErr.style.display = 'none';
+    });
+
+    var wallLoginBtn = document.getElementById('wallLoginBtn');
+    wallLoginBtn.addEventListener('click', function(){
+      wallErr.style.display = 'none';
+      var email = (document.getElementById('wallEmail').value || '').trim();
+      var payload, mismatchMsg;
+      if (wallUseId) {
+        var mid = (document.getElementById('wallId').value || '').trim();
+        if (!email || !mid) { wallLoginFail('Enter your email and your member ID.'); return; }
+        payload = { email: email, member_id: mid };
+        mismatchMsg = 'That email and member ID don\u2019t match our records.';
+      } else {
+        var pw = document.getElementById('wallPw').value || '';
+        if (!email || !pw) { wallLoginFail('Enter both your email and your password.'); return; }
+        payload = { email: email, password: pw };
+        mismatchMsg = 'That email and password don\u2019t match our records.';
+      }
+      wallLoginBtn.disabled = true;
+      wallLoginBtn.textContent = 'Logging in\u2026';
+      fetch(API + '/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
+        .then(function(res){
+          wallLoginBtn.disabled = false;
+          wallLoginBtn.textContent = 'Log in';
+          if (res.body && res.body.ok) {
+            applyMember(res.body.member.member_id, res.body.member);
+          } else if (res.body && res.body.error === 'no_password_set') {
+            wallLoginFail('No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password in Account.');
+          } else {
+            wallLoginFail(mismatchMsg);
+          }
+        })
+        .catch(function(){
+          wallLoginBtn.disabled = false;
+          wallLoginBtn.textContent = 'Log in';
+          wallLoginFail('Couldn\u2019t reach the login service. Check your connection and try again.');
+        });
+    });
+
+    var wallJoinErr = document.getElementById('wallJoinError');
+    function wallJoinFail(msg){ wallJoinErr.textContent = msg; wallJoinErr.style.display = 'block'; }
+    var wallJoinBtn = document.getElementById('wallJoinBtn');
+    wallJoinBtn.addEventListener('click', function(){
+      wallJoinErr.style.display = 'none';
+      var name = (document.getElementById('wallJoinName').value || '').trim();
+      var email = (document.getElementById('wallJoinEmail').value || '').trim();
+      var agree = document.getElementById('wallJoinAgree');
+      if (!name) { wallJoinFail('Please enter your name.'); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { wallJoinFail('Please enter a valid email address.'); return; }
+      if (!agree.checked) { wallJoinFail('Agreeing to the Terms of Service and Privacy Policy is required to join.'); return; }
+      var styleEl = document.querySelector('input[name="wall-style"]:checked');
+      var style = (styleEl && styleEl.value === 'agent') ? 'agent' : 'self';
+      var payoutMap = { 'PayPal': 'paypal', 'Venmo': 'venmo', 'Cash App': 'cashapp', 'Decide later': 'later' };
+      var payload = {
+        name: name,
+        email: email,
+        style: style,
+        payout: payoutMap[document.getElementById('wallJoinPayout').value] || 'later',
+        terms: true
+      };
+      var refParam = '';
+      try { refParam = new URLSearchParams(window.location.search).get('ref') || ''; } catch (e) {}
+      if (/^dm_[A-Za-z0-9]{10}$/.test(refParam)) payload.ref = refParam;
+      wallJoinBtn.disabled = true;
+      wallJoinBtn.textContent = 'Joining\u2026';
+      fetch(API + '/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
+        .then(function(res){
+          if (res.body && res.body.ok && res.body.app_url) { window.location.href = res.body.app_url; return; }
+          if (res.body && res.body.ok && res.body.member && res.body.member.member_id) { applyMember(res.body.member.member_id, res.body.member); return; }
+          wallJoinBtn.disabled = false;
+          wallJoinBtn.textContent = 'Join free';
+          wallJoinFail('Join failed \u2014 please try again.');
+        })
+        .catch(function(){
+          wallJoinBtn.disabled = false;
+          wallJoinBtn.textContent = 'Join free';
+          wallJoinFail('Couldn\u2019t reach the signup service. Check your connection and try again.');
+        });
+    });
   })();
 
   /* ---------- local (brick-and-mortar) ---------- */

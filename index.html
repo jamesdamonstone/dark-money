@@ -428,7 +428,7 @@
       </div>
       <div class="hero-stats" role="list">
         <div class="stat" role="listitem"><b>100+</b><span>stores and growing — most of them online-only brands you can earn at today.</span></div>
-        <div class="stat" role="listitem"><b>70%</b><span>of every commission goes to you. Founding members: 100% of your first purchase.</span></div>
+        <div class="stat" role="listitem"><b>70%</b><span>of every commission goes to you. Founding offer: the first 25 members to earn a confirmed commission keep 100% of it.</span></div>
         <div class="stat" role="listitem"><b><i>$</i>20</b><span>confirmed balance pays out — cash, not points or store credit.</span></div>
       </div>
     </div>
@@ -514,7 +514,7 @@
       {cls:"tool",who:"MCP tool call",html:"get_cashback_link(store: \u201CNordVPN\u201D, member_id: \u201Cdm_\u2026\u201D)\n\u2192 https://www.kqzyfj.com/click-101932824-12814518?sid=dm_\u2026",delay:1600,style:"background:#0d1220;border-style:dashed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;word-break:break-all"},
       {cls:"agent",who:"Their agent",html:"Buy through this link and you\u2019ll earn cashback on the subscription. You complete checkout \u2014 I never purchase for you.",delay:1500,style:"background:#20293d"},
       {cls:"human",who:"Human",html:"Done \u2014 checked out, $100 for the year.",delay:1600,style:"background:#1b2130;margin-left:auto"},
-      {cls:"system",who:"Dark Money",html:"Commission confirmed: $40.00\nFounding member \u2014 100% of your first commission is yours.\nBalance: $40.00 \u2014 past the $20 payout threshold.",delay:1800,style:"background:#14231a;white-space:pre-wrap"},
+      {cls:"system",who:"Dark Money",html:"Commission confirmed: $40.00\nFounding offer \u2014 100% of your first confirmed commission is yours.\nBalance: $40.00 \u2014 past the $20 payout threshold.",delay:1800,style:"background:#14231a;white-space:pre-wrap"},
       {cls:"agent",who:"Their agent",html:"That\u2019s the whole trick: the commission existed either way. Now it pays you instead of disappearing.",delay:1500,style:"background:#20293d"}
     ];
     var stage=document.getElementById("dm-demo-stage"),replay=document.getElementById("dm-demo-replay"),status=document.getElementById("dm-demo-status"),timers=[];
@@ -531,7 +531,7 @@
           requestAnimationFrame(function(){d.style.opacity="1";d.style.transform="none";});
         },t));
       });
-      timers.push(setTimeout(function(){replay.disabled=false;status.textContent="Done. Founding offer: the first 25 members earn 100% of their first commission.";},t+700));
+      timers.push(setTimeout(function(){replay.disabled=false;status.textContent="Done. Founding offer: the first 25 members to earn a confirmed commission keep 100% of it.";},t+700));
     }
     replay.addEventListener("click",play);
     play();
@@ -641,7 +641,7 @@
       <p class="sec-tag">Join</p>
       <h2>Join Dark Money — membership is free.</h2>
       <p class="lede" style="max-width:560px;margin:0 auto 8px">Free and instant — join and you land on your personal links page with your member ID.</p>
-      <p class="lede" style="max-width:560px;margin:0 auto 22px"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of the commission</strong> on their first confirmed purchase. After that, you keep <strong>70%</strong> of every commission, paid out at <strong>$20</strong> confirmed.</p>
+      <p class="lede" style="max-width:560px;margin:0 auto 22px"><strong>Founding offer:</strong> the first 25 members to earn a confirmed commission get <strong>100% of that commission</strong>. After that, you keep <strong>70%</strong> of every commission, paid out at <strong>$20</strong> confirmed.</p>
       <p>
         <button type="button" class="btn btn-gold" data-open-auth="join">Join free</button>
         <button type="button" class="btn btn-ghost" data-open-auth="login">Log in</button>
@@ -818,7 +818,7 @@
         <ul>
           <li>Cashback is earned by completing a purchase at a participating store after arriving through a Dark Money tracked link, where the purchase is successfully attributed by the store's affiliate network.</li>
           <li>Members receive 70% of the commission Dark Money is paid on their purchase, and Dark Money retains 30%.</li>
-          <li><strong>Founding members:</strong> the first 25 members to join receive 100% of the commission on their first confirmed purchase (Dark Money retains 0% on that purchase). The founding list is kept in join order and closes at 25 members.</li>
+          <li><strong>Founding members:</strong> the first 25 members to earn a confirmed commission receive 100% of that commission (Dark Money retains 0% on that purchase). The founding list is kept in the order commissions confirm and closes at 25 members.</li>
           <li><strong>Rates vary by store.</strong> Cashback percentages and amounts are set by each store's affiliate program, differ between stores and offers, and can change or end at any time. The rate that applies is the rate in effect for the confirmed commission on your purchase.</li>
           <li>Clicking other coupon, cashback, or referral links after a Dark Money link may cause the purchase to be attributed elsewhere, in which case no cashback is earned.</li>
         </ul>
@@ -980,6 +980,16 @@
         return res.json().catch(function () { return null; }).then(function (data) {
           if (res.ok && data && data.ok && data.app_url) {
             window.location.href = data.app_url;
+            return;
+          }
+          if (data && data.error === 'email_taken') {
+            showError('That email is already a member — log in instead.');
+            resetSubmit();
+            return;
+          }
+          if (data && data.error === 'too_many_attempts') {
+            showError('Too many signups from this connection — wait a bit and try again.');
+            resetSubmit();
             return;
           }
           throw new Error('Join failed');

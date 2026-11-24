@@ -1397,6 +1397,8 @@
           if (res.body && res.body.ok && res.body.member && res.body.member.member_id) { applyMember(res.body.member.member_id, res.body.member); return; }
           wallJoinBtn.disabled = false;
           wallJoinBtn.textContent = 'Join free';
+          if (res.body && res.body.error === 'email_taken') { wallJoinFail('That email is already a member \u2014 log in instead.'); return; }
+          if (res.body && res.body.error === 'too_many_attempts') { wallJoinFail('Too many signups from this connection \u2014 wait a bit and try again.'); return; }
           wallJoinFail('Join failed \u2014 please try again.');
         })
         .catch(function(){

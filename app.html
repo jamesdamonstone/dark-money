@@ -304,6 +304,14 @@
   .loy-bar-fill{height:100%;background:linear-gradient(90deg,var(--brass-dim),var(--brass-bright));width:0;transition:width .5s ease}
   .loy-next{margin:10px 0 0;color:var(--ink);font-size:.94rem}
   .loy-how{margin:6px 0 0;color:var(--ink-2);font-size:.88rem}
+  .how-btn{margin-top:10px;background:none;border:0;color:#c9a227;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
+  #infoModal{position:fixed;inset:0;z-index:400;background:rgba(6,9,14,.72);overflow-y:auto;padding:8vh 16px 24px}
+  #infoModal[hidden]{display:none}
+  #infoModal .modal-card{max-width:430px;margin:0 auto;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:24px}
+  #infoModal h2{margin:0;font-size:1.25rem}
+  #infoModal h3{margin:18px 0 6px;font-size:1rem;color:var(--ink)}
+  #infoModal p{margin:0 0 8px;color:var(--ink-2);line-height:1.55}
+  #infoModal .wall-btn{width:100%;margin-top:14px}
   /* ---- promo codes card ---- */
   .promo-card{margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--panel)}
   .promo-card h3{margin:0;font-family:"Cinzel",serif;letter-spacing:.14em;text-transform:uppercase;font-size:.86rem;color:var(--brass-bright)}
@@ -349,6 +357,21 @@
   </header>
 
   <main>
+
+    <!-- Info popup: the loyalty + referral explanations live here, off the cards. -->
+    <div id="infoModal" hidden role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
+      <div class="modal-card">
+        <h2 id="infoModalTitle">How loyalty &amp; referrals work</h2>
+        <h3>Loyalty streak</h3>
+        <p>Check in once a day to grow your share of every commission: +0.1% on day 2, then +0.1% more each week you keep the streak alive, up to +5%.</p>
+        <p>Miss a day and the streak starts over &mdash; only the streak. Your referral bonus is never touched.</p>
+        <h3>Referral bonus</h3>
+        <p>Share your invite link from Account. Every 20 members you referred who complete a confirmed purchase adds a permanent +0.1% to your share, up to +5% more. Signing up alone doesn&rsquo;t count &mdash; a referral counts once they&rsquo;ve bought and the purchase is confirmed.</p>
+        <p>Permanent means it never resets, even if your streak lapses. The two bonuses stack &mdash; and your share can never exceed 100% of the commission a purchase earns.</p>
+        <button type="button" class="btn wall-btn" id="infoModalClose">Got it</button>
+      </div>
+    </div>
+
     <!-- Sign-in wall: covers the app until the member logs in or joins. -->
     <div id="signinWall" role="dialog" aria-modal="true" aria-labelledby="wallTitle">
       <div class="wall-card">
@@ -370,8 +393,11 @@
             <label for="wallId">Member ID</label>
             <input id="wallId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
           </div>
+          <label style="display:flex;gap:8px;align-items:center;margin:12px 0 0;font-weight:400"><input type="checkbox" id="wallKeep" checked /> Keep me logged in</label>
           <button type="button" class="btn wall-btn" id="wallLoginBtn">Log in</button>
           <p style="margin:10px 0 0"><a href="#" id="wallLoginToggle">Log in with member ID instead &rarr;</a></p>
+          <p style="margin:8px 0 0"><a href="#" id="wallForgot">Forgot your password?</a></p>
+          <p id="wallForgotMsg" style="display:none;margin:8px 0 0;color:var(--ink-2)"></p>
           <p class="wall-err" id="wallLoginError"></p>
         </div>
 
@@ -443,7 +469,7 @@
             <div class="loy-reward-top" style="margin-top:14px"><span>Referral bonus <strong id="loyRefBonus">+0.0%</strong></span><span class="loy-bonus"><span id="loyRefCount">0</span> buying referrals &middot; permanent</span></div>
             <div class="loy-bar"><div class="loy-bar-fill" id="loyRefFill" style="background:linear-gradient(90deg,#5d7a3a,var(--good))"></div></div>
             <p id="loyRefNext" class="loy-next" style="font-size:.88rem;color:var(--ink-2)"></p>
-            <p class="loy-how">Check in once a day to grow your share: +0.1% on day 2, then +0.1% more each week, up to +5%. Referrals stack on top: every 20 referred members who complete a confirmed purchase adds a permanent +0.1%, up to +5% more &mdash; that part never resets. Miss a day and only the streak starts over. And a share can never exceed 100% of the commission a purchase earns.</p>
+            <button type="button" class="how-btn" id="loyHowBtn">How loyalty &amp; referrals work &rarr;</button>
           </div>
         </div>
 
@@ -644,7 +670,10 @@
             <input id="loginId" type="text" placeholder="Member ID (dm_&hellip;)" autocomplete="off" spellcheck="false" />
             <button type="button" class="btn" id="loginIdBtn">Log in</button>
           </div>
+          <label style="display:flex;gap:8px;align-items:center;margin:10px 0 0;font-weight:400"><input type="checkbox" id="loginKeep" checked /> Keep me logged in</label>
           <p style="margin:8px 0 0"><a href="#" id="loginToggle">Log in with member ID instead &rarr;</a></p>
+          <p style="margin:8px 0 0"><a href="#" id="loginForgot">Forgot your password?</a></p>
+          <p id="loginForgotMsg" style="display:none;margin:8px 0 0;color:var(--ink-2)"></p>
           <p id="loginError" style="display:none;color:#d98a7a"></p>
           <p>New here? <a href="index.html#join">Join on the home page</a> &mdash; it takes a few seconds and your ID is issued instantly.</p>
         </div>
@@ -657,6 +686,7 @@
           <div id="inviteBox" style="margin-top:18px">
             <label for="inviteLink">Invite friends</label>
             <p style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">Anyone who joins through your link is counted as your referral.</p>
+            <p style="margin:0 0 8px"><button type="button" class="how-btn" id="refHowBtn" style="margin-top:0">How referrals work &rarr;</button></p>
             <div class="member-row">
               <input id="inviteLink" type="text" readonly value="" autocomplete="off" spellcheck="false" />
               <button type="button" class="btn secondary small" id="inviteCopyBtn">Copy link</button>
@@ -666,9 +696,6 @@
           <div id="pwBox" style="margin-top:18px">
             <label for="newPw" id="pwLabel">Set a login password</label>
             <p id="pwHint" style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">With a password you can log in with just your email &mdash; no need to keep your member ID handy, and your password manager can save it like any other login.</p>
-            <div class="member-row" style="margin-bottom:8px">
-              <input id="pwEmail" type="email" placeholder="Email on your account" autocomplete="email" />
-            </div>
             <div class="member-row" id="pwCurrentRow" style="margin-bottom:8px;display:none">
               <input id="pwCurrent" type="password" placeholder="Current password" autocomplete="current-password" />
             </div>
@@ -680,6 +707,21 @@
               <button type="button" class="btn secondary small" id="pwBtn">Save password</button>
             </div>
             <p id="pwMsg" style="display:none"></p>
+          </div>
+
+          <div id="emailBox" style="margin-top:18px">
+            <label for="newEmail">Email address</label>
+            <p style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">Your current email is <strong id="curEmail" style="color:var(--ink)"></strong>. Changing it sends a verification link to the new address, and a notice to the old one.</p>
+            <div class="member-row" style="margin-bottom:8px">
+              <input id="newEmail" type="email" placeholder="New email address" autocomplete="email" />
+            </div>
+            <div class="member-row" id="emCurrentRow" style="margin-bottom:8px;display:none">
+              <input id="emCurrent" type="password" placeholder="Current password" autocomplete="current-password" />
+            </div>
+            <div class="member-row">
+              <button type="button" class="btn secondary small" id="emBtn">Change email</button>
+            </div>
+            <p id="emMsg" style="display:none"></p>
           </div>
           <p><button type="button" class="btn secondary small" id="logoutBtn">Log out</button></p>
         </div>
@@ -1115,19 +1157,12 @@
   if (payoutBtn) {
     payoutBtn.addEventListener('click', function(){
       var id = (memberInput.value || '').trim();
-      var payoutEmail = '';
-      try { payoutEmail = localStorage.getItem('dm_member_email') || ''; } catch (e) {}
-      if (!payoutEmail) {
-        payoutEmail = (window.prompt('Enter the email on your account to confirm it\u2019s you:') || '').trim();
-        if (!payoutEmail) { payoutMsg.textContent = 'We need the email on your account to take a payout request.'; return; }
-        try { localStorage.setItem('dm_member_email', payoutEmail); } catch (e) {}
-      }
       payoutBtn.disabled = true;
       payoutBtn.textContent = 'Requesting\u2026';
       fetch(API + '/payout-request', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ member_id: id, email: payoutEmail })
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ member_id: id })
       }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
         .then(function(res){
           payoutBtn.textContent = 'Request payout';
@@ -1136,10 +1171,9 @@
             payoutMsg.textContent = res.body.existing
               ? 'You already have a request in — it\u2019s in the queue.'
               : 'Request received — payouts are sent manually by the owner, and yours is in the queue.';
-          } else if (res.body && res.body.error === 'email_mismatch') {
+          } else if (res.body && res.body.error === 'session_required') {
             payoutBtn.disabled = false;
-            try { localStorage.removeItem('dm_member_email'); } catch (e) {}
-            payoutMsg.textContent = 'That email doesn\u2019t match this account \u2014 tap again and re-enter it.';
+            payoutMsg.textContent = 'Your session expired \u2014 log in again, then request your payout.';
           } else {
             payoutBtn.disabled = false;
             payoutMsg.textContent = 'That didn\u2019t go through — try again in a moment.';
@@ -1154,6 +1188,55 @@
   }
 
   // ---- Member login (email + member ID against the signup service) ----
+  // ---- Sessions (redesign, Nov 25, 2026) ----
+  // Login returns a session token; member calls carry it as a Bearer
+  // header instead of trusting the member ID. "Keep me logged in"
+  // (default) keeps the token in localStorage against a 90-day sliding
+  // server session, so a member — or their agent — stays logged in.
+  // Without it, the token lives in sessionStorage only.
+  function getToken(){
+    try { return localStorage.getItem('dm_member_token') || sessionStorage.getItem('dm_member_token') || ''; } catch (e) { return ''; }
+  }
+  function setToken(token, remember){
+    clearToken();
+    try {
+      if (remember) localStorage.setItem('dm_member_token', token);
+      else sessionStorage.setItem('dm_member_token', token);
+    } catch (e) {}
+  }
+  function clearToken(){
+    try { localStorage.removeItem('dm_member_token'); } catch (e) {}
+    try { sessionStorage.removeItem('dm_member_token'); } catch (e) {}
+  }
+  function authHeaders(extra){
+    var h = extra || {};
+    var t = getToken();
+    if (t) h['Authorization'] = 'Bearer ' + t;
+    return h;
+  }
+  function storeSession(resBody, email, remember){
+    if (resBody && resBody.session_token) setToken(resBody.session_token, remember !== false);
+    if (email) { try { localStorage.setItem('dm_member_email', email); } catch (e) {} }
+  }
+  function doForgot(email, msgEl){
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msgEl.textContent = 'Enter the email on your account above first.';
+      msgEl.style.display = 'block';
+      return;
+    }
+    fetch(API + '/forgot-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).then(function(){
+      msgEl.textContent = 'If that email has an account, a reset link is on its way \u2014 check your inbox.';
+      msgEl.style.display = 'block';
+    }).catch(function(){
+      msgEl.textContent = 'Couldn\u2019t reach the service \u2014 try again in a moment.';
+      msgEl.style.display = 'block';
+    });
+  }
+
   var API = 'https://api.strangefawkes.com/api';
   var loginForm = document.getElementById('loginForm');
   var memberBox = document.getElementById('memberBox');
@@ -1176,8 +1259,10 @@
       if (pwHint) pwHint.style.display = member.has_password ? 'none' : 'block';
       var pwCurrentRow = document.getElementById('pwCurrentRow');
       if (pwCurrentRow) pwCurrentRow.style.display = member.has_password ? '' : 'none';
-      var pwEmailEl = document.getElementById('pwEmail');
-      if (pwEmailEl && !pwEmailEl.value) { try { pwEmailEl.value = localStorage.getItem('dm_member_email') || ''; } catch (e) {} }
+      var curEmailEl = document.getElementById('curEmail');
+      if (curEmailEl && member.email) curEmailEl.textContent = member.email;
+      var emCurrentRow = document.getElementById('emCurrentRow');
+      if (emCurrentRow) emCurrentRow.style.display = member.has_password ? '' : 'none';
     }
     if (member && member.name) {
       var joined = member.joined_at ? new Date(member.joined_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
@@ -1225,6 +1310,8 @@
   });
 
   function doLogin(payload, btn, mismatchMsg){
+    var keepEl = document.getElementById('loginKeep');
+    payload.remember = !keepEl || keepEl.checked;
     loginError.style.display = 'none';
     btn.disabled = true;
     btn.textContent = 'Logging in\u2026';
@@ -1237,7 +1324,7 @@
         btn.disabled = false;
         btn.textContent = 'Log in';
         if (res.body && res.body.ok) {
-          try { if (payload.email) localStorage.setItem('dm_member_email', payload.email); } catch (e) {}
+          storeSession(res.body, payload.email, payload.remember);
           applyMember(res.body.member.member_id, res.body.member);
         } else if (res.body && res.body.error === 'no_password_set') {
           loginError.textContent = 'No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password right here in Account.';
@@ -1302,24 +1389,21 @@
 
   var pwBtn = document.getElementById('pwBtn');
   if (pwBtn) pwBtn.addEventListener('click', function(){
-    var id = (memberInput.value || '').trim();
     var p1 = document.getElementById('newPw').value || '';
     var p2 = document.getElementById('newPw2').value || '';
-    var pwEmail = (document.getElementById('pwEmail').value || '').trim();
     var pwCurrentEl = document.getElementById('pwCurrent');
     var pwCurrent = pwCurrentEl ? (pwCurrentEl.value || '') : '';
     var msg = document.getElementById('pwMsg');
     msg.style.display = 'block';
-    if (!/^dm_[A-Za-z0-9]{10}$/.test(id)) { msg.textContent = 'Log in first, then set your password.'; return; }
-    if (!pwEmail) { msg.textContent = 'Enter the email on your account to confirm it\u2019s you.'; return; }
+    if (!getToken()) { msg.textContent = 'Log in first, then set your password.'; return; }
     if (p1.length < 8) { msg.textContent = 'Use at least 8 characters.'; return; }
     if (p1 !== p2) { msg.textContent = 'The two passwords don\u2019t match.'; return; }
     pwBtn.disabled = true;
     pwBtn.textContent = 'Saving\u2026';
-    fetch(API + '/set-password', {
+    fetch(API + '/change-password', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ member_id: id, email: pwEmail, password: p1, current_password: pwCurrent })
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ password: p1, current_password: pwCurrent })
     }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
       .then(function(res){
         pwBtn.disabled = false;
@@ -1328,15 +1412,18 @@
           document.getElementById('newPw').value = '';
           document.getElementById('newPw2').value = '';
           if (pwCurrentEl) pwCurrentEl.value = '';
-          try { localStorage.setItem('dm_member_email', pwEmail); } catch (e) {}
           document.getElementById('pwLabel').textContent = 'Change your login password';
           var hint = document.getElementById('pwHint');
           if (hint) hint.style.display = 'none';
+          var curRow = document.getElementById('pwCurrentRow');
+          if (curRow) curRow.style.display = '';
+          var emRow = document.getElementById('emCurrentRow');
+          if (emRow) emRow.style.display = '';
           msg.textContent = 'Saved. You can now log in with your email and this password.';
-        } else if (res.body && res.body.error === 'email_mismatch') {
-          msg.textContent = 'That email doesn\u2019t match this account \u2014 check it and try again.';
-        } else if (res.body && (res.body.error === 'current_password_required' || res.body.error === 'invalid_credentials')) {
-          msg.textContent = 'Enter your current password to change it.';
+        } else if (res.body && res.body.error === 'invalid_credentials') {
+          msg.textContent = 'Your current password didn\u2019t match \u2014 try again.';
+        } else if (res.body && res.body.error === 'session_required') {
+          msg.textContent = 'Your session expired \u2014 log in again, then set your password.';
         } else {
           msg.textContent = 'That didn\u2019t save \u2014 try again in a moment.';
         }
@@ -1346,6 +1433,57 @@
         pwBtn.textContent = 'Save password';
         msg.textContent = 'Couldn\u2019t reach the service \u2014 try again in a moment.';
       });
+  });
+
+  var emBtn = document.getElementById('emBtn');
+  if (emBtn) emBtn.addEventListener('click', function(){
+    var newEmail = (document.getElementById('newEmail').value || '').trim();
+    var emCurrentEl = document.getElementById('emCurrent');
+    var emCurrent = emCurrentEl ? (emCurrentEl.value || '') : '';
+    var msg = document.getElementById('emMsg');
+    msg.style.display = 'block';
+    if (!getToken()) { msg.textContent = 'Log in first, then change your email.'; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) { msg.textContent = 'Enter a valid email address.'; return; }
+    emBtn.disabled = true;
+    emBtn.textContent = 'Saving\u2026';
+    fetch(API + '/change-email', {
+      method: 'POST',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ new_email: newEmail, current_password: emCurrent })
+    }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
+      .then(function(res){
+        emBtn.disabled = false;
+        emBtn.textContent = 'Change email';
+        if (res.body && res.body.ok) {
+          var cur = document.getElementById('curEmail');
+          if (cur) cur.textContent = res.body.email;
+          try { localStorage.setItem('dm_member_email', res.body.email); } catch (e) {}
+          document.getElementById('newEmail').value = '';
+          if (emCurrentEl) emCurrentEl.value = '';
+          msg.textContent = 'Email changed. We sent a verification link to the new address \u2014 click it to confirm it\u2019s yours.';
+        } else if (res.body && res.body.error === 'email_taken') {
+          msg.textContent = 'That email is already used by another account.';
+        } else if (res.body && res.body.error === 'email_unchanged') {
+          msg.textContent = 'That\u2019s already the email on your account.';
+        } else if (res.body && res.body.error === 'invalid_credentials') {
+          msg.textContent = 'Your current password didn\u2019t match \u2014 try again.';
+        } else if (res.body && res.body.error === 'session_required') {
+          msg.textContent = 'Your session expired \u2014 log in again, then change your email.';
+        } else {
+          msg.textContent = 'That didn\u2019t save \u2014 try again in a moment.';
+        }
+      })
+      .catch(function(){
+        emBtn.disabled = false;
+        emBtn.textContent = 'Change email';
+        msg.textContent = 'Couldn\u2019t reach the service \u2014 try again in a moment.';
+      });
+  });
+
+  var loginForgot = document.getElementById('loginForgot');
+  if (loginForgot) loginForgot.addEventListener('click', function(e){
+    e.preventDefault();
+    doForgot((document.getElementById('loginEmail').value || '').trim(), document.getElementById('loginForgotMsg'));
   });
 
   function localToday(){
@@ -1417,7 +1555,7 @@
   }
   function money(n){ return '$' + (Number(n) || 0).toFixed(2); }
   function loadPurchases(memberId){
-    fetch(API + '/purchases?id=' + encodeURIComponent(memberId))
+    fetch(API + '/purchases?id=' + encodeURIComponent(memberId), { headers: authHeaders() })
       .then(function(r){ return r.json(); })
       .then(function(j){
         if (!j || !j.ok) return;
@@ -1461,7 +1599,7 @@
   var loyMemberId = null;
   function loadLoyalty(memberId){
     loyMemberId = memberId;
-    fetch(API + '/loyalty?id=' + encodeURIComponent(memberId) + '&date=' + encodeURIComponent(localToday()))
+    fetch(API + '/loyalty?id=' + encodeURIComponent(memberId) + '&date=' + encodeURIComponent(localToday()), { headers: authHeaders() })
       .then(function(r){ return r.json(); })
       .then(function(j){ renderLoyalty(j); })
       .catch(function(){});
@@ -1472,7 +1610,7 @@
     if (btn) { btn.disabled = true; btn.textContent = 'Checking in\u2026'; }
     fetch(API + '/checkin', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
       body: JSON.stringify({ member_id: loyMemberId, date: localToday() })
     }).then(function(r){ return r.json(); })
       .then(function(j){ renderLoyalty(j); })
@@ -1514,36 +1652,33 @@
   renderPromos();
 
   document.getElementById('logoutBtn').addEventListener('click', function(){
+    if (getToken()) { try { fetch(API + '/logout', { method: 'POST', headers: authHeaders() }); } catch (e) {} }
+    clearToken();
     try { localStorage.removeItem('dm_member_id'); } catch (e) {}
     try { localStorage.removeItem('dm_member_email'); } catch (e) {}
     window.location.hash = '';
     window.location.reload();
   });
 
-  // Session restore: URL hash (fresh from joining) wins, then the saved login.
+  // Session restore: a stored session token is the login now. The URL
+  // hash (fresh from a join redirect or an old invite link) only
+  // identifies the member — it no longer logs anyone in by itself.
   (function(){
-    var match = (window.location.hash || '').match(/dm_[A-Za-z0-9]{10}/);
-    if (match) {
-      applyMember(match[0], null);
-      fetch(API + '/member?id=' + encodeURIComponent(match[0]))
-        .then(function(r){ return r.json(); })
-        .then(function(j){ if (j && j.ok) showLoggedIn(j.member); })
-        .catch(function(){});
-      return;
-    }
-    var saved = null;
-    try { saved = localStorage.getItem('dm_member_id'); } catch (e) {}
-    if (saved && /^dm_[A-Za-z0-9]{10}$/.test(saved)) {
-      memberInput.value = saved;
-      memberBox.style.display = 'block';
-      loginForm.style.display = 'none';
-      fetch(API + '/member?id=' + encodeURIComponent(saved))
+    if (getToken()) {
+      fetch(API + '/session', { headers: authHeaders() })
         .then(function(r){ return r.json(); })
         .then(function(j){
-          if (j && j.ok) { showLoggedIn(j.member); openAllPanels(); }
-          else { showLoggedOut(); }
+          if (j && j.ok && j.member) { applyMember(j.member.member_id, j.member); }
+          else { clearToken(); showLoggedOut(); }
         })
-        .catch(function(){ showLoggedIn({ member_id: saved }); openAllPanels(); });
+        .catch(function(){ showLoggedOut(); });
+      return;
+    }
+    var match = (window.location.hash || '').match(/dm_[A-Za-z0-9]{10}/);
+    if (match) {
+      showLoggedOut();
+      var wallIdEl = document.getElementById('wallId');
+      if (wallIdEl) wallIdEl.value = match[0];
       return;
     }
     showLoggedOut();
@@ -1596,6 +1731,7 @@
         payload = { email: email, password: pw };
         mismatchMsg = 'That email and password don\u2019t match our records.';
       }
+      payload.remember = document.getElementById('wallKeep').checked;
       wallLoginBtn.disabled = true;
       wallLoginBtn.textContent = 'Logging in\u2026';
       fetch(API + '/login', {
@@ -1607,7 +1743,7 @@
           wallLoginBtn.disabled = false;
           wallLoginBtn.textContent = 'Log in';
           if (res.body && res.body.ok) {
-            try { localStorage.setItem('dm_member_email', email); } catch (e) {}
+            storeSession(res.body, email, payload.remember);
             applyMember(res.body.member.member_id, res.body.member);
           } else if (res.body && res.body.error === 'no_password_set') {
             wallLoginFail('No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password in Account.');
@@ -1624,6 +1760,12 @@
           wallLoginBtn.textContent = 'Log in';
           wallLoginFail('Couldn\u2019t reach the login service. Check your connection and try again.');
         });
+    });
+
+    var wallForgot = document.getElementById('wallForgot');
+    if (wallForgot) wallForgot.addEventListener('click', function(e){
+      e.preventDefault();
+      doForgot((document.getElementById('wallEmail').value || '').trim(), document.getElementById('wallForgotMsg'));
     });
 
     var wallJoinErr = document.getElementById('wallJoinError');
@@ -1655,6 +1797,7 @@
       var refParam = '';
       try { refParam = new URLSearchParams(window.location.search).get('ref') || ''; } catch (e) {}
       if (/^(dm_[A-Za-z0-9]{10}|dmr_[A-Za-z0-9]{8})$/.test(refParam)) payload.ref = refParam;
+      payload.remember = true;
       wallJoinBtn.disabled = true;
       wallJoinBtn.textContent = 'Joining\u2026';
       fetch(API + '/join', {
@@ -1663,6 +1806,7 @@
         body: JSON.stringify(payload)
       }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
         .then(function(res){
+          if (res.body && res.body.ok) storeSession(res.body, email, true);
           if (res.body && res.body.ok && res.body.app_url) { window.location.href = res.body.app_url; return; }
           if (res.body && res.body.ok && res.body.member && res.body.member.member_id) { applyMember(res.body.member.member_id, res.body.member); return; }
           wallJoinBtn.disabled = false;
@@ -1747,7 +1891,7 @@
       box.innerHTML = '<p style="margin:0;color:var(--ink-2)">Log in and your claims show up here.</p>';
       return;
     }
-    fetch(API + '/local/claims?id=' + encodeURIComponent(id))
+    fetch(API + '/local/claims?id=' + encodeURIComponent(id), { headers: authHeaders() })
       .then(function(r){ return r.json(); })
       .then(function(j){
         if (!j || !j.ok || !j.claims || !j.claims.length) {
@@ -1828,7 +1972,7 @@
       if (!dataUrl) { msg.textContent = 'That photo could not be read \u2014 try another.'; return; }
       fetch(API + '/local/claim', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ member_id: id, business_id: claimBizId, amount: amount, receipt: dataUrl })
       }).then(function(r){ return r.json(); })
         .then(function(j){
@@ -1851,6 +1995,22 @@
   (function(){
     var bizParam = new URLSearchParams(window.location.search).get('biz');
     if (bizParam) setTimeout(function(){ showTab('local'); }, 350);
+  })();
+
+  /* ---------- info popup (loyalty + referral explanations) ---------- */
+  (function(){
+    var modal = document.getElementById('infoModal');
+    if (!modal) return;
+    function open(e){ if (e) e.preventDefault(); modal.hidden = false; }
+    function close(){ modal.hidden = true; }
+    var b1 = document.getElementById('loyHowBtn');
+    if (b1) b1.addEventListener('click', open);
+    var b2 = document.getElementById('refHowBtn');
+    if (b2) b2.addEventListener('click', open);
+    var c = document.getElementById('infoModalClose');
+    if (c) c.addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) close(); });
   })();
 
   /* ---------- tabs ---------- */

@@ -667,6 +667,12 @@
             <label for="newPw" id="pwLabel">Set a login password</label>
             <p id="pwHint" style="margin:4px 0 8px;color:var(--ink-2);font-size:.92rem">With a password you can log in with just your email &mdash; no need to keep your member ID handy, and your password manager can save it like any other login.</p>
             <div class="member-row" style="margin-bottom:8px">
+              <input id="pwEmail" type="email" placeholder="Email on your account" autocomplete="email" />
+            </div>
+            <div class="member-row" id="pwCurrentRow" style="margin-bottom:8px;display:none">
+              <input id="pwCurrent" type="password" placeholder="Current password" autocomplete="current-password" />
+            </div>
+            <div class="member-row" style="margin-bottom:8px">
               <input id="newPw" type="password" name="new-password" placeholder="New password (8+ characters)" autocomplete="new-password" />
             </div>
             <div class="member-row">
@@ -1079,12 +1085,19 @@
   if (payoutBtn) {
     payoutBtn.addEventListener('click', function(){
       var id = (memberInput.value || '').trim();
+      var payoutEmail = '';
+      try { payoutEmail = localStorage.getItem('dm_member_email') || ''; } catch (e) {}
+      if (!payoutEmail) {
+        payoutEmail = (window.prompt('Enter the email on your account to confirm it\u2019s you:') || '').trim();
+        if (!payoutEmail) { payoutMsg.textContent = 'We need the email on your account to take a payout request.'; return; }
+        try { localStorage.setItem('dm_member_email', payoutEmail); } catch (e) {}
+      }
       payoutBtn.disabled = true;
       payoutBtn.textContent = 'Requesting\u2026';
       fetch(API + '/payout-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ member_id: id })
+        body: JSON.stringify({ member_id: id, email: payoutEmail })
       }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
         .then(function(res){
           payoutBtn.textContent = 'Request payout';
@@ -1093,6 +1106,10 @@
             payoutMsg.textContent = res.body.existing
               ? 'You already have a request in — it\u2019s in the queue.'
               : 'Request received — payouts are sent manually by the owner, and yours is in the queue.';
+          } else if (res.body && res.body.error === 'email_mismatch') {
+            payoutBtn.disabled = false;
+            try { localStorage.removeItem('dm_member_email'); } catch (e) {}
+            payoutMsg.textContent = 'That email doesn\u2019t match this account \u2014 tap again and re-enter it.';
           } else {
             payoutBtn.disabled = false;
             payoutMsg.textContent = 'That didn\u2019t go through — try again in a moment.';
@@ -1127,6 +1144,10 @@
       var pwHint = document.getElementById('pwHint');
       if (pwLabel) pwLabel.textContent = member.has_password ? 'Change your login password' : 'Set a login password';
       if (pwHint) pwHint.style.display = member.has_password ? 'none' : 'block';
+      var pwCurrentRow = document.getElementById('pwCurrentRow');
+      if (pwCurrentRow) pwCurrentRow.style.display = member.has_password ? '' : 'none';
+      var pwEmailEl = document.getElementById('pwEmail');
+      if (pwEmailEl && !pwEmailEl.value) { try { pwEmailEl.value = localStorage.getItem('dm_member_email') || ''; } catch (e) {} }
     }
     if (member && member.name) {
       var joined = member.joined_at ? new Date(member.joined_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
@@ -1186,6 +1207,7 @@
         btn.disabled = false;
         btn.textContent = 'Log in';
         if (res.body && res.body.ok) {
+          try { if (payload.email) localStorage.setItem('dm_member_email', payload.email); } catch (e) {}
           applyMember(res.body.member.member_id, res.body.member);
         } else if (res.body && res.body.error === 'no_password_set') {
           loginError.textContent = 'No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password right here in Account.';
@@ -1253,9 +1275,13 @@
     var id = (memberInput.value || '').trim();
     var p1 = document.getElementById('newPw').value || '';
     var p2 = document.getElementById('newPw2').value || '';
+    var pwEmail = (document.getElementById('pwEmail').value || '').trim();
+    var pwCurrentEl = document.getElementById('pwCurrent');
+    var pwCurrent = pwCurrentEl ? (pwCurrentEl.value || '') : '';
     var msg = document.getElementById('pwMsg');
     msg.style.display = 'block';
     if (!/^dm_[A-Za-z0-9]{10}$/.test(id)) { msg.textContent = 'Log in first, then set your password.'; return; }
+    if (!pwEmail) { msg.textContent = 'Enter the email on your account to confirm it\u2019s you.'; return; }
     if (p1.length < 8) { msg.textContent = 'Use at least 8 characters.'; return; }
     if (p1 !== p2) { msg.textContent = 'The two passwords don\u2019t match.'; return; }
     pwBtn.disabled = true;
@@ -1263,7 +1289,7 @@
     fetch(API + '/set-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ member_id: id, password: p1 })
+      body: JSON.stringify({ member_id: id, email: pwEmail, password: p1, current_password: pwCurrent })
     }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
       .then(function(res){
         pwBtn.disabled = false;
@@ -1271,10 +1297,16 @@
         if (res.body && res.body.ok) {
           document.getElementById('newPw').value = '';
           document.getElementById('newPw2').value = '';
+          if (pwCurrentEl) pwCurrentEl.value = '';
+          try { localStorage.setItem('dm_member_email', pwEmail); } catch (e) {}
           document.getElementById('pwLabel').textContent = 'Change your login password';
           var hint = document.getElementById('pwHint');
           if (hint) hint.style.display = 'none';
           msg.textContent = 'Saved. You can now log in with your email and this password.';
+        } else if (res.body && res.body.error === 'email_mismatch') {
+          msg.textContent = 'That email doesn\u2019t match this account \u2014 check it and try again.';
+        } else if (res.body && (res.body.error === 'current_password_required' || res.body.error === 'invalid_credentials')) {
+          msg.textContent = 'Enter your current password to change it.';
         } else {
           msg.textContent = 'That didn\u2019t save \u2014 try again in a moment.';
         }
@@ -1453,6 +1485,7 @@
 
   document.getElementById('logoutBtn').addEventListener('click', function(){
     try { localStorage.removeItem('dm_member_id'); } catch (e) {}
+    try { localStorage.removeItem('dm_member_email'); } catch (e) {}
     window.location.hash = '';
     window.location.reload();
   });
@@ -1544,6 +1577,7 @@
           wallLoginBtn.disabled = false;
           wallLoginBtn.textContent = 'Log in';
           if (res.body && res.body.ok) {
+            try { localStorage.setItem('dm_member_email', email); } catch (e) {}
             applyMember(res.body.member.member_id, res.body.member);
           } else if (res.body && res.body.error === 'no_password_set') {
             wallLoginFail('No password set for this account yet. Use \u201CLog in with member ID\u201D below, then set a password in Account.');

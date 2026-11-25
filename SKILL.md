@@ -61,198 +61,198 @@ Pairing is revocable by the human at any time. If your human revokes pairing or 
 
 Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% share of the store's commission.
 
-| Store | Commission | Member earns | Tracked link template |
+| Store | Sells | Commission | Member earns | Tracked link template |
 |---|---|---|---|
-| NordVPN (new subscriptions) | 40% | 28% | `https://www.kqzyfj.com/click-101932824-12814518?sid={SID}` |
-| Phone.com | $75 flat per signup | $52.50 | `https://www.kqzyfj.com/click-101932824-12664811?sid={SID}` |
-| Ovago (flights) | $8–$23 flat per booking | $5.60–$16.10 | `https://www.tkqlhce.com/click-101932824-15796145?sid={SID}` |
-| Your Phone here (Awin) | $15 flat per sale | $10.50 | `https://www.awin1.com/cread.php?awinmid=129023&awinaffid=3161005&clickref={SID}` |
-| zChocolat.com | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
-| Winebasket | 7% | 4.9% | `https://www.anrdoezrs.net/click-101932824-10570212?sid={SID}` |
-| Buena Cura US (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=106723&awinaffid=3161005&clickref={SID}` |
-| Shed Supplements (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=125186&awinaffid=3161005&clickref={SID}` |
-| Miles Jewellery (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=129311&awinaffid=3161005&clickref={SID}` |
-| Coziwow (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=121696&awinaffid=3161005&clickref={SID}` |
-| Maddie Grace Jewelry (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=119021&awinaffid=3161005&clickref={SID}` |
-| LifeVibe (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124072&awinaffid=3161005&clickref={SID}` |
-| ShedRX (Awin) | $120 flat | $84 | `https://www.awin1.com/cread.php?awinmid=80963&awinaffid=3161005&clickref={SID}` |
-| Signos (Awin) | $120 flat | $84 | `https://www.awin1.com/cread.php?awinmid=96449&awinaffid=3161005&clickref={SID}` |
-| Curex (Awin) | $45 flat | $31.50 | `https://www.awin1.com/cread.php?awinmid=121970&awinaffid=3161005&clickref={SID}` |
-| ClarityX (Awin) | $45 flat | $31.50 | `https://www.awin1.com/cread.php?awinmid=128363&awinaffid=3161005&clickref={SID}` |
-| Neuro Gum (Awin) | $18 flat | $12.60 | `https://www.awin1.com/cread.php?awinmid=131252&awinaffid=3161005&clickref={SID}` |
-| SNOW (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=75744&awinaffid=3161005&clickref={SID}` |
-| Measured (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126727&awinaffid=3161005&clickref={SID}` |
-| Wallshoppe (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126215&awinaffid=3161005&clickref={SID}` |
-| Skoot (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=127911&awinaffid=3161005&clickref={SID}` |
-| Edify (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=119513&awinaffid=3161005&clickref={SID}` |
-| Rexing | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
-| ALZOO (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}` |
-| GroundLuxe | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |
-| Xplora | 10% | 7% | `https://www.kqzyfj.com/click-101932824-15736994?sid={SID}` |
-| Gate Operators Direct (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114678&awinaffid=3161005&clickref={SID}` |
-| Dream Pairs / Bruno Marc | 8–10% | 5.6–7% | `https://www.jdoqocy.com/click-101932824-15369315?sid={SID}` |
-| Trinity Road Websites | 8% | 5.6% | `https://www.tkqlhce.com/click-101932824-10753028?sid={SID}` |
-| Shelving Inc. | 7% | 4.9% | `https://www.jdoqocy.com/click-101932824-15735511?sid={SID}` |
-| Pure Genius Protein | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17323502?sid={SID}` |
-| XPLORA UK (UK store) | 5% | 3.5% | `https://www.dpbolvw.net/click-101932824-15766774?sid={SID}` |
-| Nick's Handmade Boots | 6% | 4.2% | `https://www.tkqlhce.com/click-101932824-15001326?sid={SID}` |
-| Signs Banners and Magnets On The Cheap | 3% | 2.1% | `https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}` |
-| GreaterGood | 2% | 1.4% | `https://www.dpbolvw.net/click-101932824-15734341?sid={SID}` |
-| DHGate | 2–50% by category | 1.4–35% | `https://www.tkqlhce.com/click-101932824-15734304?sid={SID}` |
-| Veronika Vilim (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=127617&awinaffid=3161005&clickref={SID}` |
-| Lunzo RO (Awin, Romania) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=40456&awinaffid=3161005&clickref={SID}` |
-| Lunzo SK (Awin, Slovakia) | 13.8% | 9.66% | `https://www.awin1.com/cread.php?awinmid=54353&awinaffid=3161005&clickref={SID}` |
-| Lunzo AT (Awin, Austria) | 13.8% | 9.66% | `https://www.awin1.com/cread.php?awinmid=114104&awinaffid=3161005&clickref={SID}` |
-| Verafied (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=114176&awinaffid=3161005&clickref={SID}` |
-| MIMMTI (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114442&awinaffid=3161005&clickref={SID}` |
-| Earkings NL (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114444&awinaffid=3161005&clickref={SID}` |
-| THE ORFY (Awin) | 40% | 28% | `https://www.awin1.com/cread.php?awinmid=114458&awinaffid=3161005&clickref={SID}` |
-| SOPHELIA (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=114504&awinaffid=3161005&clickref={SID}` |
-| Moderne Raamdecoratie Groep (Awin) | 2% | 1.4% | `https://www.awin1.com/cread.php?awinmid=114540&awinaffid=3161005&clickref={SID}` |
-| Marco Cerullo (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114868&awinaffid=3161005&clickref={SID}` |
-| Fri som en fågel (Awin) | 25% | 17.5% | `https://www.awin1.com/cread.php?awinmid=115116&awinaffid=3161005&clickref={SID}` |
-| ANITA & ZAHA (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=115393&awinaffid=3161005&clickref={SID}` |
-| B'alam (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=115577&awinaffid=3161005&clickref={SID}` |
-| Thierry Lasry (Awin) | 12.8% | 8.96% | `https://www.awin1.com/cread.php?awinmid=125702&awinaffid=3161005&clickref={SID}` |
-| Isla Capricho Homeware (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=111826&awinaffid=3161005&clickref={SID}` |
-| Kurtens (Awin, FR/DE/UK/US) | 5% cashback rate | 3.5% | `https://www.awin1.com/cread.php?awinmid=129075&awinaffid=3161005&clickref={SID}` |
-| UNice | 5% | 3.5% | `https://www.anrdoezrs.net/click-101932824-15509155?sid={SID}` |
-| Blooh (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=119683&awinaffid=3161005&clickref={SID}` |
-| TechPals (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=116661&awinaffid=3161005&clickref={SID}` |
-| Welcome Home (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=80923&awinaffid=3161005&clickref={SID}` |
-| EAST x EAST (Awin) | 16% | 11.2% | `https://www.awin1.com/cread.php?awinmid=78056&awinaffid=3161005&clickref={SID}` |
-| Cocinare Limited (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=44135&awinaffid=3161005&clickref={SID}` |
-| UUNA TEK (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=117801&awinaffid=3161005&clickref={SID}` |
-| Alorair (Awin) | 13% | 9.1% | `https://www.awin1.com/cread.php?awinmid=104549&awinaffid=3161005&clickref={SID}` |
-| Thrivous (Awin) | 30% | 21% | `https://www.awin1.com/cread.php?awinmid=92029&awinaffid=3161005&clickref={SID}` |
-| MyPhysicianPlan (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114664&awinaffid=3161005&clickref={SID}` |
-| Marley Spoon (Awin) | $25.00 | $17.50 | `https://www.awin1.com/cread.php?awinmid=6988&awinaffid=3161005&clickref={SID}` |
-| Afewvibe (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=75796&awinaffid=3161005&clickref={SID}` |
-| Argendon (Awin) | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=126513&awinaffid=3161005&clickref={SID}` |
-| Regina Andrew Detroit (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=127767&awinaffid=3161005&clickref={SID}` |
-| monvane (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=127859&awinaffid=3161005&clickref={SID}` |
-| Santean Bracelets (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=116359&awinaffid=3161005&clickref={SID}` |
-| Pete's Pasta (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=131333&awinaffid=3161005&clickref={SID}` |
-| Surebeauty (Awin) | 5%-6% | 3.5%-4.2% | `https://www.awin1.com/cread.php?awinmid=95819&awinaffid=3161005&clickref={SID}` |
-| MenoMojo by Fresh Wisdom (Awin) | 25% | 17.5% | `https://www.awin1.com/cread.php?awinmid=130949&awinaffid=3161005&clickref={SID}` |
-| mamaraya (US) (Awin) | 8%-10% | 5.6%-7% | `https://www.awin1.com/cread.php?awinmid=126891&awinaffid=3161005&clickref={SID}` |
-| Era of Nature (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=111540&awinaffid=3161005&clickref={SID}` |
-| Dima Eyewear (US) (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=128033&awinaffid=3161005&clickref={SID}` |
-| Rockstar Original (Awin) | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=131092&awinaffid=3161005&clickref={SID}` |
-| PaintMySoul (Awin) | $5 flat | $3.50 | `https://www.awin1.com/cread.php?awinmid=131774&awinaffid=3161005&clickref={SID}` |
-| Bella Maison USA (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=121896&awinaffid=3161005&clickref={SID}` |
-| Some Slight Clothing (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=128659&awinaffid=3161005&clickref={SID}` |
-| Friendly Songs (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=88629&awinaffid=3161005&clickref={SID}` |
-| ScarletDarkness (US) (Awin) | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=129969&awinaffid=3161005&clickref={SID}` |
-| Kingsyard (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=79354&awinaffid=3161005&clickref={SID}` |
-| Max Recovery Clothing (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=117883&awinaffid=3161005&clickref={SID}` |
-| Kitty Kick Stix - Catnip Toys (Awin) | 16% | 11.2% | `https://www.awin1.com/cread.php?awinmid=117825&awinaffid=3161005&clickref={SID}` |
-| REUDYN (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=131985&awinaffid=3161005&clickref={SID}` |
-| WAU (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=124878&awinaffid=3161005&clickref={SID}` |
-| Brookwood Med (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124250&awinaffid=3161005&clickref={SID}` |
-| Traverseon (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124816&awinaffid=3161005&clickref={SID}` |
-| NeuroScent (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=117317&awinaffid=3161005&clickref={SID}` |
-| SecretKnit (US) (Awin) | 10%-21% | 7%-14.7% | `https://www.awin1.com/cread.php?awinmid=131165&awinaffid=3161005&clickref={SID}` |
-| Nature's Skin And Body Food (US) (Awin) | 18% | 12.6% | `https://www.awin1.com/cread.php?awinmid=26560&awinaffid=3161005&clickref={SID}` |
-| ABBE Glasses (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=91117&awinaffid=3161005&clickref={SID}` |
-| NEJE (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=92915&awinaffid=3161005&clickref={SID}` |
-| LoveIsARose.com (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=96879&awinaffid=3161005&clickref={SID}` |
-| Mimi Panda (Awin) | 35% | 24.5% | `https://www.awin1.com/cread.php?awinmid=84797&awinaffid=3161005&clickref={SID}` |
-| UPPER Brand (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=97753&awinaffid=3161005&clickref={SID}` |
-| Flags Connections (Awin) | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=88425&awinaffid=3161005&clickref={SID}` |
-| SAILO (Awin) | 2%–10% | 1.4%–7% | `https://www.awin1.com/cread.php?awinmid=92667&awinaffid=3161005&clickref={SID}` |
-| Needs No Label (Awin) | 2% | 1.4% | `https://www.awin1.com/cread.php?awinmid=78586&awinaffid=3161005&clickref={SID}` |
-| Nothingprojector (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=75408&awinaffid=3161005&clickref={SID}` |
-| Smugglers Crate (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=81213&awinaffid=3161005&clickref={SID}` |
-| Xlaserlab (Awin) | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=118933&awinaffid=3161005&clickref={SID}` |
-| Bonne et Filou (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=59397&awinaffid=3161005&clickref={SID}` |
-| More Than Matcha (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=124962&awinaffid=3161005&clickref={SID}` |
-| Rowabi (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=46127&awinaffid=3161005&clickref={SID}` |
-| TeethNightGuard.com (Awin) | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=88527&awinaffid=3161005&clickref={SID}` |
-| EFE (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=52103&awinaffid=3161005&clickref={SID}` |
-| House of Twist (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=120193&awinaffid=3161005&clickref={SID}` |
-| eFootwear.com (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=90809&awinaffid=3161005&clickref={SID}` |
-| BlackboxMeats (US) (Awin) | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=25940&awinaffid=3161005&clickref={SID}` |
-| Celsius Herbs (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=126887&awinaffid=3161005&clickref={SID}` |
-| Primeful (Awin) | 16% | 11.2% | `https://www.awin1.com/cread.php?awinmid=130555&awinaffid=3161005&clickref={SID}` |
-| Dry & Dirty (US) (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=127021&awinaffid=3161005&clickref={SID}` |
-| Skimpies US (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=107443&awinaffid=3161005&clickref={SID}` |
-| Illadelph Spirits (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=119371&awinaffid=3161005&clickref={SID}` |
-| Enjox Toys (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=111786&awinaffid=3161005&clickref={SID}` |
-| Christmas Mystery (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=129653&awinaffid=3161005&clickref={SID}` |
-| Newt Nutrition (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=131393&awinaffid=3161005&clickref={SID}` |
-| Orion RLT (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=130163&awinaffid=3161005&clickref={SID}` |
-| Cookie Pop Candy Pop (Awin) | 12.5% | 8.75% | `https://www.awin1.com/cread.php?awinmid=129711&awinaffid=3161005&clickref={SID}` |
-| Haurangi (Awin) | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=131486&awinaffid=3161005&clickref={SID}` |
-| Daybreak (Awin) | $50 flat | $35 | `https://www.awin1.com/cread.php?awinmid=72697&awinaffid=3161005&clickref={SID}` |
-| Doctor Derm (US) (Awin) | $10 flat | $7 | `https://www.awin1.com/cread.php?awinmid=115825&awinaffid=3161005&clickref={SID}` |
-| Weekend in Italy | 10% | 7% | `https://www.kqzyfj.com/click-101932824-17310676?sid={SID}` |
-| Cronjager (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=98661&awinaffid=3161005&clickref={SID}` |
-| WELOCK (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=94891&awinaffid=3161005&clickref={SID}` |
-| Otra Eyewear (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=96299&awinaffid=3161005&clickref={SID}` |
-| Autelpilot (Awin) | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=37618&awinaffid=3161005&clickref={SID}` |
-| Comenii Scrubs (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=57145&awinaffid=3161005&clickref={SID}` |
-| Simple Project (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=99013&awinaffid=3161005&clickref={SID}` |
-| Welax (Awin) | 13% | 9.1% | `https://www.awin1.com/cread.php?awinmid=108888&awinaffid=3161005&clickref={SID}` |
-| TWOPAGES | 10% | 7% | `https://www.jdoqocy.com/click-101932824-17238713?sid={SID}` |
-| X-Sense | 9% | 6.3% | `https://www.dpbolvw.net/click-101932824-17052518?sid={SID}` |
-| Whokeys | 8% | 5.6% | `https://www.kqzyfj.com/click-101932824-17325512?sid={SID}` |
-| WellBefore | 10% | 7% | `https://www.anrdoezrs.net/click-101932824-15273661?sid={SID}` |
-| 24-7PressRelease | $15 flat | $10.50 | `https://www.anrdoezrs.net/click-101932824-10754888?sid={SID}` |
-| Abelssoft Int | 50% | 35% | `https://www.anrdoezrs.net/click-101932824-15402815?sid={SID}` |
-| TYMO Beauty (Awin) | 2% | 1.4% | `https://www.awin1.com/cread.php?awinmid=74424&awinaffid=3161005&clickref={SID}` |
-| VooPoo (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=124822&awinaffid=3161005&clickref={SID}` |
-| Dvik Jewels (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=131199&awinaffid=3161005&clickref={SID}` |
-| Ciarra (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=92751&awinaffid=3161005&clickref={SID}` |
-| EINSTAR (Awin) | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=105805&awinaffid=3161005&clickref={SID}` |
-| EKSA (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=92427&awinaffid=3161005&clickref={SID}` |
-| Asteria Hair (Awin) | 3.07% | 2.1% | `https://www.awin1.com/cread.php?awinmid=98411&awinaffid=3161005&clickref={SID}` |
-| FlexClip (Awin) | 30% | 21% | `https://www.awin1.com/cread.php?awinmid=90241&awinaffid=3161005&clickref={SID}` |
-| SUNJOY (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=47153&awinaffid=3161005&clickref={SID}` |
-| Armadillo Tough (Awin) | 4% | 2.8% | `https://www.awin1.com/cread.php?awinmid=121712&awinaffid=3161005&clickref={SID}` |
-| Chance of Sunny (Awin) | 25% | 17.5% | `https://www.awin1.com/cread.php?awinmid=118283&awinaffid=3161005&clickref={SID}` |
-| Jorja (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=117877&awinaffid=3161005&clickref={SID}` |
-| Lectron (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=91891&awinaffid=3161005&clickref={SID}` |
-| Winpig | 50% | 35% | `https://www.anrdoezrs.net/click-101932824-17347770?sid={SID}` |
-| Snaps Clothing Inc | 5% | 3.5% | `https://www.tkqlhce.com/click-101932824-15745181?sid={SID}` |
-| Magzter | 50% | 35% | `https://www.dpbolvw.net/click-101932824-17205347?sid={SID}` |
-| Best Vet Care | 10% | 7% | `https://www.anrdoezrs.net/click-101932824-11830319?sid={SID}` |
-| Budget Pet Care | 10% | 7% | `https://www.jdoqocy.com/click-101932824-15734653?sid={SID}` |
-| Canada Pet Care | 10% | 7% | `https://www.kqzyfj.com/click-101932824-15734672?sid={SID}` |
-| EdenFantasys | 25% | 17.5% | `https://www.tkqlhce.com/click-101932824-11075259?sid={SID}` |
-| Arsynl RX | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17355561?sid={SID}` |
-| ABC Wigs | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17240111?sid={SID}` |
-| Arangrant | $25 flat | $17.50 | `https://www.anrdoezrs.net/click-101932824-17037905?sid={SID}` |
-| TESmart (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=87327&awinaffid=3161005&clickref={SID}` |
-| SHOCK VITALIZE (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=55811&awinaffid=3161005&clickref={SID}` |
-| BIG Wall Decor (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=65850&awinaffid=3161005&clickref={SID}` |
-| Dr. Tom Cowan (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=71005&awinaffid=3161005&clickref={SID}` |
-| Propper (Awin) | 5.5% | 3.85% | `https://www.awin1.com/cread.php?awinmid=114846&awinaffid=3161005&clickref={SID}` |
-| Billion Dollar Beauty (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=22999&awinaffid=3161005&clickref={SID}` |
-| Irwin Naturals (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126211&awinaffid=3161005&clickref={SID}` |
-| WJD Exclusives (Awin) | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=82685&awinaffid=3161005&clickref={SID}` |
-| MusclePharm (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126207&awinaffid=3161005&clickref={SID}` |
-| Lacros ebike (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=109278&awinaffid=3161005&clickref={SID}` |
-| Arq8 (Awin) | 30% | 21% | `https://www.awin1.com/cread.php?awinmid=124734&awinaffid=3161005&clickref={SID}` |
-| Wisephone (Awin) | $20 flat | $14 | `https://www.awin1.com/cread.php?awinmid=127043&awinaffid=3161005&clickref={SID}` |
-| Golden Maple (Awin) | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124092&awinaffid=3161005&clickref={SID}` |
-| Orolay (Awin) | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=98153&awinaffid=3161005&clickref={SID}` |
-| Bello Diamonds (Awin) | 4% | 2.8% | `https://www.awin1.com/cread.php?awinmid=131575&awinaffid=3161005&clickref={SID}` |
-| Salt & Bone (Awin) | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=129885&awinaffid=3161005&clickref={SID}` |
-| Buture (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=83139&awinaffid=3161005&clickref={SID}` |
-| REGAL estate (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=130383&awinaffid=3161005&clickref={SID}` |
-| JJNSOLAR (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=130903&awinaffid=3161005&clickref={SID}` |
-| TopOak Overland (Awin) | 4.17% | 2.9% | `https://www.awin1.com/cread.php?awinmid=108374&awinaffid=3161005&clickref={SID}` |
-| EPI Jewelry (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=110478&awinaffid=3161005&clickref={SID}` |
-| Lane Woods (Awin) | 9% | 6.3% | `https://www.awin1.com/cread.php?awinmid=101109&awinaffid=3161005&clickref={SID}` |
-| DeerRun UK (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=106313&awinaffid=3161005&clickref={SID}` |
-| Just Try (Awin) | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=131085&awinaffid=3161005&clickref={SID}` |
-| Gshopper (Awin) | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=77156&awinaffid=3161005&clickref={SID}` |
-| 3DMakerpro (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=48247&awinaffid=3161005&clickref={SID}` |
-| Cozeware (Awin) | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=123618&awinaffid=3161005&clickref={SID}` |
-| Hoshanho (Awin) | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124972&awinaffid=3161005&clickref={SID}` |
-| ATLRx (Awin) | $10 flat | $7 | `https://www.awin1.com/cread.php?awinmid=96109&awinaffid=3161005&clickref={SID}` |
-| Enable Accessible Haircare (Awin) | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=113722&awinaffid=3161005&clickref={SID}` |
+| NordVPN (new subscriptions) | Tech | 40% | 28% | `https://www.kqzyfj.com/click-101932824-12814518?sid={SID}` |
+| Phone.com | Services | $75 flat per signup | $52.50 | `https://www.kqzyfj.com/click-101932824-12664811?sid={SID}` |
+| Ovago (flights) | Travel | $8–$23 flat per booking | $5.60–$16.10 | `https://www.tkqlhce.com/click-101932824-15796145?sid={SID}` |
+| Your Phone here (Awin) | Tech | $15 flat per sale | $10.50 | `https://www.awin1.com/cread.php?awinmid=129023&awinaffid=3161005&clickref={SID}` |
+| zChocolat.com | Food & drink | 20% | 14% | `https://www.tkqlhce.com/click-101932824-15734455?sid={SID}` |
+| Winebasket | Food & drink | 7% | 4.9% | `https://www.anrdoezrs.net/click-101932824-10570212?sid={SID}` |
+| Buena Cura US (Awin) | Health | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=106723&awinaffid=3161005&clickref={SID}` |
+| Shed Supplements (Awin) | Health | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=125186&awinaffid=3161005&clickref={SID}` |
+| Miles Jewellery (Awin) | Jewelry | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=129311&awinaffid=3161005&clickref={SID}` |
+| Coziwow (Awin) | Pets | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=121696&awinaffid=3161005&clickref={SID}` |
+| Maddie Grace Jewelry (Awin) | Jewelry | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=119021&awinaffid=3161005&clickref={SID}` |
+| LifeVibe (Awin) | Health | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124072&awinaffid=3161005&clickref={SID}` |
+| ShedRX (Awin) | Health | $120 flat | $84 | `https://www.awin1.com/cread.php?awinmid=80963&awinaffid=3161005&clickref={SID}` |
+| Signos (Awin) | Health | $120 flat | $84 | `https://www.awin1.com/cread.php?awinmid=96449&awinaffid=3161005&clickref={SID}` |
+| Curex (Awin) | Health | $45 flat | $31.50 | `https://www.awin1.com/cread.php?awinmid=121970&awinaffid=3161005&clickref={SID}` |
+| ClarityX (Awin) | Health | $45 flat | $31.50 | `https://www.awin1.com/cread.php?awinmid=128363&awinaffid=3161005&clickref={SID}` |
+| Neuro Gum (Awin) | Health | $18 flat | $12.60 | `https://www.awin1.com/cread.php?awinmid=131252&awinaffid=3161005&clickref={SID}` |
+| SNOW (Awin) | Beauty | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=75744&awinaffid=3161005&clickref={SID}` |
+| Measured (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126727&awinaffid=3161005&clickref={SID}` |
+| Wallshoppe (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126215&awinaffid=3161005&clickref={SID}` |
+| Skoot (Awin) | Travel | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=127911&awinaffid=3161005&clickref={SID}` |
+| Edify (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=119513&awinaffid=3161005&clickref={SID}` |
+| Rexing | Tech | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-15735466?sid={SID}` |
+| ALZOO (Awin) | Pets | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124906&awinaffid=3161005&clickref={SID}` |
+| GroundLuxe | Health | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17180505?sid={SID}` |
+| Xplora | Kids & baby | 10% | 7% | `https://www.kqzyfj.com/click-101932824-15736994?sid={SID}` |
+| Gate Operators Direct (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114678&awinaffid=3161005&clickref={SID}` |
+| Dream Pairs / Bruno Marc | Fashion | 8–10% | 5.6–7% | `https://www.jdoqocy.com/click-101932824-15369315?sid={SID}` |
+| Trinity Road Websites | Gifts | 8% | 5.6% | `https://www.tkqlhce.com/click-101932824-10753028?sid={SID}` |
+| Shelving Inc. | Home & garden | 7% | 4.9% | `https://www.jdoqocy.com/click-101932824-15735511?sid={SID}` |
+| Pure Genius Protein | Health | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17323502?sid={SID}` |
+| XPLORA UK (UK store) | Kids & baby | 5% | 3.5% | `https://www.dpbolvw.net/click-101932824-15766774?sid={SID}` |
+| Nick's Handmade Boots | Fashion | 6% | 4.2% | `https://www.tkqlhce.com/click-101932824-15001326?sid={SID}` |
+| Signs Banners and Magnets On The Cheap | Services | 3% | 2.1% | `https://www.anrdoezrs.net/click-101932824-15734513?sid={SID}` |
+| GreaterGood | General | 2% | 1.4% | `https://www.dpbolvw.net/click-101932824-15734341?sid={SID}` |
+| DHGate | General | 2–50% by category | 1.4–35% | `https://www.tkqlhce.com/click-101932824-15734304?sid={SID}` |
+| Veronika Vilim (Awin) | Fashion | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=127617&awinaffid=3161005&clickref={SID}` |
+| Lunzo RO (Awin, Romania) | General | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=40456&awinaffid=3161005&clickref={SID}` |
+| Lunzo SK (Awin, Slovakia) | General | 13.8% | 9.66% | `https://www.awin1.com/cread.php?awinmid=54353&awinaffid=3161005&clickref={SID}` |
+| Lunzo AT (Awin, Austria) | General | 13.8% | 9.66% | `https://www.awin1.com/cread.php?awinmid=114104&awinaffid=3161005&clickref={SID}` |
+| Verafied (Awin) | Fashion | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=114176&awinaffid=3161005&clickref={SID}` |
+| MIMMTI (Awin) | Kids & baby | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114442&awinaffid=3161005&clickref={SID}` |
+| Earkings NL (Awin) | Tech | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114444&awinaffid=3161005&clickref={SID}` |
+| THE ORFY (Awin) | Health | 40% | 28% | `https://www.awin1.com/cread.php?awinmid=114458&awinaffid=3161005&clickref={SID}` |
+| SOPHELIA (Awin) | Jewelry | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=114504&awinaffid=3161005&clickref={SID}` |
+| Moderne Raamdecoratie Groep (Awin) | Home & garden | 2% | 1.4% | `https://www.awin1.com/cread.php?awinmid=114540&awinaffid=3161005&clickref={SID}` |
+| Marco Cerullo (Awin) | General | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114868&awinaffid=3161005&clickref={SID}` |
+| Fri som en fågel (Awin) | Services | 25% | 17.5% | `https://www.awin1.com/cread.php?awinmid=115116&awinaffid=3161005&clickref={SID}` |
+| ANITA & ZAHA (Awin) | Fashion | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=115393&awinaffid=3161005&clickref={SID}` |
+| B'alam (Awin) | Home & garden | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=115577&awinaffid=3161005&clickref={SID}` |
+| Thierry Lasry (Awin) | Eyewear | 12.8% | 8.96% | `https://www.awin1.com/cread.php?awinmid=125702&awinaffid=3161005&clickref={SID}` |
+| Isla Capricho Homeware (Awin) | Home & garden | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=111826&awinaffid=3161005&clickref={SID}` |
+| Kurtens (Awin, FR/DE/UK/US) | Home & garden | 5% cashback rate | 3.5% | `https://www.awin1.com/cread.php?awinmid=129075&awinaffid=3161005&clickref={SID}` |
+| UNice | Beauty | 5% | 3.5% | `https://www.anrdoezrs.net/click-101932824-15509155?sid={SID}` |
+| Blooh (Awin) | Jewelry | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=119683&awinaffid=3161005&clickref={SID}` |
+| TechPals (Awin) | Services | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=116661&awinaffid=3161005&clickref={SID}` |
+| Welcome Home (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=80923&awinaffid=3161005&clickref={SID}` |
+| EAST x EAST (Awin) | Fashion | 16% | 11.2% | `https://www.awin1.com/cread.php?awinmid=78056&awinaffid=3161005&clickref={SID}` |
+| Cocinare Limited (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=44135&awinaffid=3161005&clickref={SID}` |
+| UUNA TEK (Awin) | Tech | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=117801&awinaffid=3161005&clickref={SID}` |
+| Alorair (Awin) | Home & garden | 13% | 9.1% | `https://www.awin1.com/cread.php?awinmid=104549&awinaffid=3161005&clickref={SID}` |
+| Thrivous (Awin) | Health | 30% | 21% | `https://www.awin1.com/cread.php?awinmid=92029&awinaffid=3161005&clickref={SID}` |
+| MyPhysicianPlan (Awin) | Services | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=114664&awinaffid=3161005&clickref={SID}` |
+| Marley Spoon (Awin) | Food & drink | $25.00 | $17.50 | `https://www.awin1.com/cread.php?awinmid=6988&awinaffid=3161005&clickref={SID}` |
+| Afewvibe (Awin) | Fashion | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=75796&awinaffid=3161005&clickref={SID}` |
+| Argendon (Awin) | Home & garden | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=126513&awinaffid=3161005&clickref={SID}` |
+| Regina Andrew Detroit (Awin) | Home & garden | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=127767&awinaffid=3161005&clickref={SID}` |
+| monvane (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=127859&awinaffid=3161005&clickref={SID}` |
+| Santean Bracelets (Awin) | Jewelry | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=116359&awinaffid=3161005&clickref={SID}` |
+| Pete's Pasta (Awin) | Food & drink | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=131333&awinaffid=3161005&clickref={SID}` |
+| Surebeauty (Awin) | Beauty | 5%-6% | 3.5%-4.2% | `https://www.awin1.com/cread.php?awinmid=95819&awinaffid=3161005&clickref={SID}` |
+| MenoMojo by Fresh Wisdom (Awin) | Health | 25% | 17.5% | `https://www.awin1.com/cread.php?awinmid=130949&awinaffid=3161005&clickref={SID}` |
+| mamaraya (US) (Awin) | Kids & baby | 8%-10% | 5.6%-7% | `https://www.awin1.com/cread.php?awinmid=126891&awinaffid=3161005&clickref={SID}` |
+| Era of Nature (Awin) | Beauty | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=111540&awinaffid=3161005&clickref={SID}` |
+| Dima Eyewear (US) (Awin) | Eyewear | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=128033&awinaffid=3161005&clickref={SID}` |
+| Rockstar Original (Awin) | Fashion | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=131092&awinaffid=3161005&clickref={SID}` |
+| PaintMySoul (Awin) | Gifts | $5 flat | $3.50 | `https://www.awin1.com/cread.php?awinmid=131774&awinaffid=3161005&clickref={SID}` |
+| Bella Maison USA (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=121896&awinaffid=3161005&clickref={SID}` |
+| Some Slight Clothing (Awin) | Fashion | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=128659&awinaffid=3161005&clickref={SID}` |
+| Friendly Songs (Awin) | Gifts | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=88629&awinaffid=3161005&clickref={SID}` |
+| ScarletDarkness (US) (Awin) | Fashion | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=129969&awinaffid=3161005&clickref={SID}` |
+| Kingsyard (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=79354&awinaffid=3161005&clickref={SID}` |
+| Max Recovery Clothing (Awin) | Sports | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=117883&awinaffid=3161005&clickref={SID}` |
+| Kitty Kick Stix - Catnip Toys (Awin) | Pets | 16% | 11.2% | `https://www.awin1.com/cread.php?awinmid=117825&awinaffid=3161005&clickref={SID}` |
+| REUDYN (Awin) | Tech | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=131985&awinaffid=3161005&clickref={SID}` |
+| WAU (Awin) | Beauty | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=124878&awinaffid=3161005&clickref={SID}` |
+| Brookwood Med (Awin) | Health | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124250&awinaffid=3161005&clickref={SID}` |
+| Traverseon (Awin) | Sports | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124816&awinaffid=3161005&clickref={SID}` |
+| NeuroScent (Awin) | Beauty | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=117317&awinaffid=3161005&clickref={SID}` |
+| SecretKnit (US) (Awin) | Gifts | 10%-21% | 7%-14.7% | `https://www.awin1.com/cread.php?awinmid=131165&awinaffid=3161005&clickref={SID}` |
+| Nature's Skin And Body Food (US) (Awin) | Beauty | 18% | 12.6% | `https://www.awin1.com/cread.php?awinmid=26560&awinaffid=3161005&clickref={SID}` |
+| ABBE Glasses (Awin) | Eyewear | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=91117&awinaffid=3161005&clickref={SID}` |
+| NEJE (Awin) | Tech | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=92915&awinaffid=3161005&clickref={SID}` |
+| LoveIsARose.com (Awin) | Gifts | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=96879&awinaffid=3161005&clickref={SID}` |
+| Mimi Panda (Awin) | Gifts | 35% | 24.5% | `https://www.awin1.com/cread.php?awinmid=84797&awinaffid=3161005&clickref={SID}` |
+| UPPER Brand (Awin) | Kids & baby | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=97753&awinaffid=3161005&clickref={SID}` |
+| Flags Connections (Awin) | Home & garden | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=88425&awinaffid=3161005&clickref={SID}` |
+| SAILO (Awin) | Travel | 2%–10% | 1.4%–7% | `https://www.awin1.com/cread.php?awinmid=92667&awinaffid=3161005&clickref={SID}` |
+| Needs No Label (Awin) | Fashion | 2% | 1.4% | `https://www.awin1.com/cread.php?awinmid=78586&awinaffid=3161005&clickref={SID}` |
+| Nothingprojector (Awin) | Tech | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=75408&awinaffid=3161005&clickref={SID}` |
+| Smugglers Crate (Awin) | Gifts | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=81213&awinaffid=3161005&clickref={SID}` |
+| Xlaserlab (Awin) | Tech | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=118933&awinaffid=3161005&clickref={SID}` |
+| Bonne et Filou (Awin) | Pets | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=59397&awinaffid=3161005&clickref={SID}` |
+| More Than Matcha (Awin) | Food & drink | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=124962&awinaffid=3161005&clickref={SID}` |
+| Rowabi (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=46127&awinaffid=3161005&clickref={SID}` |
+| TeethNightGuard.com (Awin) | Health | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=88527&awinaffid=3161005&clickref={SID}` |
+| EFE (Awin) | Eyewear | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=52103&awinaffid=3161005&clickref={SID}` |
+| House of Twist (Awin) | Beauty | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=120193&awinaffid=3161005&clickref={SID}` |
+| eFootwear.com (Awin) | Fashion | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=90809&awinaffid=3161005&clickref={SID}` |
+| BlackboxMeats (US) (Awin) | Food & drink | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=25940&awinaffid=3161005&clickref={SID}` |
+| Celsius Herbs (Awin) | Health | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=126887&awinaffid=3161005&clickref={SID}` |
+| Primeful (Awin) | Kids & baby | 16% | 11.2% | `https://www.awin1.com/cread.php?awinmid=130555&awinaffid=3161005&clickref={SID}` |
+| Dry & Dirty (US) (Awin) | Food & drink | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=127021&awinaffid=3161005&clickref={SID}` |
+| Skimpies US (Awin) | Fashion | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=107443&awinaffid=3161005&clickref={SID}` |
+| Illadelph Spirits (Awin) | Food & drink | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=119371&awinaffid=3161005&clickref={SID}` |
+| Enjox Toys (Awin) | Kids & baby | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=111786&awinaffid=3161005&clickref={SID}` |
+| Christmas Mystery (Awin) | Gifts | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=129653&awinaffid=3161005&clickref={SID}` |
+| Newt Nutrition (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=131393&awinaffid=3161005&clickref={SID}` |
+| Orion RLT (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=130163&awinaffid=3161005&clickref={SID}` |
+| Cookie Pop Candy Pop (Awin) | Food & drink | 12.5% | 8.75% | `https://www.awin1.com/cread.php?awinmid=129711&awinaffid=3161005&clickref={SID}` |
+| Haurangi (Awin) | Fashion | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=131486&awinaffid=3161005&clickref={SID}` |
+| Daybreak (Awin) | Health | $50 flat | $35 | `https://www.awin1.com/cread.php?awinmid=72697&awinaffid=3161005&clickref={SID}` |
+| Doctor Derm (US) (Awin) | Beauty | $10 flat | $7 | `https://www.awin1.com/cread.php?awinmid=115825&awinaffid=3161005&clickref={SID}` |
+| Weekend in Italy | Travel | 10% | 7% | `https://www.kqzyfj.com/click-101932824-17310676?sid={SID}` |
+| Cronjager (Awin) | General | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=98661&awinaffid=3161005&clickref={SID}` |
+| WELOCK (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=94891&awinaffid=3161005&clickref={SID}` |
+| Otra Eyewear (Awin) | Eyewear | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=96299&awinaffid=3161005&clickref={SID}` |
+| Autelpilot (Awin) | Tech | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=37618&awinaffid=3161005&clickref={SID}` |
+| Comenii Scrubs (Awin) | Fashion | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=57145&awinaffid=3161005&clickref={SID}` |
+| Simple Project (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=99013&awinaffid=3161005&clickref={SID}` |
+| Welax (Awin) | Home & garden | 13% | 9.1% | `https://www.awin1.com/cread.php?awinmid=108888&awinaffid=3161005&clickref={SID}` |
+| TWOPAGES | Home & garden | 10% | 7% | `https://www.jdoqocy.com/click-101932824-17238713?sid={SID}` |
+| X-Sense | Home & garden | 9% | 6.3% | `https://www.dpbolvw.net/click-101932824-17052518?sid={SID}` |
+| Whokeys | Tech | 8% | 5.6% | `https://www.kqzyfj.com/click-101932824-17325512?sid={SID}` |
+| WellBefore | Health | 10% | 7% | `https://www.anrdoezrs.net/click-101932824-15273661?sid={SID}` |
+| 24-7PressRelease | Services | $15 flat | $10.50 | `https://www.anrdoezrs.net/click-101932824-10754888?sid={SID}` |
+| Abelssoft Int | Tech | 50% | 35% | `https://www.anrdoezrs.net/click-101932824-15402815?sid={SID}` |
+| TYMO Beauty (Awin) | Beauty | 2% | 1.4% | `https://www.awin1.com/cread.php?awinmid=74424&awinaffid=3161005&clickref={SID}` |
+| VooPoo (Awin) | Adult | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=124822&awinaffid=3161005&clickref={SID}` |
+| Dvik Jewels (Awin) | Jewelry | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=131199&awinaffid=3161005&clickref={SID}` |
+| Ciarra (Awin) | Home & garden | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=92751&awinaffid=3161005&clickref={SID}` |
+| EINSTAR (Awin) | Tech | 6% | 4.2% | `https://www.awin1.com/cread.php?awinmid=105805&awinaffid=3161005&clickref={SID}` |
+| EKSA (Awin) | Tech | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=92427&awinaffid=3161005&clickref={SID}` |
+| Asteria Hair (Awin) | Beauty | 3.07% | 2.1% | `https://www.awin1.com/cread.php?awinmid=98411&awinaffid=3161005&clickref={SID}` |
+| FlexClip (Awin) | Tech | 30% | 21% | `https://www.awin1.com/cread.php?awinmid=90241&awinaffid=3161005&clickref={SID}` |
+| SUNJOY (Awin) | Home & garden | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=47153&awinaffid=3161005&clickref={SID}` |
+| Armadillo Tough (Awin) | Home & garden | 4% | 2.8% | `https://www.awin1.com/cread.php?awinmid=121712&awinaffid=3161005&clickref={SID}` |
+| Chance of Sunny (Awin) | Beauty | 25% | 17.5% | `https://www.awin1.com/cread.php?awinmid=118283&awinaffid=3161005&clickref={SID}` |
+| Jorja (Awin) | Jewelry | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=117877&awinaffid=3161005&clickref={SID}` |
+| Lectron (Awin) | Tech | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=91891&awinaffid=3161005&clickref={SID}` |
+| Winpig | Services | 50% | 35% | `https://www.anrdoezrs.net/click-101932824-17347770?sid={SID}` |
+| Snaps Clothing Inc | Fashion | 5% | 3.5% | `https://www.tkqlhce.com/click-101932824-15745181?sid={SID}` |
+| Magzter | Services | 50% | 35% | `https://www.dpbolvw.net/click-101932824-17205347?sid={SID}` |
+| Best Vet Care | Pets | 10% | 7% | `https://www.anrdoezrs.net/click-101932824-11830319?sid={SID}` |
+| Budget Pet Care | Pets | 10% | 7% | `https://www.jdoqocy.com/click-101932824-15734653?sid={SID}` |
+| Canada Pet Care | Pets | 10% | 7% | `https://www.kqzyfj.com/click-101932824-15734672?sid={SID}` |
+| EdenFantasys | Adult | 25% | 17.5% | `https://www.tkqlhce.com/click-101932824-11075259?sid={SID}` |
+| Arsynl RX | Health | 6% | 4.2% | `https://www.jdoqocy.com/click-101932824-17355561?sid={SID}` |
+| ABC Wigs | Beauty | 10% | 7% | `https://www.dpbolvw.net/click-101932824-17240111?sid={SID}` |
+| Arangrant | Travel | $25 flat | $17.50 | `https://www.anrdoezrs.net/click-101932824-17037905?sid={SID}` |
+| TESmart (Awin) | Tech | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=87327&awinaffid=3161005&clickref={SID}` |
+| SHOCK VITALIZE (Awin) | Health | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=55811&awinaffid=3161005&clickref={SID}` |
+| BIG Wall Decor (Awin) | Home & garden | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=65850&awinaffid=3161005&clickref={SID}` |
+| Dr. Tom Cowan (Awin) | Health | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=71005&awinaffid=3161005&clickref={SID}` |
+| Propper (Awin) | Fashion | 5.5% | 3.85% | `https://www.awin1.com/cread.php?awinmid=114846&awinaffid=3161005&clickref={SID}` |
+| Billion Dollar Beauty (Awin) | Beauty | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=22999&awinaffid=3161005&clickref={SID}` |
+| Irwin Naturals (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126211&awinaffid=3161005&clickref={SID}` |
+| WJD Exclusives (Awin) | Jewelry | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=82685&awinaffid=3161005&clickref={SID}` |
+| MusclePharm (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=126207&awinaffid=3161005&clickref={SID}` |
+| Lacros ebike (Awin) | Sports | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=109278&awinaffid=3161005&clickref={SID}` |
+| Arq8 (Awin) | Health | 30% | 21% | `https://www.awin1.com/cread.php?awinmid=124734&awinaffid=3161005&clickref={SID}` |
+| Wisephone (Awin) | Tech | $20 flat | $14 | `https://www.awin1.com/cread.php?awinmid=127043&awinaffid=3161005&clickref={SID}` |
+| Golden Maple (Awin) | General | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=124092&awinaffid=3161005&clickref={SID}` |
+| Orolay (Awin) | Fashion | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=98153&awinaffid=3161005&clickref={SID}` |
+| Bello Diamonds (Awin) | Jewelry | 4% | 2.8% | `https://www.awin1.com/cread.php?awinmid=131575&awinaffid=3161005&clickref={SID}` |
+| Salt & Bone (Awin) | Food & drink | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=129885&awinaffid=3161005&clickref={SID}` |
+| Buture (Awin) | Home & garden | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=83139&awinaffid=3161005&clickref={SID}` |
+| REGAL estate (Awin) | Home & garden | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=130383&awinaffid=3161005&clickref={SID}` |
+| JJNSOLAR (Awin) | Home & garden | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=130903&awinaffid=3161005&clickref={SID}` |
+| TopOak Overland (Awin) | Sports | 4.17% | 2.9% | `https://www.awin1.com/cread.php?awinmid=108374&awinaffid=3161005&clickref={SID}` |
+| EPI Jewelry (Awin) | Jewelry | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=110478&awinaffid=3161005&clickref={SID}` |
+| Lane Woods (Awin) | Jewelry | 9% | 6.3% | `https://www.awin1.com/cread.php?awinmid=101109&awinaffid=3161005&clickref={SID}` |
+| DeerRun UK (Awin) | Sports | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=106313&awinaffid=3161005&clickref={SID}` |
+| Just Try (Awin) | Pets | 8% | 5.6% | `https://www.awin1.com/cread.php?awinmid=131085&awinaffid=3161005&clickref={SID}` |
+| Gshopper (Awin) | General | 3% | 2.1% | `https://www.awin1.com/cread.php?awinmid=77156&awinaffid=3161005&clickref={SID}` |
+| 3DMakerpro (Awin) | Tech | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=48247&awinaffid=3161005&clickref={SID}` |
+| Cozeware (Awin) | Home & garden | 12% | 8.4% | `https://www.awin1.com/cread.php?awinmid=123618&awinaffid=3161005&clickref={SID}` |
+| Hoshanho (Awin) | Home & garden | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=124972&awinaffid=3161005&clickref={SID}` |
+| ATLRx (Awin) | Health | $10 flat | $7 | `https://www.awin1.com/cread.php?awinmid=96109&awinaffid=3161005&clickref={SID}` |
+| Enable Accessible Haircare (Awin) | Beauty | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=113722&awinaffid=3161005&clickref={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.
 

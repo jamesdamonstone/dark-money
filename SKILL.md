@@ -294,6 +294,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | GearUP (CJ) | Tech | 70% | 49% | `https://www.kqzyfj.com/click-101932824-17255582?sid={SID}` |
 | by Benson (CJ) | Home & garden | 5% | 3.5% | `https://www.kqzyfj.com/click-101932824-17362273?sid={SID}` |
 | Magic Story (CJ) | Kids & baby | $27 flat | $18.90 | `https://www.anrdoezrs.net/click-101932824-17360179?sid={SID}` |
+| Holiday Autos (CJ) | Travel | 5% | 3.5% | `https://www.jdoqocy.com/click-101932824-15734353?sid={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.
 

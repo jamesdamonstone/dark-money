@@ -306,6 +306,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Global WiFi (Awin) | Tech | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=131329&awinaffid=3161005&clickref={SID}` |
 | SwitchBot (CJ) | Tech | 6% | 4.2% | `https://www.dpbolvw.net/click-101932824-15735830?sid={SID}` |
 | Plan B Rentals (Awin) | Travel | $1 | $0.70 | `https://www.awin1.com/cread.php?awinmid=131403&awinaffid=3161005&clickref={SID}` |
+| Turnaa eSIM (Awin) | Tech | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=131556&awinaffid=3161005&clickref={SID}` |
 | SilverRushStyle (CJ) | Jewelry | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-11260306?sid={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.

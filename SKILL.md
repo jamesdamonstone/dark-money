@@ -301,6 +301,8 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Rafarada (Awin) | Beauty | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=129415&awinaffid=3161005&clickref={SID}` |
 | Tactical X Gear (Awin) | Health | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=130747&awinaffid=3161005&clickref={SID}` |
 | Cotidié (Awin) | Fashion | 5% | 3.5% | `https://www.awin1.com/cread.php?awinmid=130789&awinaffid=3161005&clickref={SID}` |
+| CrispyVPN (Awin) | Tech | 40% | 28% | `https://www.awin1.com/cread.php?awinmid=131270&awinaffid=3161005&clickref={SID}` |
+| WEBA Natural Products (Awin) | Health | 20% | 14% | `https://www.awin1.com/cread.php?awinmid=131313&awinaffid=3161005&clickref={SID}` |
 | SilverRushStyle (CJ) | Jewelry | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-11260306?sid={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.

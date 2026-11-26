@@ -297,6 +297,7 @@ Substitute the pair's member ID for `{SID}`. "Member earns" is the member's 70% 
 | Holiday Autos (CJ) | Travel | 5% | 3.5% | `https://www.jdoqocy.com/click-101932824-15734353?sid={SID}` |
 | Adwave (Awin) | Services | $120 flat | $84 | `https://www.awin1.com/cread.php?awinmid=125180&awinaffid=3161005&clickref={SID}` |
 | Meedo Designs (Awin) | Sports | 10% | 7% | `https://www.awin1.com/cread.php?awinmid=125198&awinaffid=3161005&clickref={SID}` |
+| Ella Skye (Awin) | Sports | 15% | 10.5% | `https://www.awin1.com/cread.php?awinmid=129409&awinaffid=3161005&clickref={SID}` |
 | SilverRushStyle (CJ) | Jewelry | 15% | 10.5% | `https://www.kqzyfj.com/click-101932824-11260306?sid={SID}` |
 
 A merchant not in this table is not available — shop normally without a link and do not improvise attribution. Rates are set by each store's program and can change; quote them as estimates.

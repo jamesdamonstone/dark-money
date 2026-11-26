@@ -4,7 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
-<link rel="icon" href="data:," />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#0a0908" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Dark Money" />
 <title>Dark Money — Member App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -353,7 +360,9 @@
         <h1>Dark <span class="gold">Money</span></h1>
         <p class="sub">Member App</p>
       </div>
+      <button type="button" id="installBtn" class="promo-copy" hidden>Install app</button>
     </div>
+    <p id="installHint" class="wall-note" hidden></p>
   </header>
 
   <main>
@@ -2049,6 +2058,42 @@
   }
   Array.prototype.forEach.call(tabBtns, function(b){
     b.addEventListener('click', function(){ showTab(b.getAttribute('data-tab')); });
+  });
+})();
+</script>
+<script>
+// Dark Money PWA: service worker registration + install prompt.
+(function () {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* site works fine without it */ });
+    });
+  }
+  var btn = document.getElementById('installBtn');
+  var hint = document.getElementById('installHint');
+  if (!btn) return;
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (standalone) return; // already installed
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    btn.hidden = false;
+  });
+  window.addEventListener('appinstalled', function () {
+    btn.hidden = true;
+    if (hint) hint.hidden = true;
+  });
+  var isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+  if (isIOS) btn.hidden = false; // iOS has no beforeinstallprompt; the button shows the steps instead
+  btn.addEventListener('click', function () {
+    if (deferred) {
+      deferred.prompt();
+      deferred.userChoice.then(function () { deferred = null; btn.hidden = true; });
+    } else if (isIOS && hint) {
+      hint.textContent = 'To install: tap the Share button in Safari, then "Add to Home Screen".';
+      hint.hidden = false;
+    }
   });
 })();
 </script>

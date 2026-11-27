@@ -6,16 +6,19 @@
 <meta name="color-scheme" content="dark" />
 <meta name="verification" content="a29059f9ffa52744971c95f8d6abdea4" />
 <meta name="impact-site-verification" value="faf70a06-3837-4d44-ace7-2b55e4b177a2" />
-<meta name="description" content="Dark Money is a cashback service. Shop through tracked links at 100+ stores and growing and earn a share of the commission back as cashback — members keep 70%, paid out at a $20 balance. Free to join." />
+<meta name="description" content="Dark Money is a cashback service. Shop through tracked links at 200+ stores and growing and earn a share of the commission back as cashback — members keep 70%, paid out at a $20 balance. Free to join." />
 <link rel="canonical" href="https://darkmoney.strangefawkes.com/" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#0a0908" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Dark Money" />
 <meta property="og:title" content="Dark Money — Cashback on the shopping you already do" />
-<meta property="og:description" content="Shop through tracked links at 100+ stores and growing and earn cashback — members keep 70% of the commission, paid out at a $20 balance. Free to join." />
+<meta property="og:description" content="Shop through tracked links at 200+ stores and growing and earn cashback — members keep 70% of the commission, paid out at a $20 balance. Free to join." />
 <meta property="og:url" content="https://darkmoney.strangefawkes.com/" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Dark Money — Cashback on the shopping you already do" />
-<meta name="twitter:description" content="Earn cashback at 100+ stores and growing. Members keep 70% of the commission, paid out at $20. Free to join." />
+<meta name="twitter:description" content="Earn cashback at 200+ stores and growing. Members keep 70% of the commission, paid out at $20. Free to join." />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -25,7 +28,7 @@
       "@id": "https://darkmoney.strangefawkes.com/#org",
       "name": "Dark Money",
       "url": "https://darkmoney.strangefawkes.com/",
-      "description": "Dark Money is a cashback service. Members shop through tracked links at 100+ stores and growing and earn a share of the affiliate commission back as cashback, paid out at a $20 balance.",
+      "description": "Dark Money is a cashback service. Members shop through tracked links at 200+ stores and growing and earn a share of the affiliate commission back as cashback, paid out at a $20 balance.",
       "email": "james@strangefawkes.com",
       "parentOrganization": { "name": "StrangeFawkes LLC", "url": "https://strangefawkes.com/" },
       "sameAs": [ "https://github.com/jamesdamonstone/dark-money" ]
@@ -43,7 +46,7 @@
       "serviceType": "Cashback service",
       "provider": { "@id": "https://darkmoney.strangefawkes.com/#org" },
       "url": "https://darkmoney.strangefawkes.com/",
-      "description": "Cash back on online shopping: shop through a tracked Dark Money link at 100+ stores and growing, earn 70% of the affiliate commission as cashback, paid out once your balance reaches $20. Free membership. Cashback at local small businesses too — scan the shop's QR code and upload your receipt.",
+      "description": "Cash back on online shopping: shop through a tracked Dark Money link at 200+ stores and growing, earn 70% of the affiliate commission as cashback, paid out once your balance reaches $20. Free membership. Cashback at local small businesses too — scan the shop's QR code and upload your receipt.",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free membership" }
     }
   ]
@@ -469,7 +472,7 @@
         </div>
       </div>
       <div class="hero-stats" role="list">
-        <div class="stat" role="listitem"><b>100+</b><span>stores and growing — most of them online-only brands you can earn at today.</span></div>
+        <div class="stat" role="listitem"><b>200+</b><span>stores and growing — most of them online-only brands you can earn at today.</span></div>
         <div class="stat" role="listitem"><b>70%</b><span>of every commission goes to you. Founding offer: the first 25 members to earn a confirmed commission keep 100% of it.</span></div>
         <div class="stat" role="listitem"><b><i>$</i>20</b><span>confirmed balance pays out — cash, not points or store credit.</span></div>
       </div>
@@ -1181,6 +1184,13 @@
       });
     });
   })();
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* site works fine without it */ });
+    });
+  }
 </script>
 </body>
 </html>

@@ -171,6 +171,17 @@
     font-size:.97rem;
   }
   .how-line .mark{color:var(--brass);font-family:"Cinzel",serif;font-weight:700;font-size:1.1rem;line-height:1.2;flex:none}
+  /* ---------- cyber week picks ---------- */
+  .picks{margin:0 0 20px;border:1px solid var(--brass-dim);border-radius:14px;padding:16px 18px;background:linear-gradient(160deg,#1d1811,#14110c 60%);box-shadow:0 0 0 1px rgba(201,162,74,.12)}
+  .picks-title{font-family:"Cinzel",serif;letter-spacing:.12em;text-transform:uppercase;font-size:1rem;font-weight:700;color:var(--brass-bright);margin:0}
+  .picks-offer{margin:8px 0 0;color:var(--ink-2);font-size:.93rem}
+  .picks-offer strong{color:var(--brass-bright)}
+  .picks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;margin-top:14px}
+  .pick{appearance:none;background:#0e0c0a;border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;color:var(--ink);font:inherit}
+  .pick:hover{border-color:var(--brass-dim);background:rgba(201,162,74,.07)}
+  .pick .pname{display:block;font-weight:600;font-size:.92rem;line-height:1.25}
+  .pick .prate{display:block;margin-top:4px;color:var(--brass-bright);font-weight:700;font-size:.92rem}
+  .pick .prate .pk{display:block;color:var(--ink-3);font-weight:700;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase}
   /* ---------- app tabs ---------- */
   .app-tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;margin:0 0 22px}
   .app-tab{
@@ -337,6 +348,8 @@
   #signinWall .wall-logo{display:block;margin:0 auto 10px;width:72px;height:72px;border-radius:16px}
   #signinWall h1{margin:0;text-align:center;font-size:1.55rem}
   #signinWall .wall-sub{margin:8px 0 0;text-align:center;color:var(--ink-2);font-size:.95rem}
+  #signinWall .wall-offer{margin:16px 0 0;border:1px solid var(--brass-dim);border-radius:10px;background:rgba(201,162,74,.08);padding:12px 14px;color:var(--ink-2);font-size:.93rem;text-align:center}
+  #signinWall .wall-offer strong{color:var(--brass-bright)}
   #signinWall .wall-tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;margin:20px 0 18px}
   #signinWall .wall-tab{flex:1;border:0;background:transparent;color:var(--ink-2);border-radius:999px;padding:9px 0;font:inherit;font-weight:600;cursor:pointer}
   #signinWall .wall-tab.is-active{background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
@@ -386,6 +399,7 @@
       <div class="wall-card">
         <h1 id="wallTitle">Dark Money</h1>
         <p class="wall-sub">Cashback on the shopping you already do. Members only &mdash; log in or join free.</p>
+        <div class="wall-offer"><strong>Founding offer:</strong> the first 25 members earn <strong>100% of their first confirmed commission</strong> &mdash; <strong>22 founding slots left.</strong></div>
         <div class="wall-tabs" role="tablist" aria-label="Log in or join">
           <button type="button" class="wall-tab is-active" id="wallTabLogin" role="tab" aria-selected="true">Log in</button>
           <button type="button" class="wall-tab" id="wallTabJoin" role="tab" aria-selected="false">Join free</button>
@@ -614,6 +628,12 @@
         <span>Open your link, shop as usual, and check out yourself &mdash; that&rsquo;s what keeps the cashback valid. Swipe or scroll sideways for more stores.</span>
       </div>
 
+      <div class="picks" id="picksBox">
+        <h3 class="picks-title">This week&rsquo;s picks</h3>
+        <p class="picks-offer">Cyber Week standouts, ranked by what you earn. <strong>Founding offer:</strong> the first 25 members earn <strong>100% of their first confirmed commission</strong> &mdash; <strong>22 founding slots left.</strong></p>
+        <div class="picks-grid" id="picks"></div>
+      </div>
+
       <div class="stores" id="stores"></div>
     </section>
 
@@ -699,6 +719,9 @@
             <div class="member-row">
               <input id="inviteLink" type="text" readonly value="" autocomplete="off" spellcheck="false" />
               <button type="button" class="btn secondary small" id="inviteCopyBtn">Copy link</button>
+            </div>
+            <div class="member-row" style="margin-top:8px">
+              <button type="button" class="btn small" id="inviteShareBtn">Share invite</button>
             </div>
             <p id="inviteCount" style="margin:8px 0 0;color:var(--ink-2);font-size:.92rem"></p>
           </div>
@@ -1041,6 +1064,24 @@
     card.setAttribute('data-name', p.name.toLowerCase());
     storesEl.appendChild(card);
   });
+
+  // ---- This week's picks: the strongest member rates in the catalog ----
+  var PICK_NAMES = ['GearUP', 'NordVPN', 'ShedRX', 'Signos', 'Adwave', 'Abelssoft Int', 'Magzter', 'THE ORFY', 'CrispyVPN', 'Phone.com', 'Mimi Panda', 'Thrivous', 'FlexClip', 'Arq8', 'Daybreak'];
+  var picksEl = document.getElementById('picks');
+  if (picksEl) {
+    PICK_NAMES.forEach(function(nm){
+      var p = null;
+      programs.forEach(function(q){ if (q.name === nm) p = q; });
+      if (!p) return;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pick';
+      b.innerHTML = '<span class="pname">' + esc(p.name) + '</span>' +
+        '<span class="prate"><span class="pk">You earn</span>' + esc(p.you) + '</span>';
+      b.addEventListener('click', function(){ window.open(buildLink(p.template), '_blank', 'noopener'); });
+      picksEl.appendChild(b);
+    });
+  }
 
   var countrySel = document.getElementById('countrySel');
   var catSel = document.getElementById('catSel');
@@ -1416,6 +1457,25 @@
       input.select();
       try { document.execCommand('copy'); } catch(e) {}
       done();
+    }
+  });
+
+  var inviteShareBtn = document.getElementById('inviteShareBtn');
+  if (inviteShareBtn) inviteShareBtn.addEventListener('click', function(){
+    var input = document.getElementById('inviteLink');
+    if (!input || !input.value) return;
+    var shareText = 'I get cashback at 200+ stores with Dark Money \u2014 founding members earn 100% of their first commission';
+    function copied(){
+      inviteShareBtn.textContent = 'Link copied';
+      setTimeout(function(){ inviteShareBtn.textContent = 'Share invite'; }, 1600);
+    }
+    if (navigator.share) {
+      navigator.share({ title: 'Dark Money', text: shareText, url: input.value }).catch(function(){});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareText + ' ' + input.value).then(copied).catch(function(){ fallbackCopy(shareText + ' ' + input.value); copied(); });
+    } else {
+      fallbackCopy(shareText + ' ' + input.value);
+      copied();
     }
   });
 
